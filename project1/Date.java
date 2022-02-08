@@ -21,7 +21,7 @@ public class Date implements Comparable<Date> {
 	public static final int daysInYear = 365;
 	
 	
-	public static final int JANUARY = 1;
+    public static final int JANUARY = 1;
     public static final int FEBRUARY = 2;
     public static final int MARCH = 3;
     public static final int APRIL = 4;
@@ -64,7 +64,14 @@ public class Date implements Comparable<Date> {
         int yearDifference = year - date.year;
         int monthDifference = month - date.month;
         int dayDifference = day - date.day;
-        return (yearDifference * daysInYear) + (monthDifference * AJSN) + dayDifference;
+        int sum = (yearDifference * daysInYear) + (monthDifference * AJSN) + dayDifference;
+        if(sum > 0) {
+        	return 1;
+        }
+        if(sum < 0) {
+        	return -1;
+        }
+        return 0;
     }
 	
 	

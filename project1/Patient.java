@@ -1,5 +1,10 @@
 package project1;
 
+/**
+ * This class defines the Date abstract data type with year, month, and day.
+ * @author Moeez Shahid, Mahad Rauf
+ */
+
 public class Patient implements Comparable<Patient>{
 	private String fname;
 	private String lname;

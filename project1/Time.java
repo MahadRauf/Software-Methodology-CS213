@@ -21,7 +21,7 @@ public class Time implements Comparable<Time>{
     }
 
     /**
-     * 2 argument constructor for Time type. Hour input less than 9 or greater will be deemed invalid. Same for minute
+     * 2 parameter constructor for Time type. Hour input less than 9 or greater will be deemed invalid. Same for minute
      * input that is not a multiple of 15 and not between 0-45.
      * @param hour the hour of the time in 24-hour format.
      * @param minute the minute of the time.
@@ -34,7 +34,7 @@ public class Time implements Comparable<Time>{
     /**
      * Determines whether the time is valid. That being the time is in between 09:00 and 16:45 and the minute is either
      * 0, 15, 30, or 45.
-     * @return
+     * @return boolean true or false whether time is valid
      */
     public boolean isValid(){
         boolean retVal = false;

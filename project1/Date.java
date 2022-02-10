@@ -174,6 +174,7 @@ public class Date implements Comparable<Date> {
 	}
 	
 	/**
+	* This method overrides the toString() method.
      * Returns a String representation of the Date object in "mm/dd/yyyy" format.
      */
     @Override

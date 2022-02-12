@@ -52,4 +52,19 @@ public class Appointment {
         String ret = this.patient.toString() + " " + this.slot.toString() + " " + this.location.toString();
         return ret;
     }
+
+    public Patient getPatient(){
+        Patient ret = this.patient;
+        return ret;
+    }
+
+    public Timeslot getSlot(){
+        Timeslot ret = this.slot;
+        return ret;
+    }
+
+    public Location getLocation(){
+        Location ret = this.location;
+        return ret;
+    }
 }

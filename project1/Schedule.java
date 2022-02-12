@@ -13,6 +13,9 @@ public class Schedule {
     }
 
     private int find(Appointment appt) {
+        if(appt == null){
+            return NOT_FOUND;
+        }
         for (int i = 0; i < numAptts; i++) {
             if (this.appointments[i].equals(appt)) {
                 return i;
@@ -31,6 +34,9 @@ public class Schedule {
     }
 
     public boolean add(Appointment appt) {
+        if(appt == null){
+            return false;
+        }
         if (find(appt) != NOT_FOUND) {
             return false; // is this magic number?
         }
@@ -43,6 +49,9 @@ public class Schedule {
     }
 
     public boolean remove(Appointment appt) {
+        if(appt == null){
+            return false;
+        }
         int delIndex = find(appt);
         if (delIndex == NOT_FOUND) {
             return false; // witchcraft?
@@ -88,13 +97,13 @@ public class Schedule {
             System.out.println(this.appointments[i].toString()); //fix toString w\ proper format
         }
     }
-    
+
     public void printByPatient(){
         for(int i = 0; i < this.appointments.length - 1; i++){
             int minIdx = i;
             Patient minPat = this.appointments[minIdx].getPatient();
             for(int j = i + 1; j < this.appointments.length; j++){
-            	Patient jPat = this.appointments[j].getPatient();
+                Patient jPat = this.appointments[j].getPatient();
                 if(minPat.compareTo(jPat) == 1){
                     minIdx = j;
                 }
@@ -104,5 +113,5 @@ public class Schedule {
             this.appointments[i] = temp;
         }
         print();
-        }
+    }
 }

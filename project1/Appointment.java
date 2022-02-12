@@ -35,6 +35,9 @@ public class Appointment {
      */
     @Override
     public boolean equals(Object obj){
+        if(obj == null){
+            return false;
+        }
         boolean ret = false;
         if(obj instanceof Appointment){
             Appointment appObj = (Appointment) obj;

@@ -54,38 +54,39 @@ public class Schedule {
         for (int i = 0; i < this.appointments.length; i++) {
             newAppArray[i] = this.appointments[i + 1];
         }
+        numAptts--;
         return true; // sorcery?
     }
-    
+
     public void print() {
-    	for(int i = 0; i < this.appointments.length; i++) {
-    		System.out.println(this.appointments[i].toString());
-    	}
+        for (int i = 0; i < this.appointments.length; i++) {
+            System.out.println(this.appointments[i].toString());
+        }
     }
 
-    public void printByZip(){
-        for(int i = 0; i < this.appointments.length - 1; i++){
-            int minIdx = i;
-            int minZip = this.appointments[minIdx].getLocation().ZIP;
-            for(int j = i + 1; j < this.appointments.length; j++){
-                int jZip = this.appointments[j].getLocation().ZIP;
-                if(minZip > jZip){
-                    Appointment temp = this.appointments[minIdx];
-                    this.appointments[minIdx] = this.appointments[j];
-                    this.appointments[j] = temp;
-                }else if(minZip == jZip){
-                    Timeslot minSlot = this.appointments[minIdx].getSlot();
-                    Timeslot jSlot = this.appointments[j].getSlot();
-                    if(minSlot.compareTo(jSlot) == 1){
+        public void printByZip(){
+            for(int i = 0; i < this.appointments.length - 1; i++){
+                int minIdx = i;
+                int minZip = this.appointments[minIdx].getLocation().ZIP;
+                for(int j = i + 1; j < this.appointments.length; j++){
+                    int jZip = this.appointments[j].getLocation().ZIP;
+                    if(minZip > jZip){
                         Appointment temp = this.appointments[minIdx];
                         this.appointments[minIdx] = this.appointments[j];
                         this.appointments[j] = temp;
+                    }else if(minZip == jZip){
+                        Timeslot minSlot = this.appointments[minIdx].getSlot();
+                        Timeslot jSlot = this.appointments[j].getSlot();
+                        if(minSlot.compareTo(jSlot) == 1){
+                            Appointment temp = this.appointments[minIdx];
+                            this.appointments[minIdx] = this.appointments[j];
+                            this.appointments[j] = temp;
+                        }
                     }
                 }
             }
-        }
-        for(int i = 0; i < this.appointments.length; i++){
-            System.out.println(this.appointments[i].toString()); //fix toString w\ proper format
+            for(int i = 0; i < this.appointments.length; i++){
+                System.out.println(this.appointments[i].toString()); //fix toString w\ proper format
+            }
         }
     }
-}

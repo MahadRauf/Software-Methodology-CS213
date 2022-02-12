@@ -10,8 +10,8 @@ public enum Location {
     MERCER("Princeton",8542),
     MORRIS("Morristown",7960),
     UNION("Union",7083);
-    private final String CITY; // The city in the county
-    private final int ZIP; // zip code of the city
+    public final String CITY; // The city in the county
+    public final int ZIP; // zip code of the city
 
     /**
      * Constructor for java to initialize constants relating to each county. Namely, the city and zip.

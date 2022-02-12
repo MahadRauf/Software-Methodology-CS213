@@ -25,11 +25,11 @@ public class Patient implements Comparable<Patient>{
 	
 	/**
 	 * This method overides the toString() method.
-     * It returns a String representation of the Patient object in "DOB fname lname" format.
+     * It returns a String representation of the Patient object in "fname lname DOB: dob," format.
      */
     @Override
 	public String toString() {
-		String patientString = dob.toString() + " " + fname + " " + lname;
+		String patientString =  fname + " " + lname + " DOB: " + dob.toString() + "," ;
         return patientString;
 		}
 	

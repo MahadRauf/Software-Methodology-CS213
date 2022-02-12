@@ -5,12 +5,12 @@ public class Schedule {
     private int numAptts;
     private static final int NOT_FOUND = -1;
     private static final int ARRAY_GROWTH = 4;
+    private static final int INITIAL_SIZE = 4;
 
     public Schedule() {
-        this.appointments = new Appointment[4];
+        this.appointments = new Appointment[INITIAL_SIZE];
         this.numAptts = 0;
     }
-
     private int find(Appointment appt) {
         for (int i = 0; i < numAptts; i++) {
             if (this.appointments[i].equals(appt)) {

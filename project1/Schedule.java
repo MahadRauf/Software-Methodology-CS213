@@ -94,16 +94,15 @@ public class Schedule {
             int minIdx = i;
             Patient minPat = this.appointments[minIdx].getPatient();
             for(int j = i + 1; j < this.appointments.length; j++){
-                Patient jPat = this.appointments[j].getPatient();
-                if(minPat.compareTo(jPat) == 1){ //minPat > jPat
-                    Appointment temp = this.appointments[minIdx];
-                    this.appointments[minIdx] = this.appointments[j];
-                    this.appointments[j] = temp;
+            	Patient jPat = this.appointments[j].getPatient();
+                if(minPat.compareTo(jPat) == 1){
+                    minIdx = j;
                 }
             }
+            Appointment temp = this.appointments[minIdx];
+            this.appointments[minIdx] = this.appointments[i];
+            this.appointments[i] = temp;
         }
-        for(int i = 0; i < this.appointments.length; i++){
-            System.out.println(this.appointments[i].toString()); //fix toString w\ proper format
+        print();
         }
-    }
 }

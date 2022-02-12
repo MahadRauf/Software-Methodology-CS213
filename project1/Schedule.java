@@ -58,8 +58,8 @@ public class Schedule {
     }
     
     public void print() {
-    	for(int i = 0; i < appointments.length; i++) {
-    		System.out.println(appointments[i].toString());
+    	for(int i = 0; i < this.appointments.length; i++) {
+    		System.out.println(this.appointments[i].toString());
     	}
 
     public void printByZip(){

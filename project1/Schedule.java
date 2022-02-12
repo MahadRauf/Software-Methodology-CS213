@@ -61,6 +61,7 @@ public class Schedule {
     	for(int i = 0; i < this.appointments.length; i++) {
     		System.out.println(this.appointments[i].toString());
     	}
+    }
 
     public void printByZip(){
         for(int i = 0; i < this.appointments.length - 1; i++){

@@ -55,4 +55,9 @@ public class Schedule {
         }
         return true; // sorcery?
     }
+    public void print() {
+    	for(int i = 0; i < appointments.length; i ++) {
+    		System.out.println(appointments[i].toString());
+    	}
+    }
 }

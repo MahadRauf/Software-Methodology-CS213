@@ -5,12 +5,12 @@ public class Schedule {
     private int numAptts;
     private static final int NOT_FOUND = -1;
     private static final int ARRAY_GROWTH = 4;
-    private static final int INITIAL_SIZE = 4;
 
     public Schedule() {
-        this.appointments = new Appointment[INITIAL_SIZE];
+        this.appointments = new Appointment[4];
         this.numAptts = 0;
     }
+
     private int find(Appointment appt) {
         for (int i = 0; i < numAptts; i++) {
             if (this.appointments[i].equals(appt)) {
@@ -55,9 +55,30 @@ public class Schedule {
         }
         return true; // sorcery?
     }
-    public void print() {
-    	for(int i = 0; i < appointments.length; i ++) {
-    		System.out.println(appointments[i].toString());
-    	}
+
+    public void printByZip(){
+        for(int i = 0; i < this.appointments.length - 1; i++){
+            int minIdx = i;
+            int minZip = this.appointments[minIdx].getLocation().ZIP;
+            for(int j = i + 1; j < this.appointments.length; j++){
+                int jZip = this.appointments[j].getLocation().ZIP;
+                if(minZip > jZip){
+                    Appointment temp = this.appointments[minIdx];
+                    this.appointments[minIdx] = this.appointments[j];
+                    this.appointments[j] = temp;
+                }else if(minZip == jZip){
+                    Timeslot minSlot = this.appointments[minIdx].getSlot();
+                    Timeslot jSlot = this.appointments[j].getSlot();
+                    if(minSlot.compareTo(jSlot) == 1){
+                        Appointment temp = this.appointments[minIdx];
+                        this.appointments[minIdx] = this.appointments[j];
+                        this.appointments[j] = temp;
+                    }
+                }
+            }
+        }
+        for(int i = 0; i < this.appointments.length; i++){
+            System.out.println(this.appointments[i].toString()); //fix toString w\ proper format
+        }
     }
 }

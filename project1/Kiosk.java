@@ -65,10 +65,10 @@ public class Kiosk {
 
         Appointment apptToDelete = new Appointment(patientString, command[4], command[5], command[6]);
         if(schedule.remove(apptToDelete)) {
-            System.out.println("Appointment cancelled");
+            System.out.println("Appointment cancelled.");
         }
         else {
-            System.out.println("Appointment not found");
+            System.out.println("Not cancelled, appointment does not exist");
         }
 
     }

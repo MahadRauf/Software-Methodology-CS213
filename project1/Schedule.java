@@ -11,6 +11,16 @@ public class Schedule {
         this.appointments = new Appointment[INITIAL_SIZE];
         this.numAptts = 0;
     }
+    
+    public void cancelAll(Appointment appt){
+        Patient delPtnt = appt.getPatient();
+        for (int i = 0; i < numAptts; i++) {
+            Patient tempPtnt = this.appointments[i].getPatient();
+            if (delPtnt.compareTo(tempPtnt) == 0) {
+                remove(this.appointments[i]);
+            }
+        }
+    }
 
     public boolean hasSimilarAppt(Appointment appt){
         Date apptDate = appt.getSlot().getDate();

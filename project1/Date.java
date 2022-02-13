@@ -149,6 +149,10 @@ public class Date implements Comparable<Date> {
         }
         return false;
 	}
+	/**
+	 * This method checks if a date is in a future year
+	 * @return true if in a future year, false otherwise
+	 */
 	
 	public boolean isFutureYear() {
 		Calendar calendar = Calendar.getInstance();
@@ -180,6 +184,20 @@ public class Date implements Comparable<Date> {
         }
         return false;
 	}
+	
+	
+	/**
+	 * This method checks if a date is today
+	 * @return true if input is current day, false otherwise
+	 */
+	public boolean isToday() {
+		Calendar calendar = Calendar.getInstance();
+		if(year == calendar.get(Calendar.YEAR) && month == calendar.get(Calendar.MONTH) && day == calendar.get(Calendar.DATE)) {
+			return true;
+		}
+		return false;
+	}
+	
 	
 	/**
 	 * This method overrides the toString() method.

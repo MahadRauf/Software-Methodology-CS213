@@ -12,7 +12,14 @@ public class Schedule {
         this.numAptts = 0;
     }
 
-    public int find(Appointment appt) {
+    public boolean apptExists(Appointment appt){
+        if(this.find(appt) != NOT_FOUND){
+            return true;
+        }
+        return false;
+    }
+
+    private int find(Appointment appt) {
         if(appt == null){
             return NOT_FOUND;
         }

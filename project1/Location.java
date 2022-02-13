@@ -25,9 +25,9 @@ public enum Location {
 
     /**
      * Overrides built in toString method with another appropriate for the purposes of this project
-     * @Override built in toString() method
      * @return returns location as String in form "CITY ZIP, COUNTY"
      */
+    @Override
     public String toString(){
         String zip = String.format("%05d", this.ZIP);
         String ret = this.CITY + " " + zip + ", " + this.name();

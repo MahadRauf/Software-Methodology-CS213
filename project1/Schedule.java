@@ -12,6 +12,19 @@ public class Schedule {
         this.numAptts = 0;
     }
 
+    public boolean slotTaken(Appointment appt){
+        Timeslot apptSlot = appt.getSlot();
+        Location apptLoc = appt.getLocation();
+        for (int i = 0; i < numAptts; i++) {
+            Timeslot tempSlot = this.appointments[i].getSlot();
+            Location tempLoc = this.appointments[i].getLocation();
+            if (apptSlot.equals(tempSlot) && apptLoc.equals(tempLoc)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean apptExists(Appointment appt){
         if(this.find(appt) != NOT_FOUND){
             return true;

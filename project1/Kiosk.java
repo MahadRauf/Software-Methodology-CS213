@@ -24,42 +24,53 @@ public class Kiosk {
         String patientString = command[1] + " " + command[2] + " " + command[3];
         Date apptDate = new Date(command[4]);
         Date birthDay = new Date(command[1]);
+        Appointment apptToAdd = new Appointment(patientString, command[4], command[5], command[6]);
         if(!apptDate.isValid()){
 
         }
-        if(birthDay.isFutureDate() || ){
+        if(birthDay.isFutureDate() || birthDay.isToday()){
 
         }
-        if(apptDate.isPastDate()){
+        if(apptDate.isPastDate() || apptDate.isToday() || apptDate.isFutureYear()){
 
         }
         String [] timeParam = command[5].split(" ");
         Time apptTime = new Time(Integer.parseInt(timeParam[0]), Integer.parseInt(timeParam[1]));
+        if(!apptTime.isValid()){
 
+        }
+        if(schedule.apptExists(apptToAdd)){
+
+        }
+        if(schedule.slotTaken(apptToAdd)){
+
+        }
         if(!locationExists(command[6].toUpperCase())){
             System.out.println("Invalid location!");
             return;
         }
-        Appointment apptToAdd = new Appointment(patientString, command[4], command[5], command[6]);
+        if(schedule.hasSimilarAppt(apptToAdd)){
+
+        }
         schedule.add(apptToAdd);
     }
 
     private void cancelAppt(String [] command, Schedule schedule){
-    	String patientString = command[1] + " " + command[2] + " " + command[3];
+        String patientString = command[1] + " " + command[2] + " " + command[3];
         Date apptDate = new Date(command[4]);
         Date birthDay = new Date(command[1]);
         String [] timeParam = command[5].split(" ");
         Time apptTime = new Time(Integer.parseInt(timeParam[0]), Integer.parseInt(timeParam[1]));
 
-        
+
         Appointment apptToDelete = new Appointment(patientString, command[4], command[5], command[6]);
         if(schedule.remove(apptToDelete)) {
-        	System.out.println("Appointment cancelled");
+            System.out.println("Appointment cancelled");
         }
         else {
-        	System.out.println("Appointment not found");
+            System.out.println("Appointment not found");
         }
-    	
+
     }
 
     // take a whatever appointment and send that to some method so we have the patient and then delete all appt with same patient (implement)

@@ -208,7 +208,7 @@ public class Schedule {
             this.appointments[i] = temp;
         }
         System.out.println();
-        System.out.println("*list of appointments in the schedule*");
+        System.out.println("*list of appointments by zip and time slot*");
         for(int i = 0; i < numAptts; i++){
             System.out.println(this.appointments[i].toString()); //fix toString w\ proper format
         }
@@ -234,6 +234,12 @@ public class Schedule {
             this.appointments[minIdx] = this.appointments[i];
             this.appointments[i] = temp;
         }
-        print();
+        System.out.println();
+        System.out.println("*list of appointments by patient*");
+        for(int i = 0; i < numAptts; i++){
+            System.out.println(this.appointments[i].toString()); //fix toString w\ proper format
+        }
+        System.out.println("*end of schedule*");
+        System.out.println();
     }
 }

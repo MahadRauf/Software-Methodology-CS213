@@ -55,11 +55,22 @@ public class Timeslot implements Comparable<Timeslot>{
         }
     }
 
+    public Date getDate(){
+        Date ret = this.date;
+        return ret;
+    }
+
+    public Time getTime(){
+        Time ret = this.time;
+        return ret;
+    }
+
     /**
      * Testbed main to test program. (in construction)
      * @param args command line input
      */
     public static void main(String [] args){
-
+        Timeslot ts = new Timeslot("11/22/2022", "09:45");
+        System.out.println(ts.toString());
     }
 }

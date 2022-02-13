@@ -1,6 +1,5 @@
 package project1;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Kiosk {
@@ -28,15 +27,21 @@ public class Kiosk {
         if(!apptDate.isValid()){
 
         }
-        if(){
+        if(birthDay.isFutureDate() || ){
+
+        }
+        if(apptDate.isPastDate()){
 
         }
         String [] timeParam = command[5].split(" ");
         Time apptTime = new Time(Integer.parseInt(timeParam[0]), Integer.parseInt(timeParam[1]));
+
         if(!locationExists(command[6].toUpperCase())){
             System.out.println("Invalid location!");
             return;
         }
+        Appointment apptToAdd = new Appointment(patientString, command[4], command[5], command[6]);
+        schedule.add(apptToAdd);
     }
 
     private void cancelAppt(String [] command, Schedule schedule){

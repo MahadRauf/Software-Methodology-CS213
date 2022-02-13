@@ -46,9 +46,9 @@ public class Time implements Comparable<Time>{
 
     /**
      * Overrides the toString method with one appropriate for the class.
-     * @Override overrides built-in .toString().
      * @return returns the time as a String in HH:mm format.
      */
+    @Override
     public String toString(){
         String retString = String.format("%02d:%02d", this.hour, this.minute);
         return retString;
@@ -56,10 +56,10 @@ public class Time implements Comparable<Time>{
 
     /**
      * Overrides the compareTo method with one appropriate for the class.
-     * @Override overrides built in .compareTo(Object object).
      * @param time the other time object to compare with
      * @return 1 if greater than parameter time, 0 if equal, -1 if less than
      */
+    @Override
     public int compareTo(Time time){
         int retVal = 0;
         if(this.hour > time.hour){

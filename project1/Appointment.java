@@ -56,16 +56,28 @@ public class Appointment {
         return ret;
     }
 
+    /**
+     * Getter method that returns patient field of Appointment.
+     * @return patient field of Appointment.
+     */
     public Patient getPatient(){
         Patient ret = this.patient;
         return ret;
     }
 
+    /**
+     * Getter method that returns slot field of Appointment.
+     * @return slot field of Appointment.
+     */
     public Timeslot getSlot(){
         Timeslot ret = this.slot;
         return ret;
     }
 
+    /**
+     * Getter method that returns location field of Appointment.
+     * @return patient field of Appointment.
+     */
     public Location getLocation(){
         Location ret = this.location;
         return ret;

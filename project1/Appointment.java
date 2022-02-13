@@ -52,7 +52,7 @@ public class Appointment {
      */
     @Override
     public String toString(){
-        String ret = this.patient.toString() + " " + this.slot.toString() + " " + this.location.toString();
+        String ret = this.patient.toString() + ", Appointment detail: " + this.slot.toString() + ", " + this.location.toString();
         return ret;
     }
 

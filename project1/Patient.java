@@ -29,7 +29,7 @@ public class Patient implements Comparable<Patient>{
      */
     @Override
     public String toString() {
-        String patientString = dob.toString() + " " + fname + " " + lname;
+        String patientString = fname + " " + lname + ", DOB: " + dob.toString();
         return patientString;
     }
 

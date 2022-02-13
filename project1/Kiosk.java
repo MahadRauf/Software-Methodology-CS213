@@ -1,5 +1,6 @@
 package project1;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Kiosk {
@@ -11,11 +12,31 @@ public class Kiosk {
     private static final String DISPLAY_ALL_BY_PTNT = "PP";
     private static final String QUIT = "Q";
 
+    public boolean locationExists(String location){
+        for(Location loc : Location.values()){
+            if(loc.name().equals(location)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void bookAppt(String [] command, Schedule schedule){
         String patientString = command[1] + " " + command[2] + " " + command[3];
         Date apptDate = new Date(command[4]);
+        Date birthDay = new Date(command[1]);
+        if(!apptDate.isValid()){
+
+        }
+        if(){
+
+        }
         String [] timeParam = command[5].split(" ");
         Time apptTime = new Time(Integer.parseInt(timeParam[0]), Integer.parseInt(timeParam[1]));
+        if(!locationExists(command[6].toUpperCase())){
+            System.out.println("Invalid location!");
+            return;
+        }
     }
 
     private void cancelAppt(String [] command, Schedule schedule){

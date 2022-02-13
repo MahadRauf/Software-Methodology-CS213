@@ -34,13 +34,4 @@ public enum Location {
         return ret;
     }
 
-    public boolean locationExists(String location){
-        for(Location loc : Location.values()){
-            if(loc.name().equals(location)){
-                return true;
-            }
-        }
-        return false;
-    }
-
 }

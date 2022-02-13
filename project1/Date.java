@@ -150,6 +150,14 @@ public class Date implements Comparable<Date> {
         return false;
 	}
 	
+	public boolean isFutureYear() {
+		Calendar calendar = Calendar.getInstance();
+		if(year > calendar.get(Calendar.YEAR)) {
+			return true;
+		}
+		return false;
+	}
+	
 	/**
 	 * This method checks if a date is in the past.
 	 * @return true if the input is a date in the past after 1900, false otherwise.
@@ -295,3 +303,8 @@ public class Date implements Comparable<Date> {
 		
 
 	}
+	
+	
+
+
+

@@ -7,11 +7,11 @@ package project1;
 
 public class RunProject1 {
 
-	/**
+    /**
      * Main driver method to execute Project 1.
      * @param args command line arguments.
      */
-	public static void main(String[] args) {
-		new Kiosk().run();
+    public static void main(String[] args) {
+        new Kiosk().run();
     }
 }

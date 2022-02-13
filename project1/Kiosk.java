@@ -29,15 +29,19 @@ public class Kiosk {
             return;
         }
         Appointment apptToAdd = new Appointment(patientString, command[4], command[5], command[6].toUpperCase());
-        if(!apptDate.isValid()){
-            System.out.println("Invalid appointment date!");
-            return;
-        }
         if(birthDay.isFutureDate() || birthDay.isToday()){
             System.out.println("Date of birth invalid -> it is a future date");
             return;
         }
-        if(apptDate.isPastDate() || apptDate.isToday() || apptDate.isFutureYear()){
+        if(!birthDay.isValid()){
+            System.out.println("Invalid date of birth!");
+            return;
+        }
+        if(!apptDate.isValid() || apptDate.isFutureYear()){
+            System.out.println("Invalid appointment date!");
+            return;
+        }
+        if(apptDate.isPastDate() || apptDate.isToday()){
             System.out.println("Appointment date invalid -> must be a future date");
             return;
         }
@@ -76,7 +80,7 @@ public class Kiosk {
             System.out.println("Appointment cancelled");
         }
         else {
-            System.out.println("Appointment not found");
+            System.out.println("Not cancelled, appointment does not exist.");
         }
 
     }
@@ -84,10 +88,15 @@ public class Kiosk {
     // take a whatever appointment and send that to some method so we have the patient and then delete all appt with same patient (implement)
     private void cancelAllAppt(String [] command, Schedule schedule){
         String patientString = command[1] + " " + command[2] + " " + command[3];
-        Patient delPtnt = new Patient(patientString);
         // appointment given filler values so patient can be sent along with it.
-        Appointment apptToDelete = new Appointment(patientString, "03/25/2022", "9:30", "MERCER");
-        schedule.cancelAll(apptToDelete);
+        Appointment simApptToFind = new Appointment(patientString, "03/25/2022", "9:30", "MERCER");
+        Appointment apptToDelete = schedule.findPatient(simApptToFind);
+        while(apptToDelete != null){
+            schedule.remove(apptToDelete);
+            apptToDelete = schedule.findPatient(simApptToFind);
+        }
+        //schedule.cancelAll(apptToDelete);
+        Patient delPtnt = new Patient(patientString);
         System.out.println("All appointments for " + delPtnt.toString() + " have been canceled.");
     }
 

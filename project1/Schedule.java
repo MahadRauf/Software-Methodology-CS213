@@ -16,19 +16,34 @@ public class Schedule {
         this.numAptts = 0;
     }
 
+    public Appointment findPatient(Appointment appt){
+        Patient findPtnt = appt.getPatient();
+        for (int i = 0; i < this.numAptts; i++) {
+            Patient tempPtnt = this.appointments[i].getPatient();
+            if (findPtnt.compareTo(tempPtnt) == 0) {
+                Appointment ret = this.appointments[i];
+                return ret;
+            }
+        }
+        return null;
+    }
+
+
     /**
      * Cancels all appointments in the same schedule that has the same patient as the parameter appointment.
      * @param appt instance of appointment that has the patient to be removed
      */
-    public void cancelAll(Appointment appt){
-        Patient delPtnt = appt.getPatient();
-        for (int i = 0; i < numAptts; i++) {
+    /*public void cancelAll(Appointment appt){
+        //Patient delPtnt = appt.getPatient();
+        Appointment apptToDelete = findPatient(appt);
+
+        /*for (int i = 0; i < this.numAptts; i++) {
             Patient tempPtnt = this.appointments[i].getPatient();
             if (delPtnt.compareTo(tempPtnt) == 0) {
                 remove(this.appointments[i]);
             }
-        }
-    }
+        }/*
+    }*/
 
     /**
      * Checks the schedule to see if a patient already has an appointment at some location at the same date.
@@ -121,11 +136,11 @@ public class Schedule {
         if (find(appt) != NOT_FOUND) {
             return false;
         }
-        if (numAptts == this.appointments.length) {
+        if (this.numAptts == this.appointments.length) {
             this.grow();
         }
-        this.appointments[numAptts] = appt;
-        numAptts++;
+        this.appointments[this.numAptts] = appt;
+        this.numAptts++;
         return true;
     }
 
@@ -146,10 +161,11 @@ public class Schedule {
         for (int i = 0; i < delIndex; i++) {
             newAppArray[i] = this.appointments[i];
         }
-        for (int i = 0; i < this.appointments.length - 1; i++) {
+        for (int i = delIndex; i < this.appointments.length - 1; i++) {
             newAppArray[i] = this.appointments[i + 1];
         }
-        numAptts--;
+        this.numAptts--;
+        this.appointments = newAppArray;
         return true; // sorcery?
     }
 
@@ -157,9 +173,13 @@ public class Schedule {
      * prints the schedule array in the order that it is currently in.
      */
     public void print() {
+        System.out.println();
+        System.out.println("*list of appointments in the schedule*");
         for (int i = 0; i < numAptts; i++) {
             System.out.println(this.appointments[i].toString());
         }
+        System.out.println("*end of schedule*");
+        System.out.println();
     }
 
     /**
@@ -173,11 +193,13 @@ public class Schedule {
                 int jZip = this.appointments[j].getLocation().ZIP;
                 if(minZip > jZip){
                     minIdx = j;
+                    minZip = this.appointments[minIdx].getLocation().ZIP;
                 }else if(minZip == jZip){
                     Timeslot minSlot = this.appointments[minIdx].getSlot();
                     Timeslot jSlot = this.appointments[j].getSlot();
                     if(minSlot.compareTo(jSlot) == 1){
                         minIdx = j;
+                        minZip = this.appointments[minIdx].getLocation().ZIP;
                     }
                 }
             }
@@ -185,9 +207,13 @@ public class Schedule {
             this.appointments[minIdx] = this.appointments[i];
             this.appointments[i] = temp;
         }
+        System.out.println();
+        System.out.println("*list of appointments in the schedule*");
         for(int i = 0; i < numAptts; i++){
             System.out.println(this.appointments[i].toString()); //fix toString w\ proper format
         }
+        System.out.println("*end of schedule*");
+        System.out.println();
     }
 
     /**
@@ -201,6 +227,7 @@ public class Schedule {
                 Patient jPat = this.appointments[j].getPatient();
                 if(minPat.compareTo(jPat) == 1){
                     minIdx = j;
+                    minPat = this.appointments[minIdx].getPatient();;
                 }
             }
             Appointment temp = this.appointments[minIdx];

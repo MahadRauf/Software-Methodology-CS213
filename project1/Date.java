@@ -9,19 +9,19 @@ import java.util.Calendar;
 
 public class Date implements Comparable<Date> {
 
-	public static final int QUADRENNIAL = 4;
-	public static final int CENTENNIAL = 100;
-	public static final int QUATERCENTENNIAL  = 400;
-	public static final int FebruaryNormal = 28;
-	public static final int FebruaryLeap = 29;
-	public static final int JMMJAOD = 31;//January March May July August October December
-	public static final int AJSN = 30; //April June September November
-	public static final int minimumDays = 1;
-	public static final int daysInYear = 365;
-	public static final int lastCentury = 1900; 
-	
-	
-	public static final int JANUARY = 1;
+    public static final int QUADRENNIAL = 4;
+    public static final int CENTENNIAL = 100;
+    public static final int QUATERCENTENNIAL  = 400;
+    public static final int FebruaryNormal = 28;
+    public static final int FebruaryLeap = 29;
+    public static final int JMMJAOD = 31;//January March May July August October December
+    public static final int AJSN = 30; //April June September November
+    public static final int minimumDays = 1;
+    public static final int daysInYear = 365;
+    public static final int lastCentury = 1900;
+
+
+    public static final int JANUARY = 1;
     public static final int FEBRUARY = 2;
     public static final int MARCH = 3;
     public static final int APRIL = 4;
@@ -33,13 +33,13 @@ public class Date implements Comparable<Date> {
     public static final int OCTOBER = 10;
     public static final int NOVEMBER = 11;
     public static final int DECEMBER = 12;
-    
-    
-	
-	private int year;
+
+
+
+    private int year;
     private int month;
     private int day;
-	
+
     /**
      * This is a parameterized constructor that takes a String in the form of "mm/dd/yyyy" as an input and returns an instance of Date.
      * @param date is a date in the form of "mm/dd/yyyy".
@@ -50,19 +50,19 @@ public class Date implements Comparable<Date> {
         day = Integer.parseInt(dateFormat[1]);
         year = Integer.parseInt(dateFormat[2]);
     }
-    
+
     /**
      * This constructor returns today's date.
      */
-	public Date() {
+    public Date() {
         Calendar calendar = Calendar.getInstance();
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DATE);
         year = calendar.get(Calendar.YEAR);
-    } 
-	
-	
-	/**
+    }
+
+
+    /**
      * This method overrides the compareTo() method and compares 2 dates.
      * @return 1 if greater than, 0 if equal, and -1 if less than.
      */
@@ -73,21 +73,21 @@ public class Date implements Comparable<Date> {
         int dayDifference = day - date.day;
         int sum = (yearDifference * daysInYear) + (monthDifference * AJSN) + dayDifference;
         if(sum > 0) {
-        	return 1;
+            return 1;
         }
         if(sum < 0) {
-        	return -1;
+            return -1;
         }
         return 0;
     }
-	
-	
+
+
     /**
      * This method checks whether the input year is a leap year or not.
      * @param year is the year that is going to be checked.
      * @return true if input year is a leap year, otherwise return false.
      */
-	private boolean isLeapYear(int year) {
+    private boolean isLeapYear(int year) {
         if (year % QUADRENNIAL == 0) {
             if (year % CENTENNIAL == 0) {
                 if (year % QUATERCENTENNIAL == 0) {
@@ -95,51 +95,51 @@ public class Date implements Comparable<Date> {
                 }
             }
             else
-            return true;
+                return true;
         }
         return false;
     }
-	
-	/**
-	 * This method checks if a date with a month of February is a leap year or not.
-	 * @return true if it is a February in a leap year, otherwise return false.
-	 */
-	private boolean leapFebruary() {
-		if(month == FEBRUARY) {
-			if(isLeapYear(year)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	/**
-	 * This method checks if a date with a month of February is a valid calendar date.
-	 * @return true if date in February is valid, otherwise return false.
-	 */
-	private boolean validFebruary() {
-			if(leapFebruary()) {
-				if(day >= minimumDays && day <= FebruaryLeap) {
-					return true;
-				}
-			}
-			else if(!leapFebruary() && month == FEBRUARY) {
-				if(day >= minimumDays && day <= FebruaryNormal) {
-					return true;
-				}
-			}
 
-		return false;
-	}
-	/**
-	 * This method checks if a date is in the future.
-	 * @return true if it is a date in the future, false otherwise.
-	 */
-	public boolean isFutureDate() {
-		Calendar calendar = Calendar.getInstance();
-		if(year > calendar.get(Calendar.YEAR)) {
-			return true;
-		}
-		else if (year == calendar.get(Calendar.YEAR)) {
+    /**
+     * This method checks if a date with a month of February is a leap year or not.
+     * @return true if it is a February in a leap year, otherwise return false.
+     */
+    private boolean leapFebruary() {
+        if(month == FEBRUARY) {
+            if(isLeapYear(year)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
+     * This method checks if a date with a month of February is a valid calendar date.
+     * @return true if date in February is valid, otherwise return false.
+     */
+    private boolean validFebruary() {
+        if(leapFebruary()) {
+            if(day >= minimumDays && day <= FebruaryLeap) {
+                return true;
+            }
+        }
+        else if(!leapFebruary() && month == FEBRUARY) {
+            if(day >= minimumDays && day <= FebruaryNormal) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    /**
+     * This method checks if a date is in the future.
+     * @return true if it is a date in the future, false otherwise.
+     */
+    public boolean isFutureDate() {
+        Calendar calendar = Calendar.getInstance();
+        if(year > calendar.get(Calendar.YEAR)) {
+            return true;
+        }
+        else if (year == calendar.get(Calendar.YEAR)) {
             if (month > calendar.get(Calendar.MONTH))
                 return true;
             else if (month == calendar.get(Calendar.MONTH)) {
@@ -148,33 +148,33 @@ public class Date implements Comparable<Date> {
             }
         }
         return false;
-	}
-	/**
-	 * This method checks if a date is in a future year
-	 * @return true if in a future year, false otherwise
-	 */
-	
-	public boolean isFutureYear() {
-		Calendar calendar = Calendar.getInstance();
-		if(year > calendar.get(Calendar.YEAR)) {
-			return true;
-		}
-		return false;
-	}
-	
-	/**
-	 * This method checks if a date is in the past.
-	 * @return true if the input is a date in the past after 1900, false otherwise.
-	 */
-	public boolean isPastDate() {
-		Calendar calendar = Calendar.getInstance();
-		if(year <= lastCentury) {
-			return false;
-		}
-		if(year < calendar.get(Calendar.YEAR)) {
-			return true;
-		}
-		else if (year == calendar.get(Calendar.YEAR)) {
+    }
+    /**
+     * This method checks if a date is in a future year
+     * @return true if in a future year, false otherwise
+     */
+
+    public boolean isFutureYear() {
+        Calendar calendar = Calendar.getInstance();
+        if(year > calendar.get(Calendar.YEAR)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * This method checks if a date is in the past.
+     * @return true if the input is a date in the past after 1900, false otherwise.
+     */
+    public boolean isPastDate() {
+        Calendar calendar = Calendar.getInstance();
+        if(year <= lastCentury) {
+            return false;
+        }
+        if(year < calendar.get(Calendar.YEAR)) {
+            return true;
+        }
+        else if (year == calendar.get(Calendar.YEAR)) {
             if (month < calendar.get(Calendar.MONTH))
                 return true;
             else if (month == calendar.get(Calendar.MONTH)) {
@@ -183,24 +183,24 @@ public class Date implements Comparable<Date> {
             }
         }
         return false;
-	}
-	
-	
-	/**
-	 * This method checks if a date is today
-	 * @return true if input is current day, false otherwise
-	 */
-	public boolean isToday() {
-		Calendar calendar = Calendar.getInstance();
-		if(year == calendar.get(Calendar.YEAR) && month == calendar.get(Calendar.MONTH) && day == calendar.get(Calendar.DATE)) {
-			return true;
-		}
-		return false;
-	}
-	
-	
-	/**
-	 * This method overrides the toString() method.
+    }
+
+
+    /**
+     * This method checks if a date is today
+     * @return true if input is current day, false otherwise
+     */
+    public boolean isToday() {
+        Calendar calendar = Calendar.getInstance();
+        if(year == calendar.get(Calendar.YEAR) && month == calendar.get(Calendar.MONTH) && day == calendar.get(Calendar.DATE)) {
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * This method overrides the toString() method.
      * Returns a String representation of the Date object in "mm/dd/yyyy" format.
      */
     @Override
@@ -208,47 +208,44 @@ public class Date implements Comparable<Date> {
         String dateString = Integer.toString(month) + "/" + Integer.toString(day) + "/" + Integer.toString(year);
         return dateString;
     }
-    
+
     /**
      * This method checks whether an instance of Date is a valid date or not.
      * A Date is considered valid if it corresponds to a valid calendar date.
      * @return true if Date is a valid date, otherwise return false otherwise.
      */
-	
+
     public boolean isValid() {
         Calendar calendar = Calendar.getInstance();
-      if(month < JANUARY || month > DECEMBER || day < minimumDays || day > JMMJAOD) {
-    	  return false;
-      }
-      if(month == JANUARY || month == MARCH || month == MAY || month == JULY || month == AUGUST || month == OCTOBER 
-    	|| month == DECEMBER) {
-    	  return true;
-      }
-      if(month == APRIL || month == JUNE || month == SEPTEMBER || month == NOVEMBER) {
-    	  if(day > AJSN) {
-    		  return false;
-    	  }
-      }
-      if(month == FEBRUARY) {
-    	  if(validFebruary()) {
-    		  return true;
-    	  }
-    	  if(!validFebruary()) {
-    		  return false;
-    	  }
-      }
-      return true;
+        if(month < JANUARY || month > DECEMBER || day < minimumDays || day > JMMJAOD) {
+            return false;
+        }
+        if(month == JANUARY || month == MARCH || month == MAY || month == JULY || month == AUGUST || month == OCTOBER
+                || month == DECEMBER) {
+            return true;
+        }
+        if(month == APRIL || month == JUNE || month == SEPTEMBER || month == NOVEMBER) {
+            if(day > AJSN) {
+                return false;
+            }
+        }
+        if(month == FEBRUARY) {
+            if(validFebruary()) {
+                return true;
+            }
+            if(!validFebruary()) {
+                return false;
+            }
+        }
+        return true;
     }
-	
-	/**
-    	 * Testbed main to test program.
-     	* @param args command line input
-     	*/
-	public static void main(String[] args) {
-		//Test cases for isValid()
+
+
+    public static void main(String[] args) {
+        //Test cases for isValid()
         boolean expectedResult = false;
         boolean result;
-        
+
         // Test case #1: A date with a valid day and year, but a month above 12
         Date date = new Date("13/13/2003");
         result = date.isValid();
@@ -289,7 +286,7 @@ public class Date implements Comparable<Date> {
         else {
             System.out.println("Fail.");
         }
-        
+
         // Test case #5: A date with a valid month and year, but a negative day
         date = new Date("5/-6/1975");
         result = date.isValid();
@@ -310,7 +307,7 @@ public class Date implements Comparable<Date> {
         else {
             System.out.println("Fail.");
         }
-        // Test case #7: A date with February as its month and valid leap year, but invalid day of 30 
+        // Test case #7: A date with February as its month and valid leap year, but invalid day of 30
         date = new Date("2/30/2000");
         result = date.isValid();
         System.out.print("Test case #7: ");
@@ -320,7 +317,7 @@ public class Date implements Comparable<Date> {
         else {
             System.out.println("Fail.");
         }
-	// Test case #8: A date with a year before 1900
+        // Test case #8: A date with a year before 1900
         date = new Date("2/30/1899");
         result = date.isValid();
         System.out.print("Test case #8: ");
@@ -329,15 +326,6 @@ public class Date implements Comparable<Date> {
         }
         else {
             System.out.println("Fail.");
-        
-    
+        }
     }
-    }
-		
-
-	}
-	
-	
-
-
-
+}

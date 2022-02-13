@@ -12,13 +12,26 @@ public class Schedule {
         this.numAptts = 0;
     }
 
+    public boolean hasSimilarAppt(Appointment appt){
+        Date apptDate = appt.getSlot().getDate();
+        Patient apptPtnt = appt.getPatient();
+        for (int i = 0; i < numAptts; i++) {
+            Date tempDate = this.appointments[i].getSlot().getDate();
+            Patient tempPtnt = this.appointments[i].getPatient();
+            if (apptDate.compareTo(tempDate) == 0 && apptPtnt.compareTo(tempPtnt) == 0) {
+                return true;
+            }
+        }
+        return false;
+
+    }
     public boolean slotTaken(Appointment appt){
         Timeslot apptSlot = appt.getSlot();
         Location apptLoc = appt.getLocation();
         for (int i = 0; i < numAptts; i++) {
             Timeslot tempSlot = this.appointments[i].getSlot();
             Location tempLoc = this.appointments[i].getLocation();
-            if (apptSlot.equals(tempSlot) && apptLoc.equals(tempLoc)) {
+            if (apptSlot.compareTo(tempSlot) == 0 && apptLoc.equals(tempLoc)) {
                 return true;
             }
         }

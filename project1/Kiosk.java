@@ -26,31 +26,38 @@ public class Kiosk {
         Date birthDay = new Date(command[1]);
         Appointment apptToAdd = new Appointment(patientString, command[4], command[5], command[6]);
         if(!apptDate.isValid()){
-
+            System.out.println("Invalid appointment date!");
+            return;
         }
         if(birthDay.isFutureDate() || birthDay.isToday()){
-
+            System.out.println("Date of birth invalid -> it is a future date");
+            return;
         }
         if(apptDate.isPastDate() || apptDate.isToday() || apptDate.isFutureYear()){
-
+            System.out.println("Appointment date invalid -> must be a future date");
+            return;
         }
         String [] timeParam = command[5].split(" ");
         Time apptTime = new Time(Integer.parseInt(timeParam[0]), Integer.parseInt(timeParam[1]));
         if(!apptTime.isValid()){
-
+            System.out.println("Invalid appointment time! Must enter a time between 9:00 and 16:45 with a 15-minute interval.");
+            return;
         }
         if(schedule.apptExists(apptToAdd)){
-
+            System.out.println("Same appointment exists in the schedule.");
+            return;
         }
         if(schedule.slotTaken(apptToAdd)){
-
+            System.out.println("Time slot has been taken at this location.");
+            return;
         }
         if(!locationExists(command[6].toUpperCase())){
             System.out.println("Invalid location!");
             return;
         }
         if(schedule.hasSimilarAppt(apptToAdd)){
-
+            System.out.println("Same patient cannot book an appointment with the same date.");
+            return;
         }
         schedule.add(apptToAdd);
     }

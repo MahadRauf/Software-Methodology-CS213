@@ -240,7 +240,10 @@ public class Date implements Comparable<Date> {
       return true;
     }
 	
-	
+	/**
+    	 * Testbed main to test program.
+     	* @param args command line input
+     	*/
 	public static void main(String[] args) {
 		//Test cases for isValid()
         boolean expectedResult = false;

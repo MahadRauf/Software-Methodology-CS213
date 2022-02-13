@@ -24,7 +24,11 @@ public class Kiosk {
         String patientString = command[1] + " " + command[2] + " " + command[3];
         Date apptDate = new Date(command[4]);
         Date birthDay = new Date(command[1]);
-        Appointment apptToAdd = new Appointment(patientString, command[4], command[5], command[6]);
+        if(!locationExists(command[6].toUpperCase())){
+            System.out.println("Invalid location!");
+            return;
+        }
+        Appointment apptToAdd = new Appointment(patientString, command[4], command[5], command[6].toUpperCase());
         if(!apptDate.isValid()){
             System.out.println("Invalid appointment date!");
             return;
@@ -37,7 +41,7 @@ public class Kiosk {
             System.out.println("Appointment date invalid -> must be a future date");
             return;
         }
-        String [] timeParam = command[5].split(" ");
+        String [] timeParam = command[5].split(":");
         Time apptTime = new Time(Integer.parseInt(timeParam[0]), Integer.parseInt(timeParam[1]));
         if(!apptTime.isValid()){
             System.out.println("Invalid appointment time! Must enter a time between 9:00 and 16:45 with a 15-minute interval.");
@@ -51,15 +55,13 @@ public class Kiosk {
             System.out.println("Time slot has been taken at this location.");
             return;
         }
-        if(!locationExists(command[6].toUpperCase())){
-            System.out.println("Invalid location!");
-            return;
-        }
+        
         if(schedule.hasSimilarAppt(apptToAdd)){
             System.out.println("Same patient cannot book an appointment with the same date.");
             return;
         }
         schedule.add(apptToAdd);
+        System.out.println("Appointment booked and added to the schedule.");
     }
 
     private void cancelAppt(String [] command, Schedule schedule){

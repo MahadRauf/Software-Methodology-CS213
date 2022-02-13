@@ -34,4 +34,13 @@ public enum Location {
         return ret;
     }
 
+    public Location locationExists(String location){
+        for(Location loc : Location.values()){
+            if(loc.name().equals(location)){
+                return loc;
+            }
+        }
+        return null;
+    }
+
 }

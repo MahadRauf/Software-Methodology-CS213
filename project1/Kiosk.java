@@ -14,25 +14,16 @@ public class Kiosk {
     private void bookAppt(String [] command, Schedule schedule){
         String patientString = command[1] + " " + command[2] + " " + command[3];
         Date apptDate = new Date(command[4]);
+        String [] timeParam = command[5].split(" ");
+        Time apptTime = new Time(Integer.parseInt(timeParam[0]), Integer.parseInt(timeParam[1]));
     }
 
     private void cancelAppt(String [] command, Schedule schedule){
 
     }
 
+    // take a whatever appointment and send that to some method so we have the patient and then delete all appt with same patient (implement)
     private void cancelAllAppt(String [] command, Schedule schedule){
-
-    }
-
-    private void  displayAllAppt(String [] command, Schedule schedule){
-
-    }
-
-    private void displayAllApptByZip(String [] command, Schedule schedule){
-
-    }
-
-    private void displayAllApptByPtnt(String [] command, Schedule schedule){
 
     }
 
@@ -46,11 +37,11 @@ public class Kiosk {
         }else if(cmd.equals(CANCEL_PATIENT_ALL)){
             cancelAllAppt(command, schedule);
         }else if(cmd.equals(DISPLAY_ALL)){
-            displayAllAppt(command, schedule);
+            schedule.print();
         }else if(cmd.equals(DISPLAY_ALL_BY_ZIP)){
-            displayAllApptByZip(command, schedule);
+            schedule.printByZip();
         }else if(cmd.equals(DISPLAY_ALL_BY_PTNT)){
-            displayAllApptByPtnt(command, schedule);
+            schedule.printByPatient();
         }else if(cmd.equals(QUIT)){
             System.out.println("Kiosk Session Ended.");
             ret = false;

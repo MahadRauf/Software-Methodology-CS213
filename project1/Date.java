@@ -134,7 +134,7 @@ public class Date implements Comparable<Date> {
 	 * This method checks if a date is in the future.
 	 * @return true if it is a date in the future, false otherwise.
 	 */
-	private boolean isFutureDate() {
+	public boolean isFutureDate() {
 		Calendar calendar = Calendar.getInstance();
 		if(year > calendar.get(Calendar.YEAR)) {
 			return true;
@@ -154,7 +154,7 @@ public class Date implements Comparable<Date> {
 	 * This method checks if a date is in the past.
 	 * @return true if the input is a date in the past after 1900, false otherwise.
 	 */
-	private boolean isPastDate() {
+	public boolean isPastDate() {
 		Calendar calendar = Calendar.getInstance();
 		if(year <= lastCentury) {
 			return false;
@@ -174,7 +174,7 @@ public class Date implements Comparable<Date> {
 	}
 	
 	/**
-	* This method overrides the toString() method.
+	 * This method overrides the toString() method.
      * Returns a String representation of the Date object in "mm/dd/yyyy" format.
      */
     @Override
@@ -216,11 +216,82 @@ public class Date implements Comparable<Date> {
 	
 	
 	public static void main(String[] args) {
-		
+		//Test cases for isValid()
+        boolean expectedResult = false;
+        boolean result;
+        
+        // Test case #1: A date with a valid day and year, but a month above 12
+        Date date = new Date("13/13/2003");
+        result = date.isValid();
+        System.out.print("Test case #1: ");
+        if (result == expectedResult) {
+            System.out.println("Pass.");
+        }
+        else {
+            System.out.println("Fail.");
+        }
+        // Test case #2: A date with a valid day and year, but a month below 1
+        date = new Date("0/14/2005");
+        result = date.isValid();
+        System.out.print("Test case #2: ");
+        if (result == expectedResult) {
+            System.out.println("Pass.");
+        }
+        else {
+            System.out.println("Fail.");
+        }
+        // Test case #3: A date with a 31-day month and valid year, but invalid day
+        date = new Date("10/34/2009");
+        result = date.isValid();
+        System.out.print("Test case #3: ");
+        if (result == expectedResult) {
+            System.out.println("Pass.");
+        }
+        else {
+            System.out.println("Fail.");
+        }
+        // Test case #4: A date with a 30-day month and valid year, but invalid day
+        date = new Date("4/31/2007");
+        result = date.isValid();
+        System.out.print("Test case #4: ");
+        if (result == expectedResult) {
+            System.out.println("Pass.");
+        }
+        else {
+            System.out.println("Fail.");
+        }
+        
+        // Test case #5: A date with a valid month and year, but a negative day
+        date = new Date("5/-6/1975");
+        result = date.isValid();
+        System.out.print("Test case #5: ");
+        if (result == expectedResult) {
+            System.out.println("Pass.");
+        }
+        else {
+            System.out.println("Fail.");
+        }
+        // Test case #6: A date with February as its month and valid non-leap year, but invalid day of 29
+        date = new Date("2/29/2001");
+        result = date.isValid();
+        System.out.print("Test case #6: ");
+        if (result == expectedResult) {
+            System.out.println("Pass.");
+        }
+        else {
+            System.out.println("Fail.");
+        }
+        // Test case #7: A date with February as its month and valid leap year, but invalid day of 30 
+        date = new Date("2/30/2000");
+        result = date.isValid();
+        System.out.print("Test case #7: ");
+        if (result == expectedResult) {
+            System.out.println("Pass.");
+        }
+        else {
+            System.out.println("Fail.");
+        }
+    }
 		
 
 	}
-	
-	
-
-}

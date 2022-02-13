@@ -55,7 +55,6 @@ public class Kiosk {
             System.out.println("Time slot has been taken at this location.");
             return;
         }
-        
         if(schedule.hasSimilarAppt(apptToAdd)){
             System.out.println("Same patient cannot book an appointment with the same date.");
             return;
@@ -68,16 +67,16 @@ public class Kiosk {
         String patientString = command[1] + " " + command[2] + " " + command[3];
         Date apptDate = new Date(command[4]);
         Date birthDay = new Date(command[1]);
-        String [] timeParam = command[5].split(" ");
+        String [] timeParam = command[5].split(":");
         Time apptTime = new Time(Integer.parseInt(timeParam[0]), Integer.parseInt(timeParam[1]));
 
 
-        Appointment apptToDelete = new Appointment(patientString, command[4], command[5], command[6]);
+        Appointment apptToDelete = new Appointment(patientString, command[4], command[5], command[6].toUpperCase());
         if(schedule.remove(apptToDelete)) {
-            System.out.println("Appointment cancelled.");
+            System.out.println("Appointment cancelled");
         }
         else {
-            System.out.println("Not cancelled, appointment does not exist");
+            System.out.println("Appointment not found");
         }
 
     }
@@ -86,7 +85,8 @@ public class Kiosk {
     private void cancelAllAppt(String [] command, Schedule schedule){
         String patientString = command[1] + " " + command[2] + " " + command[3];
         Patient delPtnt = new Patient(patientString);
-        Appointment apptToDelete = new Appointment(patientString, command[4], command[5], command[6]);
+        // appointment given filler values so patient can be sent along with it.
+        Appointment apptToDelete = new Appointment(patientString, "03/25/2022", "9:30", "MERCER");
         schedule.cancelAll(apptToDelete);
         System.out.println("All appointments for " + delPtnt.toString() + " have been canceled.");
     }
@@ -119,10 +119,10 @@ public class Kiosk {
         System.out.println("Kiosk running. Ready to process transactions.");
         Scanner sc = new Scanner(System.in);
         boolean loop = true;
+        Schedule schedule = new Schedule(); // method also take this
         while(loop){
            String command = sc.nextLine();
            String [] commandSplit = command.split(" ");
-           Schedule schedule = new Schedule(); // method also take this
            loop = getAction(commandSplit, schedule);
         }
     }

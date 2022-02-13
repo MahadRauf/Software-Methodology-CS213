@@ -320,6 +320,18 @@ public class Date implements Comparable<Date> {
         else {
             System.out.println("Fail.");
         }
+	// Test case #8: A date with a year before 1900
+        date = new Date("2/30/1899");
+        result = date.isValid();
+        System.out.print("Test case #8: ");
+        if (result == expectedResult) {
+            System.out.println("Pass.");
+        }
+        else {
+            System.out.println("Fail.");
+        
+    
+    }
     }
 		
 

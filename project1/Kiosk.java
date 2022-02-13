@@ -82,7 +82,11 @@ public class Kiosk {
 
     // take a whatever appointment and send that to some method so we have the patient and then delete all appt with same patient (implement)
     private void cancelAllAppt(String [] command, Schedule schedule){
-
+        String patientString = command[1] + " " + command[2] + " " + command[3];
+        Patient delPtnt = new Patient(patientString);
+        Appointment apptToDelete = new Appointment(patientString, command[4], command[5], command[6]);
+        schedule.cancelAll(apptToDelete);
+        System.out.println("All appointments for " + delPtnt.toString() + " have been canceled.");
     }
 
     private boolean getAction(String [] command, Schedule schedule){

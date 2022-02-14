@@ -2,6 +2,11 @@ package project1;
 
 import java.util.Scanner;
 
+/**
+ * User interface class to process transactions through the console which outputs to the console. Can take transactions one-by-one or
+ * multiple at a time.
+ * @author Mahad Rauf, Moeez Shahid
+ */
 public class Kiosk {
     private static final String BOOK = "B";
     private static final String CANCEL = "C";
@@ -11,6 +16,11 @@ public class Kiosk {
     private static final String DISPLAY_ALL_BY_PTNT = "PP";
     private static final String QUIT = "Q";
 
+    /**
+     * Checks if the parameter string is defined in the Location enum.
+     * @param location the location as a string.
+     * @return true if location is defined in enum, false otherwise.
+     */
     public boolean locationExists(String location){
         for(Location loc : Location.values()){
             if(loc.name().equals(location)){
@@ -20,6 +30,13 @@ public class Kiosk {
         return false;
     }
 
+    /**
+     * Takes a command "B birthDate firstname lastname appointmentDate time county" which is used to book an appointment.
+     * With birthdate and appointmentDate having format, MM/DD/YYYY and  time having format, HH:mm. Also checks to see if command is valid;
+     * if it is not valid, prints out a message about what was incorrect in the command and exits.
+     * @param command string array with tokenized form of the string "B birthDate firstname lastname appointmentDate time county".
+     * @param schedule the schedule to which the appointment is to be added.
+     */
     private void bookAppt(String [] command, Schedule schedule){
         String patientString = command[1] + " " + command[2] + " " + command[3];
         Date apptDate = new Date(command[4]);
@@ -67,6 +84,12 @@ public class Kiosk {
         System.out.println("Appointment booked and added to the schedule.");
     }
 
+    /**
+     * Takes a command "C birthDate firstname lastname appointmentDate time county" which is used to cancel an appointment.
+     * With birthdate and appointmentDate having format, MM/DD/YYYY and  time having format, HH:mm.
+     * @param command string array with tokenized form of the string "C birthDate firstname lastname appointmentDate time county".
+     * @param schedule the schedule from which the appointment is to be removed.
+     */
     private void cancelAppt(String [] command, Schedule schedule){
         String patientString = command[1] + " " + command[2] + " " + command[3];
         Date apptDate = new Date(command[4]);
@@ -85,7 +108,12 @@ public class Kiosk {
 
     }
 
-    // take a whatever appointment and send that to some method so we have the patient and then delete all appt with same patient (implement)
+    /**
+     * Takes a command "CP firstname lastname birthDate" which is used to cancel all appointments for a given patient.
+     * With birthdate having format, MM/DD/YYYY.
+     * @param command string array with tokenized form of the string "CP firstname lastname birthDate".
+     * @param schedule the schedule from which the appointment(s) are to be removed.
+     */
     private void cancelAllAppt(String [] command, Schedule schedule){
         String patientString = command[1] + " " + command[2] + " " + command[3];
         // appointment given filler values so patient can be sent along with it.
@@ -100,6 +128,13 @@ public class Kiosk {
         System.out.println("All appointments for " + delPtnt.toString() + " have been canceled.");
     }
 
+    /**
+     * Takes a command in the form "mainCommand ....." that uses the first word of the command to determine if it is a valid
+     * command and then carry out the command.
+     * @param command string array with tokenized form of the string "mainCommand .....".
+     * @param schedule the schedule on which the command will be carried out on.
+     * @return false if "Q" was the command given, true otherwise
+     */
     private boolean getAction(String [] command, Schedule schedule){
         String cmd = command[0];
         boolean ret = true;
@@ -124,6 +159,9 @@ public class Kiosk {
         return ret;
     }
 
+    /**
+     * Creates the instance of schedule which the program will use and takes user input to be processed.
+     */
     public void run(){
         System.out.println("Kiosk running. Ready to process transactions.");
         Scanner sc = new Scanner(System.in);

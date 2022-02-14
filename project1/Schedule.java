@@ -1,5 +1,10 @@
 package project1;
 
+/**
+ * Implementation of an appointment schedule at a clinic as an array of Appointment objects that grows as
+ * the number of appointments scheduled increases.
+ * @author Mahad Rauf, Moeez Shahid
+ */
 public class Schedule {
     private Appointment[] appointments;
     private int numAptts;
@@ -16,6 +21,11 @@ public class Schedule {
         this.numAptts = 0;
     }
 
+    /**
+     * Goes through the schedule to find an appointment with the same patient as the one in the parameter appointment.
+     * @param appt appointment that has the patient that we want to find more appointments in the schedule with that patient.
+     * @return The appointment that has the same patient as the parameter appointment, null if there are no other appointments with that patient.
+     */
     public Appointment findPatient(Appointment appt){
         Patient findPtnt = appt.getPatient();
         for (int i = 0; i < this.numAptts; i++) {
@@ -27,23 +37,6 @@ public class Schedule {
         }
         return null;
     }
-
-
-    /**
-     * Cancels all appointments in the same schedule that has the same patient as the parameter appointment.
-     * @param appt instance of appointment that has the patient to be removed
-     */
-    /*public void cancelAll(Appointment appt){
-        //Patient delPtnt = appt.getPatient();
-        Appointment apptToDelete = findPatient(appt);
-
-        /*for (int i = 0; i < this.numAptts; i++) {
-            Patient tempPtnt = this.appointments[i].getPatient();
-            if (delPtnt.compareTo(tempPtnt) == 0) {
-                remove(this.appointments[i]);
-            }
-        }/*
-    }*/
 
     /**
      * Checks the schedule to see if a patient already has an appointment at some location at the same date.

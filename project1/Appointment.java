@@ -1,5 +1,9 @@
 package project1;
 
+/**
+ * Object representation of an appointment which has fields patient, slot, and location that help identify it.
+ * @author Mahad Rauf, Moeez Shahid
+ */
 public class Appointment {
     private Patient patient;
     private Timeslot slot;
@@ -20,6 +24,7 @@ public class Appointment {
 
     /**
      * Method helping in implementation of equals(). Checks each part of appointment for equality.
+     * @param appt appointment to be compared with.
      * @return false if appointments not equal, true otherwise.
      */
     private boolean apptEquals(Appointment appt){
@@ -48,7 +53,7 @@ public class Appointment {
 
     /**
      * Overrides toString(). Converts Appointment type into string representation.
-     * @return String representation of appointment in format "patient slot location".
+     * @return String representation of appointment in format "patient, Appointment detail: slot, location".
      */
     @Override
     public String toString(){

@@ -41,7 +41,7 @@ public class Patient implements Comparable<Patient>{
      */
     @Override
     public int compareTo(Patient patient) {
-        /*int compResultLast = compareLName(patient);
+        int compResultLast = compareLName(patient);
         if(compResultLast == 1) {
             return 1;
         }
@@ -66,26 +66,7 @@ public class Patient implements Comparable<Patient>{
                 }
             }
         }
-        return 0;*/
-        if(this.lname.compareTo(patient.lname) > 0){
-            return 1;
-        }else if(this.lname.compareTo(patient.lname) < 0){
-            return -1;
-        }else{
-            if(this.fname.compareTo(patient.fname) > 0){
-                return 1;
-            }else if(this.fname.compareTo(patient.fname) < 0){
-                return -1;
-            }else{
-                if(this.dob.compareTo(patient.dob) == 1){
-                    return 1;
-                }else if(this.dob.compareTo(patient.dob) == -1){
-                    return -1;
-                }else{
-                    return 0;
-                }
-            }
-        }
+        return 0;
     }
 
 
@@ -175,8 +156,8 @@ public class Patient implements Comparable<Patient>{
      * This function compares two integer arrays and checks which one is greater.
      * if one array is shorter than the other, but are equal until that point,
      * the shorter one is considered to be greater.
-     * @param array1
-     * @param array2
+     * @param array1 array being checked against array2
+     * @param array2 array being compared against
      * @return 1 if greater than, -1 if less than, 0 if equal.
      */
     private int arrayCompare(int array1[], int array2[]) {

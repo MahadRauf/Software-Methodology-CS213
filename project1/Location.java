@@ -24,7 +24,7 @@ public enum Location {
     }
 
     /**
-     * Overrides built in toString method with another appropriate for the purposes of this project
+     * Overrides toString() with another appropriate for the purposes of this project
      * @return returns location as String in form "CITY ZIP, COUNTY"
      */
     @Override

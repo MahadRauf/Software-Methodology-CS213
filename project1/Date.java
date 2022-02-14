@@ -6,7 +6,6 @@ import java.util.Calendar;
  * This class defines the Date abstract data type with year, month, and day.
  * @author Moeez Shahid, Mahad Rauf
  */
-
 public class Date implements Comparable<Date> {
 
     public static final int QUADRENNIAL = 4;
@@ -19,7 +18,6 @@ public class Date implements Comparable<Date> {
     public static final int minimumDays = 1;
     public static final int daysInYear = 365;
     public static final int lastCentury = 1900;
-
 
     public static final int JANUARY = 1;
     public static final int FEBRUARY = 2;
@@ -34,15 +32,13 @@ public class Date implements Comparable<Date> {
     public static final int NOVEMBER = 11;
     public static final int DECEMBER = 12;
 
-
-
     private int year;
     private int month;
     private int day;
 
     /**
-     * This is a parameterized constructor that takes a String in the form of "mm/dd/yyyy" as an input and returns an instance of Date.
-     * @param date is a date in the form of "mm/dd/yyyy".
+     * This is a parameterized constructor that takes a String in the form of "MM/DD/YYYY" as an input and returns an instance of Date.
+     * @param date is a date in the form of "MM/DD/YYYY".
      */
     public Date(String date) {
         String[] dateFormat = date.split("/");
@@ -214,7 +210,6 @@ public class Date implements Comparable<Date> {
      * A Date is considered valid if it corresponds to a valid calendar date.
      * @return true if Date is a valid date, otherwise return false otherwise.
      */
-
     public boolean isValid() {
         Calendar calendar = Calendar.getInstance();
         if(month < JANUARY || month > DECEMBER || day < minimumDays || day > JMMJAOD) {
@@ -240,7 +235,10 @@ public class Date implements Comparable<Date> {
         return true;
     }
 
-
+    /**
+     * Testbed main to test program, Date.
+     * @param args command line input
+     */
     public static void main(String[] args) {
         //Test cases for isValid()
         boolean expectedResult = false;
@@ -311,16 +309,6 @@ public class Date implements Comparable<Date> {
         date = new Date("2/30/2000");
         result = date.isValid();
         System.out.print("Test case #7: ");
-        if (result == expectedResult) {
-            System.out.println("Pass.");
-        }
-        else {
-            System.out.println("Fail.");
-        }
-        // Test case #8: A date with a year before 1900
-        date = new Date("2/30/1899");
-        result = date.isValid();
-        System.out.print("Test case #8: ");
         if (result == expectedResult) {
             System.out.println("Pass.");
         }

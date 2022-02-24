@@ -10,6 +10,13 @@ public class Savings extends Account{
 	private static final int nonLoyal = 0;
 	private static final int loyal = 1;
 	
+	//for Money Market
+	public Savings(Profile profile, double balance) {
+        super(profile, balance);
+	       this.loyalty = 0;
+	       
+    }
+	
 	public Savings(Profile profile, double balance, int loyalty) {
         super(profile, balance);
         if (loyalty != loyal && loyalty != nonLoyal) {

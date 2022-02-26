@@ -17,20 +17,12 @@ public abstract class Account {
     }
 
     /**
-     * !!!!SOME STUDENT BS WAS HERE IDK CHANGE LATER!!!!!!
-     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
      * @param profile a 'Profile' instance which holds the name and major of a given student.
      * @param balance the balance that the account will have.
      */
     public Account(Profile profile, double balance) {
         holder = profile;
-        if(balance >=0) {
-            this.balance = balance;
-        }
-        else {
-            //throw exception
-        }
-        closed = false;
+        this.balance = balance;
     }
 
 
@@ -58,16 +50,10 @@ public abstract class Account {
     }
 
     public void withdraw(double amount) {
-        if(amount > balance) {
-            //throw exception error
-        }
         balance -= amount;
     }
 
     public void deposit(double amount) {
-        if(amount <= 0) {
-            //throw exception
-        }
         balance += amount;
     }
     public abstract double monthlyInterest(); //return the monthly interest

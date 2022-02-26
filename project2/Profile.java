@@ -49,4 +49,19 @@ public class Profile {
         return profileString;
     }
 
+    public String getLname(){
+        String ret = this.lname;
+        return ret;
+    }
+
+    public String getFname(){
+        String ret = this.fname;
+        return ret;
+    }
+
+    public Date getDOB(){
+        Date ret = this.dob;
+        return ret;
+    }
+
 }

@@ -7,6 +7,7 @@ public class AccountDatabase {
     private static final int ARRAY_GROWTH = 4;
     private static final int INITIAL_ACCTS = 0;
     private static final int NOT_FOUND = -1;
+    private static final double CLOSED_BAL = 0;
 
 
     public AccountDatabase(){
@@ -59,6 +60,7 @@ public class AccountDatabase {
             return false;
         }
         this.accounts[delIndex].closed = true;
+        this.accounts[delIndex].balance = CLOSED_BAL;
         return true;
     }
 

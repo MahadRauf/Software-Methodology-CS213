@@ -32,6 +32,12 @@ public class MoneyMarket extends Savings {
         return fee;
     }
 
+    @Override
+    public void withdraw(double amount) {
+        super.withdraw(amount);
+        this.withdraws++;
+    }
+
     public String getType() {
         String accountType = "Money Market";
         return accountType;

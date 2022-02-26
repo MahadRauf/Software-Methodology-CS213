@@ -70,7 +70,7 @@ public class AccountDatabase {
         if(acctIndex == NOT_FOUND){
             return;
         }
-        this.accounts[acctIndex].balance += account.balance;
+        this.accounts[acctIndex].deposit(account.balance);
     }
 
     public boolean withdraw(Account account){
@@ -84,10 +84,7 @@ public class AccountDatabase {
         if(this.accounts[acctIndex].balance < account.balance){
             return false;
         }
-        this.accounts[acctIndex].balance -= account.balance;
-        if(this.accounts[acctIndex] instanceof MoneyMarket){
-            ((MoneyMarket) this.accounts[acctIndex]).withdraws++;
-        }
+        this.accounts[acctIndex].withdraw(account.balance);
         return true;
     }
 

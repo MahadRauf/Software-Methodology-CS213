@@ -58,15 +58,7 @@ public class AccountDatabase {
         if (delIndex == NOT_FOUND) {
             return false;
         }
-        Account[] newAccArray = new Account[this.accounts.length];
-        for (int i = 0; i < delIndex; i++) {
-            newAccArray[i] = this.accounts[i];
-        }
-        for (int i = delIndex; i < this.accounts.length - 1; i++) {
-            newAccArray[i] = this.accounts[i + 1];
-        }
-        this.numAccts--;
-        this.accounts = newAccArray;
+        this.accounts[delIndex].closed = true;
         return true;
     }
 
@@ -98,4 +90,73 @@ public class AccountDatabase {
         }
         return true;
     }
+
+    public void print(){
+        System.out.println();
+        System.out.println("*list of accounts in the database*");
+        for (int i = 0; i < this.numAccts; i++) {
+            System.out.println(this.accounts[i].toString());
+        }
+        System.out.println("*end of list*");
+        System.out.println();
+    }
+
+    private void sortByAccountType(){
+        for(int i = 0; i < this.numAccts - 1; i++){
+            int minIdx = i;
+            String minType = this.accounts[i].getType();
+            for(int j = i + 1; j < numAccts; j++){
+                String jType = this.accounts[j].getType();
+                if(minType.compareTo(jType) > 0){
+                    minIdx = j;
+                    minType = jType;
+                }else if(minType.compareTo(jType) == 0){
+                    Profile minProfile = this.accounts[minIdx].holder;
+                    Profile jProfile = this.accounts[j].holder;
+                    if(minProfile.getLname().compareTo(jProfile.getLname()) > 0){
+                        minIdx = j;
+                        minType = jType;
+                    }else{
+                        if(minProfile.getFname().compareTo(jProfile.getFname()) > 0){
+                            minIdx = j;
+                            minType = jType;
+                        }else{
+                            if(minProfile.getDOB().compareTo(jProfile.getDOB()) == 1){
+                                minIdx = j;
+                                minType = jType;
+                            }
+                        }
+                    }
+                }
+            }
+            Account temp = this.accounts[minIdx];
+            this.accounts[minIdx] = this.accounts[i];
+            this.accounts[i] = temp;
+        }
+    }
+
+    public void printByAccountType() {
+        this.sortByAccountType();
+        System.out.println();
+        System.out.println("*list of accounts by account type*");
+        for (int i = 0; i < this.numAccts; i++) {
+            System.out.println(this.accounts[i].toString());
+        }
+        System.out.println("*end of list*");
+        System.out.println();
+    }
+
+    public void printFeeAndInterest(){
+        System.out.println();
+        System.out.println("*list of accounts with fee and monthly interest*");
+        for (int i = 0; i < this.numAccts; i++) {
+            double fee = this.accounts[i].fee();
+            double interest = this.accounts[i].monthlyInterest();
+            System.out.println(this.accounts[i].toString() + "::fee $" + String.format("%,.2f", fee) + "::monthly interest $"
+                    + String.format("%,.2f", interest));
+        }
+        System.out.println("*end of list*");
+        System.out.println();
+    }
+
 }

@@ -1,4 +1,5 @@
 package project2;
+
 /**
  * This class defines the Profile abstract data type with fname, lname, and dob.
  * @author Moeez Shahid, Mahad Rauf
@@ -27,13 +28,14 @@ public class Profile {
         }
         if(obj instanceof Profile){
             Profile profileObj = (Profile) obj;
-            if(this.fname.equals(profileObj.fname) && this.lname.equals(profileObj.lname) && this.dob.equals(profileObj.dob)){
+            String fnameThis = this.fname.toLowerCase();
+            String lnameThis = this.lname.toLowerCase();
+            String fnameObj = profileObj.fname.toLowerCase();
+            String lnameObj = profileObj.lname.toLowerCase();
+            if(fnameThis.equals(fnameObj) && lnameThis.equals(lnameObj) && this.dob.equals(profileObj.dob)){
                 return true;
             }
         }
-        /*if (fname.equals(((Profile)obj).fname) && lname.equals(((Profile)obj).lname) && dob.equals(((Profile)obj).dob)){
-            return true;
-        }*/
         return false;
     }
 
@@ -43,7 +45,7 @@ public class Profile {
      */
     @Override
     public String toString() {
-        String profileString = fname + " " + lname + " " + dob.toString();
+        String profileString = this.fname + " " + this.lname + " " + this.dob.toString();
         return profileString;
     }
 

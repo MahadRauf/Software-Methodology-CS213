@@ -13,18 +13,14 @@ public class Savings extends Account{
 	//for Money Market
 	public Savings(Profile profile, double balance) {
         super(profile, balance);
-	       this.loyalty = 0;
+	//this.loyalty = 0;
 	       
     }
 	
 	public Savings(Profile profile, double balance, int loyalty) {
         super(profile, balance);
-        if (loyalty != loyal && loyalty != nonLoyal) {
-	            //throw exception, invalid loyalty given
-	       }
-	       else {
-	       this.loyalty = loyalty;
-	       }
+	this.loyalty = loyalty;
+	       
     }
 	public double monthlyInterest() {
 		if(loyalty == 1) {

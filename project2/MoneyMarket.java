@@ -13,11 +13,11 @@ public class MoneyMarket extends Savings {
 
     public MoneyMarket(Profile profile, double balance) {
         super(profile, balance);
-        this.loyalty = loyal;
+        loyalty = loyal;
 
     }
     public double monthlyInterest() {
-        if(withdraws > withdrawLoyalLimit) {
+        if((withdraws > withdrawLoyalLimit) || (balance < feeWaived)) {
             loyalty = nonLoyal;
         }
         if(loyalty == loyal) {
@@ -54,7 +54,7 @@ public class MoneyMarket extends Savings {
     public String toString() {
         //profile + balance
         String AccountString;
-        if(withdraws > withdrawLoyalLimit) {
+        if((withdraws > withdrawLoyalLimit)||(balance < feeWaived)){
             loyalty = nonLoyal;
         }
         if(loyalty == loyal) {

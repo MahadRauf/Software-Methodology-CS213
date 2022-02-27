@@ -17,7 +17,7 @@ public class MoneyMarket extends Savings {
     }
     public double monthlyInterest() {
         if(withdraws > 3) {
-            loyalty = 0;
+            loyalty = nonLoyal;
         }
         if(loyalty == 1) {
             return loyalMonthlyInterest;
@@ -44,7 +44,7 @@ public class MoneyMarket extends Savings {
     }
 
     public String isLoyal() {
-        if(loyalty == 1) {
+        if(loyalty == loyal) {
             return "::Loyal";
         }
         return null;

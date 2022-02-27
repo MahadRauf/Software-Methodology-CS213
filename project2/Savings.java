@@ -13,17 +13,17 @@ public class Savings extends Account{
 	//for Money Market
 	public Savings(Profile profile, double balance) {
         super(profile, balance);
-	//this.loyalty = 0;
+	       //loyalty = 0;
 	       
     }
 	
-	public Savings(Profile profile, double balance, int loyalty) {
+	public Savings(Profile profile, double balance, int loyalt) {
         super(profile, balance);
-	loyalty = loyalty;
+	       loyalty = loyalt;
 	       
     }
 	public double monthlyInterest() {
-		if(loyalty == 1) {
+		if(loyalty == loyal) {
 			return loyalMonthlyInterest;
 		}
 		 return monthlyInterest;
@@ -42,7 +42,7 @@ public class Savings extends Account{
 	 }
 	 
 	 public String isLoyal() {
-		 if(loyalty == 1) {
+		 if(loyalty == loyal) {
 			 return "::Loyal";
 		 }
 		 return null;
@@ -51,7 +51,7 @@ public class Savings extends Account{
 		public String toString() {
 			//profile + balance
 		 	String AccountString;
-		 	if(loyalty == 1) {
+		 	if(loyalty == loyal) {
 		 		AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + isLoyal();
 		 	}
 		 	else {

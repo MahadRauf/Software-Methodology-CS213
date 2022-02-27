@@ -24,7 +24,9 @@ public class BankTeller {
     private static final int LOYAL = 1;
     private static final int NOT_LOYAL = 0;
     private static final int MIN_MM_INITIAL_DEPOSIT = 2500;
-
+    private static final int CLOSE_MIN_ITEMS_REQUIRED = 5;
+    private static final int DEP_WDRW_MIN_ITEMS_REQUIRED = 6;
+    private static final double DEP_WITH_MIN = 0;
 
 
 
@@ -40,7 +42,7 @@ public class BankTeller {
         return ret;
     }
 
-    private double getDeposit(String deposit){
+    private double getAmount(String deposit){
         double ret;
         try{
             ret = Double.parseDouble(deposit);
@@ -53,7 +55,7 @@ public class BankTeller {
 
     private void openChecking(String [] command, AccountDatabase acctDB){
         Profile toAdd = createProfile(command);
-        double deposit = getDeposit(command[5]);
+        double deposit = getAmount(command[5]);
         if(toAdd == null || deposit == EXCEPTION){
             return;
         }
@@ -98,7 +100,7 @@ public class BankTeller {
 
     private void openColChecking(String [] command, AccountDatabase acctDB){
         Profile toAdd = createProfile(command);
-        double deposit = getDeposit(command[5]);
+        double deposit = getAmount(command[5]);
         if(toAdd == null || deposit == EXCEPTION){
             return;
         }
@@ -133,7 +135,7 @@ public class BankTeller {
 
     private void openSaving(String [] command, AccountDatabase acctDB){
         Profile toAdd = createProfile(command);
-        double deposit = getDeposit(command[5]);
+        double deposit = getAmount(command[5]);
         if(toAdd == null || deposit == EXCEPTION){
             return;
         }
@@ -163,7 +165,7 @@ public class BankTeller {
 
     private void openMM(String [] command, AccountDatabase acctDB){
         Profile toAdd = createProfile(command);
-        double deposit = getDeposit(command[5]);
+        double deposit = getAmount(command[5]);
         if(toAdd == null || deposit == EXCEPTION){
             return;
         }
@@ -205,6 +207,131 @@ public class BankTeller {
         }
     }
 
+    public void closeAcct(String [] command, AccountDatabase acctDB){
+        if(command.length < CLOSE_MIN_ITEMS_REQUIRED){
+            System.out.println("Missing data for closing an account.");
+            return;
+        }
+        String acctType = command[1];
+        Profile toDel = createProfile(command);
+        if(toDel == null){
+            return;
+        }
+        Account acctToDel;
+        if(acctType.equals(CHECKING)){
+            acctToDel = new Checking(toDel, 100); // make account with garbage data to search
+        }else if(acctType.equals(COLLEGE_CHECKING)){
+            acctToDel = new CollegeChecking(toDel, 100, 0); // make account with garbage data to search
+        }else if(acctType.equals(SAVING)){
+            acctToDel = new Savings(toDel, 100); // make account with garbage data to search
+        }else if(acctType.equals(MONEY_MARKET)){
+            acctToDel = new MoneyMarket(toDel, 2501); // make account with garbage data to search
+        }else{
+            System.out.println("Invalid account type!");
+            return;
+        }
+        Account dbAccount = acctDB.getAcct(acctToDel);
+        if(dbAccount != null){
+            if(dbAccount.closed){
+                System.out.println("Account is closed already.");
+            }else{
+                acctDB.close(dbAccount);
+            }
+            return;
+        }
+        System.out.println(dbAccount.holder.toString() + " is not in the database");
+    }
+
+    public void addFees(AccountDatabase acctDB){
+        acctDB.updateAndPrint();
+    }
+
+    public void deposit(String [] command, AccountDatabase acctDB){
+        if(command.length < DEP_WDRW_MIN_ITEMS_REQUIRED){
+            System.out.println("Missing data for deposit.");
+            return;
+        }
+        String acctType = command[1];
+        Profile toDep = createProfile(command);
+        double deposit = getAmount(command[5]);
+        if(deposit <= DEP_WITH_MIN){
+            System.out.println("Deposit - amount cannot be 0 or negative.");
+            return;
+        }
+        if(toDep == null){
+            return;
+        }
+        Account acctToDep;
+        if(acctType.equals(CHECKING)){
+            acctToDep = new Checking(toDep, deposit); // make account with garbage data to search
+        }else if(acctType.equals(COLLEGE_CHECKING)){
+            acctToDep = new CollegeChecking(toDep, deposit, 0); // make account with garbage data to search
+        }else if(acctType.equals(SAVING)){
+            acctToDep = new Savings(toDep, deposit); // make account with garbage data to search
+        }else if(acctType.equals(MONEY_MARKET)){
+            acctToDep = new MoneyMarket(toDep, deposit); // make account with garbage data to search
+        }else{
+            System.out.println("Invalid account type!");
+            return;
+        }
+        Account dbAccount = acctDB.getAcct(acctToDep);
+        if(dbAccount != null){
+            if(dbAccount.closed){
+                System.out.println("Account is closed.");
+            }else{
+                acctDB.deposit(dbAccount);
+                System.out.println("Deposit - balance updated.");
+            }
+            return;
+        }
+        System.out.println(dbAccount.holder.toString() + " is not in the database");
+    }
+
+    public void withdraw(String [] command, AccountDatabase acctDB){
+        if(command.length < DEP_WDRW_MIN_ITEMS_REQUIRED){
+            System.out.println("Missing data for deposit.");
+            return;
+        }
+        String acctType = command[1];
+        Profile toWith = createProfile(command);
+        double withdrawal = getAmount(command[5]);
+        if(withdrawal <= DEP_WITH_MIN){
+            System.out.println("Withdraw - amount cannot be 0 or negative.");
+            return;
+        }
+        if(toWith == null){
+            return;
+        }
+        Account acctToWith;
+        if(acctType.equals(CHECKING)){
+            acctToWith = new Checking(toWith, withdrawal); // make account with garbage data to search
+        }else if(acctType.equals(COLLEGE_CHECKING)){
+            acctToWith = new CollegeChecking(toWith, withdrawal, 0); // make account with garbage data to search
+        }else if(acctType.equals(SAVING)){
+            acctToWith = new Savings(toWith, withdrawal); // make account with garbage data to search
+        }else if(acctType.equals(MONEY_MARKET)){
+            acctToWith = new MoneyMarket(toWith, withdrawal); // make account with garbage data to search
+        }else{
+            System.out.println("Invalid account type!");
+            return;
+        }
+        Account dbAccount = acctDB.getAcct(acctToWith);
+        if(dbAccount != null){
+            if(dbAccount.closed){
+                System.out.println("Account is closed.");
+            }else{
+                boolean success = acctDB.withdraw(dbAccount);
+                if(success){
+                    System.out.println("Withdraw - balance updated.");
+                }else{
+                    System.out.println("Withdraw - insufficient fund.");
+                }
+            }
+            return;
+        }
+        System.out.println(dbAccount.holder.toString() + " is not in the database");
+    }
+
     /**
      * Takes a command in the form "mainCommand ....." that uses the first word of the command to determine if it is a valid
      * command and then carry out the command.
@@ -218,11 +345,11 @@ public class BankTeller {
         if(cmd.equals(OPEN)){
             openAcct(command, acctDB);
         }else if(cmd.equals(CLOSE)){
-            // TODO: implement
+            closeAcct(command, acctDB);
         }else if(cmd.equals(DEPOSIT)){
-            // TODO: implement
+            deposit(command, acctDB);
         }else if(cmd.equals(WITHDRAW)){
-            // TODO: implement
+            withdraw(command, acctDB);
         }else if(cmd.equals(DISPLAY_ALL)){
             acctDB.print();
         }else if(cmd.equals(DISPLAY_ALL_BY_ACCOUNT)){
@@ -230,7 +357,7 @@ public class BankTeller {
         }else if(cmd.equals(DISPLAY_ALL_WITH_FEE_INT)){
             acctDB.printFeeAndInterest();
         }else if(cmd.equals(UPDATE_ALL)){
-            // TODO: implement
+            addFees(acctDB);
         }else if(cmd.equals(QUIT)){
             System.out.println("Bank teller is terminated.");
             ret = false;
@@ -241,7 +368,7 @@ public class BankTeller {
     }
 
     public void run(){
-        System.out.println("bank teller is running.");
+        System.out.println("Bank teller is running.");
         Scanner sc = new Scanner(System.in);
         boolean loop = true;
         AccountDatabase acctDB = new AccountDatabase();

@@ -42,10 +42,10 @@ public class CollegeChecking extends Checking{
 	 }
 	 
 	 private String getCampus(int schoolCode) {
-		 if(schoolCode == 0) {
+		 if(schoolCode == NewBrunswick) {
 			 return "NEW_BRUNSWICK";
 		 }
-		 if(schoolCode == 1) {
+		 if(schoolCode == Newark) {
 			 return "NEWARK";
 		 }
 		 return "CAMDEN";

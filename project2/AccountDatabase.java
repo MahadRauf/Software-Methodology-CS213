@@ -15,9 +15,22 @@ public class AccountDatabase {
         this.numAccts = INITIAL_ACCTS;
     }
 
-    public int acctExists(Account acct){
-        int ret = this.find(acct);
-        return ret;
+    public Account getAcct(Account acct){
+        int retIdx = this.find(acct);
+        if(retIdx == NOT_FOUND){
+            return null;
+        }
+        Account retAcct = this.accounts[retIdx];
+        return retAcct;
+    }
+
+    public Account findSimilarChecking(Account account){
+        for(int i = 0; i < numAccts; i++){
+            if(this.accounts[i] instanceof Checking && ((Checking) this.accounts[i]).isSimilar(account)){
+                return this.accounts[i];
+            }
+        }
+        return null;
     }
 
     private int find(Account account){

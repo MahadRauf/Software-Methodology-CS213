@@ -40,8 +40,15 @@ public class AccountDatabase {
         if(account == null){
             return false;
         }
-        if (find(account) != NOT_FOUND) {
-            return false;
+        int acctIdx = find(account);
+        if (acctIdx != NOT_FOUND) {
+            if(this.accounts[acctIdx].closed){
+                this.accounts[acctIdx].closed = false;
+                this.accounts[acctIdx].deposit(account.balance);
+                return true;
+            }else{
+                return false;
+            }
         }
         if (this.numAccts == this.accounts.length) {
             this.grow();
@@ -91,6 +98,10 @@ public class AccountDatabase {
     }
 
     public void print(){
+        if(numAccts == 0){
+            System.out.println("Account Database is empty!");
+            return;
+        }
         System.out.println();
         System.out.println("*list of accounts in the database*");
         for (int i = 0; i < this.numAccts; i++) {
@@ -135,6 +146,10 @@ public class AccountDatabase {
     }
 
     public void printByAccountType() {
+        if(numAccts == 0){
+            System.out.println("Account Database is empty!");
+            return;
+        }
         this.sortByAccountType();
         System.out.println();
         System.out.println("*list of accounts by account type*");
@@ -146,6 +161,10 @@ public class AccountDatabase {
     }
 
     public void printFeeAndInterest(){
+        if(numAccts == 0){
+            System.out.println("Account Database is empty!");
+            return;
+        }
         System.out.println();
         System.out.println("*list of accounts with fee and monthly interest*");
         for (int i = 0; i < this.numAccts; i++) {

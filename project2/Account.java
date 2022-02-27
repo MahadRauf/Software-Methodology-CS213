@@ -4,6 +4,8 @@ public abstract class Account {
     protected Profile holder;
     protected boolean closed;
     protected double balance;
+    
+    private static final int empty = 0;
 
 
     /**
@@ -13,11 +15,11 @@ public abstract class Account {
     public Account(Profile profile) {
         holder = profile;
         closed = false;
-        balance = 0;
+        balance = empty;
     }
 
     /**
-     * @param profile a 'Profile' instance which holds the name and major of a given student.
+     * @param profile a 'Profile' instance which holds the name balance of a bank account holder.
      * @param balance the balance that the account will have.
      */
     public Account(Profile profile, double balance) {

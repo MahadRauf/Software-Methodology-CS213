@@ -6,7 +6,7 @@ public class AccountDatabase {
     private static final int INITIAL_SIZE = 4;
     private static final int ARRAY_GROWTH = 4;
     private static final int INITIAL_ACCTS = 0;
-    private static final int NOT_FOUND = -1;
+    protected static final int NOT_FOUND = -1;
     private static final double CLOSED_BAL = 0;
 
 

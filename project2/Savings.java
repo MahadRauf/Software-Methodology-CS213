@@ -19,7 +19,7 @@ public class Savings extends Account{
 	
 	public Savings(Profile profile, double balance, int loyalty) {
         super(profile, balance);
-	this.loyalty = loyalty;
+	loyalty = loyalty;
 	       
     }
 	public double monthlyInterest() {

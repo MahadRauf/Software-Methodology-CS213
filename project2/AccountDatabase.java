@@ -15,6 +15,11 @@ public class AccountDatabase {
         this.numAccts = INITIAL_ACCTS;
     }
 
+    public int acctExists(Account acct){
+        int ret = this.find(acct);
+        return ret;
+    }
+
     private int find(Account account){
         if(account == null){
             return NOT_FOUND;

@@ -32,7 +32,7 @@ public class Profile {
             String lnameThis = this.lname.toLowerCase();
             String fnameObj = profileObj.fname.toLowerCase();
             String lnameObj = profileObj.lname.toLowerCase();
-            if(fnameThis.equals(fnameObj) && lnameThis.equals(lnameObj) && this.dob.equals(profileObj.dob)){
+            if(fnameThis.equals(fnameObj) && lnameThis.equals(lnameObj) && this.dob.compareTo(profileObj.dob) == 0){
                 return true;
             }
         }

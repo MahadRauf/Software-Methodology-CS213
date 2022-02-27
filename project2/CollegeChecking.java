@@ -8,25 +8,10 @@ public class CollegeChecking extends Checking{
 	private static final int Newark = 1;
 	private static final int Camden = 2;
 	
-    public CollegeChecking(Profile profile) {
-        super(profile);
-        //throw exception, schoolCode needed
-    }
-    
-    public CollegeChecking(Profile profile, double balance) {
-        super(profile, balance);
-        //throw exception, schoolCode needed
-    }
-    
-    
     public CollegeChecking(Profile profile, double balance, int schoolCode) {
         super(profile, balance);
-        if (schoolCode != NewBrunswick && schoolCode != Newark && schoolCode != Camden) {
-            //throw exception, invalid schoolCode
-        }
-        else {
         this.schoolCode = schoolCode;
-        }
+        
     }
     public double monthlyInterest() {
 		 return monthlyInterest;

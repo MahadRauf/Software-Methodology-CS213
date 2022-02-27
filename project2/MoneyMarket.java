@@ -17,9 +17,9 @@ public class MoneyMarket extends Savings {
 
     }
     public double monthlyInterest() {
-        if((withdraws > withdrawLoyalLimit) || (balance < feeWaived)) {
-            loyalty = nonLoyal;
-        }
+//        if((withdraws > withdrawLoyalLimit) || (balance < feeWaived)) {
+//            loyalty = nonLoyal;
+//        }
         if(loyalty == loyal) {
             return loyalMonthlyInterest;
         }
@@ -37,6 +37,9 @@ public class MoneyMarket extends Savings {
     public void withdraw(double amount) {
         super.withdraw(amount);
         this.withdraws++;
+        if((withdraws > withdrawLoyalLimit)||(balance < feeWaived)){
+          loyalty = nonLoyal;
+      }
     }
 
     public String getType() {
@@ -54,9 +57,9 @@ public class MoneyMarket extends Savings {
     public String toString() {
         //profile + balance
         String AccountString;
-        if((withdraws > withdrawLoyalLimit)||(balance < feeWaived)){
-            loyalty = nonLoyal;
-        }
+//        if((withdraws > withdrawLoyalLimit)||(balance < feeWaived)){
+//            loyalty = nonLoyal;
+//        }
         if(loyalty == loyal) {
             AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + isLoyal() + ":withdrawl: " + withdraws;
         }

@@ -170,5 +170,128 @@ public class AccountDatabaseJUnitTest {
         System.out.println("duplicateMoneyMarketUnder2500InDatabaseTest passed.");
     }
 	
+	@Test
+    public void closeCheckingInDatabaseTest() {
+		AccountDatabase acctDB = new AccountDatabase();
+		Profile profile = new Profile("Moeez", "Shahid", new Date("02/10/2001"));
+        Checking bankster = new Checking(profile, 500);
+        Assert.assertTrue(acctDB.open(bankster));
+        Assert.assertTrue(acctDB.close(bankster));
+        System.out.println("closeCheckingInDatabaseTest passed.");
+    }
+	
+	@Test
+    public void closeCollegeCheckingInDatabaseTest() {
+		AccountDatabase acctDB = new AccountDatabase();
+		Profile profile = new Profile("Moeez", "Shahid", new Date("02/10/2001"));
+        CollegeChecking bankster = new CollegeChecking(profile, 500, 0);
+        Assert.assertTrue(acctDB.open(bankster));
+        Assert.assertTrue(acctDB.close(bankster));
+        System.out.println("closeCollegeCheckingInDatabaseTest passed.");
+    }
+	
+	@Test
+	public void closeLoyalSavingsInDatabaseTest() {
+		AccountDatabase acctDB = new AccountDatabase();
+		Profile profile = new Profile("Moeez", "Shahid", new Date("02/10/2001"));
+        Savings bankster = new Savings(profile, 500, 1);
+        Assert.assertTrue(acctDB.open(bankster));
+        Assert.assertTrue(acctDB.close(bankster));
+        System.out.println("closeLoyalSavingsInDatabaseTest passed.");
+    }
+	
+	@Test
+	public void closeDisloyalSavingsInDatabaseTest() {
+		AccountDatabase acctDB = new AccountDatabase();
+		Profile profile = new Profile("Moeez", "Shahid", new Date("02/10/2001"));
+        Savings bankster = new Savings(profile, 500, 0);
+        Assert.assertTrue(acctDB.open(bankster));
+        Assert.assertTrue(acctDB.close(bankster));
+        System.out.println("closeDisloyalSavingsInDatabaseTest passed.");
+    }
+	@Test
+	public void closeMoneyMarketInDatabaseTest() {
+		AccountDatabase acctDB = new AccountDatabase();
+		Profile profile = new Profile("Moeez", "Shahid", new Date("02/10/2001"));
+        MoneyMarket bankster = new MoneyMarket(profile, 2900);
+        Assert.assertTrue(acctDB.open(bankster));
+        Assert.assertTrue(acctDB.close(bankster));
+        System.out.println("closeMoneyMarketInDatabaseTest passed.");
+    }
+	
+	@Test
+	public void closeMoneyMarketUnder2500InDatabaseTest() {
+		AccountDatabase acctDB = new AccountDatabase();
+		Profile profile = new Profile("Moeez", "Shahid", new Date("02/10/2001"));
+        MoneyMarket bankster = new MoneyMarket(profile, 200);
+        Assert.assertTrue(acctDB.open(bankster));
+        Assert.assertTrue(acctDB.close(bankster));
+        System.out.println("closeMoneyMarketUnder2500InDatabaseTest passed.");
+    }
+	
+	@Test
+    public void reopenCheckingInDatabaseTest() {
+		AccountDatabase acctDB = new AccountDatabase();
+		Profile profile = new Profile("Moeez", "Shahid", new Date("02/10/2001"));
+        Checking bankster = new Checking(profile, 500);
+        Assert.assertTrue(acctDB.open(bankster));
+        Assert.assertTrue(acctDB.close(bankster));
+        Assert.assertTrue(acctDB.open(bankster));
+        System.out.println("reopenCheckingInDatabaseTest passed.");
+    }
+	
+	@Test
+    public void reopenCollegeCheckingInDatabaseTest() {
+		AccountDatabase acctDB = new AccountDatabase();
+		Profile profile = new Profile("Moeez", "Shahid", new Date("02/10/2001"));
+        CollegeChecking bankster = new CollegeChecking(profile, 500, 0);
+        Assert.assertTrue(acctDB.open(bankster));
+        Assert.assertTrue(acctDB.close(bankster));
+        Assert.assertTrue(acctDB.open(bankster));
+        System.out.println("reopenCollegeCheckingInDatabaseTest passed.");
+    }
+	
+	@Test
+	public void reopenLoyalSavingsInDatabaseTest() {
+		AccountDatabase acctDB = new AccountDatabase();
+		Profile profile = new Profile("Moeez", "Shahid", new Date("02/10/2001"));
+        Savings bankster = new Savings(profile, 500, 1);
+        Assert.assertTrue(acctDB.open(bankster));
+        Assert.assertTrue(acctDB.close(bankster));
+        Assert.assertTrue(acctDB.open(bankster));
+        System.out.println("reopenLoyalSavingsInDatabaseTest passed.");
+    }
+	
+	@Test
+	public void reopenDisloyalSavingsInDatabaseTest() {
+		AccountDatabase acctDB = new AccountDatabase();
+		Profile profile = new Profile("Moeez", "Shahid", new Date("02/10/2001"));
+        Savings bankster = new Savings(profile, 500, 0);
+        Assert.assertTrue(acctDB.open(bankster));
+        Assert.assertTrue(acctDB.close(bankster));
+        Assert.assertTrue(acctDB.open(bankster));
+        System.out.println("reopenDisloyalSavingsInDatabaseTest passed.");
+    }
+	@Test
+	public void reopenMoneyMarketInDatabaseTest() {
+		AccountDatabase acctDB = new AccountDatabase();
+		Profile profile = new Profile("Moeez", "Shahid", new Date("02/10/2001"));
+        MoneyMarket bankster = new MoneyMarket(profile, 2900);
+        Assert.assertTrue(acctDB.open(bankster));
+        Assert.assertTrue(acctDB.close(bankster));
+        Assert.assertTrue(acctDB.open(bankster));
+        System.out.println("reopenMoneyMarketInDatabaseTest passed.");
+    }
+	
+	@Test
+	public void reopenMoneyMarketUnder2500InDatabaseTest() {
+		AccountDatabase acctDB = new AccountDatabase();
+		Profile profile = new Profile("Moeez", "Shahid", new Date("02/10/2001"));
+        MoneyMarket bankster = new MoneyMarket(profile, 200);
+        Assert.assertTrue(acctDB.open(bankster));
+        Assert.assertTrue(acctDB.close(bankster));
+        Assert.assertTrue(acctDB.open(bankster));
+        System.out.println("reopenMoneyMarketUnder2500InDatabaseTest passed.");
+    }
 
 }

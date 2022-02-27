@@ -8,9 +8,9 @@ public class CollegeChecking extends Checking{
 	private static final int Newark = 1;
 	private static final int Camden = 2;
 	
-    public CollegeChecking(Profile profile, double balance, int schoolCode) {
+    public CollegeChecking(Profile profile, double balance, int schoolCod) {
         super(profile, balance);
-        this.schoolCode = schoolCode;
+        schoolCode = schoolCod;
         
     }
     public double monthlyInterest() {

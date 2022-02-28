@@ -200,8 +200,9 @@ public class AccountDatabase {
         for (int i = 0; i < this.numAccts; i++) {
             double fee = this.accounts[i].fee();
             double interest = this.accounts[i].monthlyInterest();
+            double interestAdded = interest * this.accounts[i].balance;
             System.out.println(this.accounts[i].toString() + "::fee $" + String.format("%,.2f", fee) + "::monthly interest $"
-                    + String.format("%,.2f", interest));
+                    + String.format("%,.2f", interestAdded));
         }
         System.out.println("*end of list*");
         System.out.println();

@@ -4,9 +4,8 @@ public abstract class Account {
     protected Profile holder;
     protected boolean closed;
     protected double balance;
-    
-    private static final int empty = 0;
 
+    protected static final double monthsInYear = 12;
 
     /**
      * Parameterized constructor that takes a 'Profile' object and creates an instance of an 'Account', setting other instance variables to default values.
@@ -15,16 +14,17 @@ public abstract class Account {
     public Account(Profile profile) {
         holder = profile;
         closed = false;
-        balance = empty;
+        balance = 0;
     }
 
     /**
-     * @param profile a 'Profile' instance which holds the name balance of a bank account holder.
+     * @param profile a 'Profile' instance which holds the name and major of a given student.
      * @param balance the balance that the account will have.
      */
     public Account(Profile profile, double balance) {
         holder = profile;
         this.balance = balance;
+        this.closed = false;
     }
 
 

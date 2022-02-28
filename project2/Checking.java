@@ -2,7 +2,8 @@ package project2;
 
 public class Checking extends Account{
 
-    private static final double monthlyInterest = 0.01/12;
+    private static final double annualInterest = 0.001;
+    private static final double monthlyInterest = annualInterest/Account.monthsInYear;
     private static final double fee = 25.00;
     private static final double feeWaived = 1000.00;
     private static final double noFee = 0.00;
@@ -34,12 +35,12 @@ public class Checking extends Account{
     @Override
     public String toString() {
         //profile + balance
-    	String AccountString;
-    	if(closed == true) {
-        AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + "::" + "CLOSED";
-        return AccountString;
-    	}
-    	AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance);
+        String AccountString;
+        if(closed == true) {
+            AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + "::" + "CLOSED";
+            return AccountString;
+        }
+        AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance);
         return AccountString;
     }
 

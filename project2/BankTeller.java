@@ -36,7 +36,7 @@ public class BankTeller {
         String lname = command[3];
         Date dob = new Date(command[4]);
         if(!dob.isValid() || dob.isFutureDate() || dob.isToday()){
-            System.out.println("date of birth invalid.");
+            System.out.println("Date of birth invalid.");
             return null;
         }
         Profile ret = new Profile(fname, lname, dob);
@@ -69,15 +69,15 @@ public class BankTeller {
         if(dbAccount != null){
             if(dbAccount.closed){
                 acctDB.open(acctToAdd);
-                System.out.println("Account reopened");
+                System.out.println("Account reopened.");
             }else{
-                System.out.println(dbAccount.holder.toString() + " same account(type) in database");
+                System.out.println(dbAccount.holder.toString() + " same account(type) is in the database.");
             }
             return;
         }
         Account simAccount = acctDB.findSimilarChecking(acctToAdd);
         if(simAccount != null){
-            System.out.println(simAccount.holder.toString() + " same account(type) in database");
+            System.out.println(simAccount.holder.toString() + " same account(type) is in the database.");
             return;
         }
         acctDB.open(acctToAdd);
@@ -119,15 +119,15 @@ public class BankTeller {
         if(dbAccount != null){
             if(dbAccount.closed){
                 acctDB.open(acctToAdd);
-                System.out.println("Account reopened");
+                System.out.println("Account reopened.");
             }else{
-                System.out.println(dbAccount.holder.toString() + " same account(type) in database");
+                System.out.println(dbAccount.holder.toString() + " same account(type) is in the database.");
             }
             return;
         }
         Account simAccount = acctDB.findSimilarChecking(acctToAdd);
         if(simAccount != null){
-            System.out.println(simAccount.holder.toString() + " same account(type) in database");
+            System.out.println(simAccount.holder.toString() + " same account(type) is in the database.");
             return;
         }
         acctDB.open(acctToAdd);
@@ -154,9 +154,9 @@ public class BankTeller {
         if(dbAccount != null){
             if(dbAccount.closed){
                 acctDB.open(acctToAdd);
-                System.out.println("Account reopened");
+                System.out.println("Account reopened.");
             }else{
-                System.out.println(dbAccount.holder.toString() + " same account(type) in database");
+                System.out.println(dbAccount.holder.toString() + " same account(type) is in the database.");
             }
             return;
         }
@@ -183,9 +183,9 @@ public class BankTeller {
         if(dbAccount != null){
             if(dbAccount.closed){
                 acctDB.open(acctToAdd);
-                System.out.println("Account reopened");
+                System.out.println("Account reopened.");
             }else{
-                System.out.println(dbAccount.holder.toString() + " same account(type) in database");
+                System.out.println(dbAccount.holder.toString() + " same account(type) is in the database.");
             }
             return;
         }
@@ -245,7 +245,7 @@ public class BankTeller {
             }
             return;
         }
-        System.out.println(acctToDel.holder.toString() + " is not in the database");
+        System.out.println(acctToDel.holder.toString() + " " + acctToDel.getType() + " is not in the database.");
     }
 
     public void addFees(AccountDatabase acctDB){
@@ -290,7 +290,7 @@ public class BankTeller {
             }
             return;
         }
-        System.out.println(acctToDep.holder.toString() + " is not in the database");
+        System.out.println(acctToDep.holder.toString() + " " + acctToDep.getType() + " is not in the database.");
     }
 
     public void withdraw(String [] command, AccountDatabase acctDB){
@@ -335,7 +335,7 @@ public class BankTeller {
             }
             return;
         }
-        System.out.println(acctToWith.holder.toString() + " is not in the database");
+        System.out.println(acctToWith.holder.toString() + " " + acctToWith.getType() + " is not in the database.");
     }
 
     /**
@@ -365,10 +365,10 @@ public class BankTeller {
         }else if(cmd.equals(UPDATE_ALL)){
             addFees(acctDB);
         }else if(cmd.equals(QUIT)){
-            System.out.println("Bank teller is terminated.");
+            System.out.println("Bank Teller is terminated.");
             ret = false;
         }else{
-            System.out.println("Invalid Command!");
+            System.out.println("Invalid command!");
         }
         return ret;
     }

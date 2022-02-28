@@ -63,6 +63,12 @@ public class AccountDatabase {
             if(this.accounts[acctIdx].closed){
                 this.accounts[acctIdx].closed = false;
                 this.accounts[acctIdx].deposit(account.balance);
+                if(this.accounts[acctIdx] instanceof MoneyMarket && account instanceof MoneyMarket){
+                    ((MoneyMarket) this.accounts[acctIdx]).loyalty = ((MoneyMarket) account).loyalty;
+                }
+                if(this.accounts[acctIdx] instanceof Savings && account instanceof Savings){
+                    ((Savings) this.accounts[acctIdx]).loyalty = ((Savings) account).loyalty;
+                }
                 return true;
             }else{
                 return false;
@@ -86,6 +92,12 @@ public class AccountDatabase {
         }
         this.accounts[delIndex].closed = true;
         this.accounts[delIndex].balance = CLOSED_BAL;
+        if(this.accounts[delIndex] instanceof Savings){
+            ((Savings) this.accounts[delIndex]).loyalty = 0;
+            if(this.accounts[delIndex] instanceof MoneyMarket){
+                ((MoneyMarket)this.accounts[delIndex]).withdraws = 0;
+            }
+        }
         return true;
     }
 
@@ -170,7 +182,7 @@ public class AccountDatabase {
         }
         this.sortByAccountType();
         System.out.println();
-        System.out.println("*list of accounts by account type*");
+        System.out.println("*list of accounts by account type.*");
         for (int i = 0; i < this.numAccts; i++) {
             System.out.println(this.accounts[i].toString());
         }
@@ -184,7 +196,7 @@ public class AccountDatabase {
             return;
         }
         System.out.println();
-        System.out.println("*list of accounts with fee and monthly interest*");
+        System.out.println("*list of accounts with fee and monthly interest.*");
         for (int i = 0; i < this.numAccts; i++) {
             double fee = this.accounts[i].fee();
             double interest = this.accounts[i].monthlyInterest();
@@ -202,12 +214,12 @@ public class AccountDatabase {
         }
         // fees and interest and print within same loop
         System.out.println();
-        System.out.println("*list of accounts with updated balance*");
+        System.out.println("*list of accounts with updated balance.*");
         for (int i = 0; i < this.numAccts; i++) {
             double fee = this.accounts[i].fee();
             double interest = this.accounts[i].monthlyInterest();
-            this.accounts[i].balance += this.accounts[i].balance * interest;
             this.accounts[i].balance -= fee;
+            this.accounts[i].balance += this.accounts[i].balance * interest;
             System.out.println(this.accounts[i].toString());
         }
         System.out.println("*end of list*");

@@ -27,6 +27,7 @@ public class BankTeller {
     private static final int CLOSE_MIN_ITEMS_REQUIRED = 5;
     private static final int DEP_WDRW_MIN_ITEMS_REQUIRED = 6;
     private static final double DEP_WITH_MIN = 0;
+    private static final int INVALID_CAMPUS = -1;
 
 
 
@@ -34,7 +35,7 @@ public class BankTeller {
         String fname = command[2];
         String lname = command[3];
         Date dob = new Date(command[4]);
-        if(!dob.isValid()){
+        if(!dob.isValid() || dob.isFutureDate() || dob.isToday()){
             System.out.println("date of birth invalid.");
             return null;
         }
@@ -85,7 +86,7 @@ public class BankTeller {
     }
 
     private int getCode(String [] command){
-        int ret = (int) EXCEPTION;
+        int ret = INVALID_CAMPUS;
         try{
             ret = Integer.parseInt(command[6]);
         }catch(NoSuchElementException ex){
@@ -169,6 +170,10 @@ public class BankTeller {
         if(toAdd == null || deposit == EXCEPTION){
             return;
         }
+        if(deposit <= 0){
+            System.out.println("Initial deposit cannot be 0 or negative.");
+            return;
+        }
         if(deposit < MIN_MM_INITIAL_DEPOSIT){
             System.out.println("Minimum of $2500 to open a MoneyMarket account.");
             return;
@@ -236,10 +241,11 @@ public class BankTeller {
                 System.out.println("Account is closed already.");
             }else{
                 acctDB.close(dbAccount);
+                System.out.println("Account closed.");
             }
             return;
         }
-        System.out.println(dbAccount.holder.toString() + " is not in the database");
+        System.out.println(acctToDel.holder.toString() + " is not in the database");
     }
 
     public void addFees(AccountDatabase acctDB){
@@ -254,11 +260,11 @@ public class BankTeller {
         String acctType = command[1];
         Profile toDep = createProfile(command);
         double deposit = getAmount(command[5]);
-        if(deposit <= DEP_WITH_MIN){
-            System.out.println("Deposit - amount cannot be 0 or negative.");
+        if(toDep == null || deposit == EXCEPTION){
             return;
         }
-        if(toDep == null){
+        if(deposit <= DEP_WITH_MIN){
+            System.out.println("Deposit - amount cannot be 0 or negative.");
             return;
         }
         Account acctToDep;
@@ -279,12 +285,12 @@ public class BankTeller {
             if(dbAccount.closed){
                 System.out.println("Account is closed.");
             }else{
-                acctDB.deposit(dbAccount);
+                acctDB.deposit(acctToDep);
                 System.out.println("Deposit - balance updated.");
             }
             return;
         }
-        System.out.println(dbAccount.holder.toString() + " is not in the database");
+        System.out.println(acctToDep.holder.toString() + " is not in the database");
     }
 
     public void withdraw(String [] command, AccountDatabase acctDB){
@@ -295,11 +301,11 @@ public class BankTeller {
         String acctType = command[1];
         Profile toWith = createProfile(command);
         double withdrawal = getAmount(command[5]);
-        if(withdrawal <= DEP_WITH_MIN){
-            System.out.println("Withdraw - amount cannot be 0 or negative.");
+        if(toWith == null || withdrawal == EXCEPTION){
             return;
         }
-        if(toWith == null){
+        if(withdrawal <= DEP_WITH_MIN){
+            System.out.println("Withdraw - amount cannot be 0 or negative.");
             return;
         }
         Account acctToWith;
@@ -320,7 +326,7 @@ public class BankTeller {
             if(dbAccount.closed){
                 System.out.println("Account is closed.");
             }else{
-                boolean success = acctDB.withdraw(dbAccount);
+                boolean success = acctDB.withdraw(acctToWith);
                 if(success){
                     System.out.println("Withdraw - balance updated.");
                 }else{
@@ -329,7 +335,7 @@ public class BankTeller {
             }
             return;
         }
-        System.out.println(dbAccount.holder.toString() + " is not in the database");
+        System.out.println(acctToWith.holder.toString() + " is not in the database");
     }
 
     /**
@@ -374,7 +380,10 @@ public class BankTeller {
         AccountDatabase acctDB = new AccountDatabase();
         while(loop){
             String command = sc.nextLine();
-            String [] commandSplit = command.split(" ");
+            if(command.length() == 0){
+                continue;
+            }
+            String [] commandSplit = command.split("\\s+");
             loop = getAction(commandSplit, acctDB);
         }
     }

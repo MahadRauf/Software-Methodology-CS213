@@ -144,11 +144,11 @@ public class AccountDatabase {
                     if(minProfile.getLname().compareTo(jProfile.getLname()) > 0){
                         minIdx = j;
                         minType = jType;
-                    }else{
+                    }else if(minProfile.getLname().compareTo(jProfile.getLname()) == 0){
                         if(minProfile.getFname().compareTo(jProfile.getFname()) > 0){
                             minIdx = j;
                             minType = jType;
-                        }else{
+                        }else if(minProfile.getFname().compareTo(jProfile.getFname()) == 0){
                             if(minProfile.getDOB().compareTo(jProfile.getDOB()) == 1){
                                 minIdx = j;
                                 minType = jType;
@@ -195,4 +195,22 @@ public class AccountDatabase {
         System.out.println();
     }
 
+    public void updateAndPrint(){
+        if(numAccts == 0){
+            System.out.println("Account Database is empty!");
+            return;
+        }
+        // fees and interest and print within same loop
+        System.out.println();
+        System.out.println("*list of accounts with updated balance*");
+        for (int i = 0; i < this.numAccts; i++) {
+            double fee = this.accounts[i].fee();
+            double interest = this.accounts[i].monthlyInterest();
+            this.accounts[i].balance += this.accounts[i].balance * interest;
+            this.accounts[i].balance -= fee;
+            System.out.println(this.accounts[i].toString());
+        }
+        System.out.println("*end of list*");
+        System.out.println();
+    }
 }

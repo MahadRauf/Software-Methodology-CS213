@@ -2,8 +2,8 @@ package project2;
 
 public class MoneyMarket extends Savings {
     protected int withdraws = 0; //increment up every time you withdraw
-    private static final double monthlyInterest = 0.8;
-    private static final double loyalMonthlyInterest = 0.95;
+    private static final double monthlyInterest = 0.8/12;
+    private static final double loyalMonthlyInterest = 0.95/12;
     private static final double fee = 10.00;
     private static final double feeWaived = 2500.00;
     private static final double noFee = 0.00;
@@ -57,14 +57,14 @@ public class MoneyMarket extends Savings {
     public String toString() {
         //profile + balance
         String AccountString;
-//        if((withdraws > withdrawLoyalLimit)||(balance < feeWaived)){
-//            loyalty = nonLoyal;
-//        }
-        if(loyalty == loyal) {
-            AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + isLoyal() + ":withdrawl: " + withdraws;
+        if(closed == true) {
+        	AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + "::" + "CLOSED" +"::withdrawl: " + withdraws;
+        }
+        else if(loyalty == loyal) {
+            AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + isLoyal() + "::withdrawl: " + withdraws;
         }
         else {
-            AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance);
+            AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + "::withdrawl: " + withdraws;
         }
 
         return AccountString;

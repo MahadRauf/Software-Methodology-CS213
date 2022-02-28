@@ -2,7 +2,7 @@ package project2;
 
 public class CollegeChecking extends Checking{
     protected int schoolCode;
-    private static final double annualInterest = 0.025;
+    private static final double annualInterest = 0.0025;
     private static final double monthlyInterest = annualInterest/Account.monthsInYear;
     private static final double fee = 0.00;
     private static final int NewBrunswick = 0;

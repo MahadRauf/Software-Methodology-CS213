@@ -60,13 +60,13 @@ public class MoneyMarket extends Savings {
         //profile + balance
         String AccountString;
         if(closed) {
-            AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + "::" + "CLOSED" +"::withdrawl: " + withdraws;
+            AccountString = getType() + " Savings::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + "::" + "CLOSED" +"::withdrawl: " + withdraws;
         }
         else if(loyalty == loyal) {
-            AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + isLoyal() + "::withdrawl: " + withdraws;
+            AccountString = getType() + " Savings::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + isLoyal() + "::withdrawl: " + withdraws;
         }
         else {
-            AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + "::withdrawl: " + withdraws;
+            AccountString = getType() + " Savings::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + "::withdrawl: " + withdraws;
         }
 
         return AccountString;

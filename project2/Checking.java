@@ -40,8 +40,8 @@ public class Checking extends Account{
 
     public boolean isSimilar(Account acct){
         if(acct instanceof Checking){
-            int lnameComp = this.holder.getLname().compareTo(acct.holder.getLname());
-            int fnameComp = this.holder.getFname().compareTo(acct.holder.getFname());
+            int lnameComp = this.holder.getLname().toLowerCase().compareTo(acct.holder.getLname().toLowerCase());
+            int fnameComp = this.holder.getFname().toLowerCase().compareTo(acct.holder.getFname().toLowerCase());
             int dobComp = this.holder.getDOB().compareTo(acct.holder.getDOB());
             if(lnameComp == 0 && fnameComp == 0 && dobComp == 0){
                 return true;

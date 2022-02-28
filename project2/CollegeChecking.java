@@ -2,7 +2,7 @@ package project2;
 
 public class CollegeChecking extends Checking{
     protected int schoolCode;
-    private static final double monthlyInterest = 0.25;
+    private static final double monthlyInterest = 0.25/12;
     private static final double fee = 0.00;
     private static final int NewBrunswick = 0;
     private static final int Newark = 1;
@@ -39,7 +39,12 @@ public class CollegeChecking extends Checking{
     @Override
     public String toString() {
         //profile + balance
-        String AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + "::" + getCampus(schoolCode);
+    	String AccountString;
+    	if(closed == true) {
+    		AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + "::" + "CLOSED" + "::" + getCampus(schoolCode);
+            return AccountString;
+    	}
+        AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + "::" + getCampus(schoolCode);
         return AccountString;
     }
 

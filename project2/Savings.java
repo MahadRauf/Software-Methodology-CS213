@@ -2,12 +2,11 @@ package project2;
 
 public class Savings extends Account{
     protected int loyalty;//0 non-loyal 1 loyal
-    private static final double monthlyInterest = 0.30;
-    private static final double loyalMonthlyInterest = 0.45;
+    private static final double monthlyInterest = 0.30/12;
+    private static final double loyalMonthlyInterest = 0.45/12;
     private static final double fee = 6.00;
     private static final double feeWaived = 300.00;
     private static final double noFee = 0.00;
-    private static final int nonLoyal = 0;
     private static final int loyal = 1;
 
     //for Money Market
@@ -23,7 +22,7 @@ public class Savings extends Account{
 
     }
     public double monthlyInterest() {
-        if(loyalty == 1) {
+        if(loyalty == loyal) {
             return loyalMonthlyInterest;
         }
         return monthlyInterest;
@@ -42,7 +41,7 @@ public class Savings extends Account{
     }
 
     public String isLoyal() {
-        if(loyalty == 1) {
+        if(loyalty == loyal) {
             return "::Loyal";
         }
         return null;
@@ -51,7 +50,10 @@ public class Savings extends Account{
     public String toString() {
         //profile + balance
         String AccountString;
-        if(loyalty == 1) {
+        if(closed == true) {
+        	AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + isLoyal() + "::" +"CLOSED";
+        }
+        else if(loyalty == loyal) {
             AccountString = getType() + "::" + holder.toString() + "::" + "Balance $" + String.format("%,.2f", balance) + isLoyal();
         }
         else {

@@ -46,7 +46,7 @@ public class Savings extends Account{
         if(loyalty == loyal) {
             return "::Loyal";
         }
-        return null;
+        return "";
     }
     @Override
     public String toString() {

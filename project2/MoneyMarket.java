@@ -53,7 +53,7 @@ public class MoneyMarket extends Savings {
         if(loyalty == loyal) {
             return "::Loyal";
         }
-        return null;
+        return "";
     }
     @Override
     public String toString() {

@@ -54,37 +54,6 @@ public class BankTeller {
         return ret;
     }
 
-    private void openChecking(String [] command, AccountDatabase acctDB){
-        Profile toAdd = createProfile(command);
-        double deposit = getAmount(command[5]);
-        if(toAdd == null || deposit == EXCEPTION){
-            return;
-        }
-        if(deposit <= 0){
-            System.out.println("Initial deposit cannot be 0 or negative.");
-            return;
-        }
-        Checking acctToAdd = new Checking(toAdd, deposit);
-        Account dbAccount = acctDB.getAcct(acctToAdd);
-        if(dbAccount != null){
-            if(dbAccount.closed){
-                acctDB.open(acctToAdd);
-                System.out.println("Account reopened.");
-            }else{
-                System.out.println(dbAccount.holder.toString() + " same account(type) is in the database.");
-            }
-            return;
-        }
-        Account simAccount = acctDB.findSimilarChecking(acctToAdd);
-        if(simAccount != null){
-            System.out.println(simAccount.holder.toString() + " same account(type) is in the database.");
-            return;
-        }
-        acctDB.open(acctToAdd);
-        System.out.println("Account opened.");
-
-    }
-
     private int getCode(String [] command){
         int ret = INVALID_CAMPUS;
         try{
@@ -99,57 +68,23 @@ public class BankTeller {
         return ret;
     }
 
-    private void openColChecking(String [] command, AccountDatabase acctDB){
-        Profile toAdd = createProfile(command);
-        double deposit = getAmount(command[5]);
-        if(toAdd == null || deposit == EXCEPTION){
-            return;
-        }
-        if(deposit <= 0){
-            System.out.println("Initial deposit cannot be 0 or negative.");
-            return;
-        }
-        int colCode = getCode(command);
-        if(colCode < MIN_COL_CODE || colCode > MAX_COL_CODE){
-            System.out.println("Invalid campus code.");
-            return;
-        }
-        CollegeChecking acctToAdd = new CollegeChecking(toAdd, deposit, colCode);
-        Account dbAccount = acctDB.getAcct(acctToAdd);
-        if(dbAccount != null){
-            if(dbAccount.closed){
-                acctDB.open(acctToAdd);
-                System.out.println("Account reopened.");
-            }else{
-                System.out.println(dbAccount.holder.toString() + " same account(type) is in the database.");
-            }
-            return;
-        }
-        Account simAccount = acctDB.findSimilarChecking(acctToAdd);
-        if(simAccount != null){
-            System.out.println(simAccount.holder.toString() + " same account(type) is in the database.");
-            return;
-        }
-        acctDB.open(acctToAdd);
-        System.out.println("Account opened.");
-    }
-
-    private void openSaving(String [] command, AccountDatabase acctDB){
-        Profile toAdd = createProfile(command);
-        double deposit = getAmount(command[5]);
-        if(toAdd == null || deposit == EXCEPTION){
-            return;
-        }
-        if(deposit <= 0){
-            System.out.println("Initial deposit cannot be 0 or negative.");
-            return;
-        }
-        int loyalCode = getCode(command);
+    private boolean validLoyal(int loyalCode){
         if(loyalCode != LOYAL && loyalCode != NOT_LOYAL){
             System.out.println("Invalid loyalty code.");
-            return;
+            return false;
         }
-        Savings acctToAdd = new Savings(toAdd, deposit, loyalCode);
+        return true;
+    }
+
+    private boolean validMMDeposit(double deposit){
+        if(deposit < MIN_MM_INITIAL_DEPOSIT){
+            System.out.println("Minimum of $2500 to open a MoneyMarket account.");
+            return false;
+        }
+        return true;
+    }
+
+    private void addAcct(Account acctToAdd, AccountDatabase acctDB){
         Account dbAccount = acctDB.getAcct(acctToAdd);
         if(dbAccount != null){
             if(dbAccount.closed){
@@ -159,56 +94,59 @@ public class BankTeller {
                 System.out.println(dbAccount.holder.toString() + " same account(type) is in the database.");
             }
             return;
+        }
+        if(acctToAdd instanceof Checking){
+
+            Account simAccount = acctDB.findSimilarChecking(acctToAdd);
+            if(simAccount != null){
+                System.out.println(simAccount.holder.toString() + " same account(type) is in the database.");
+                return;
+            }
         }
         acctDB.open(acctToAdd);
         System.out.println("Account opened.");
     }
 
-    private void openMM(String [] command, AccountDatabase acctDB){
-        Profile toAdd = createProfile(command);
-        double deposit = getAmount(command[5]);
-        if(toAdd == null || deposit == EXCEPTION){
-            return;
-        }
-        if(deposit <= 0){
-            System.out.println("Initial deposit cannot be 0 or negative.");
-            return;
-        }
-        if(deposit < MIN_MM_INITIAL_DEPOSIT){
-            System.out.println("Minimum of $2500 to open a MoneyMarket account.");
-            return;
-        }
-        MoneyMarket acctToAdd = new MoneyMarket(toAdd, deposit);
-        Account dbAccount = acctDB.getAcct(acctToAdd);
-        if(dbAccount != null){
-            if(dbAccount.closed){
-                acctDB.open(acctToAdd);
-                System.out.println("Account reopened.");
-            }else{
-                System.out.println(dbAccount.holder.toString() + " same account(type) is in the database.");
-            }
-            return;
-        }
-        acctDB.open(acctToAdd);
-        System.out.println("Account opened.");
-    }
 
     public void openAcct(String [] command, AccountDatabase acctDB){
         if(command.length < OPEN_MIN_ITEMS_REQUIRED){
             System.out.println("Missing data for opening an account.");
             return;
         }
+        Profile toAdd = createProfile(command);
+        double deposit = getAmount(command[5]);
+        if(toAdd == null || deposit == EXCEPTION){
+            return;
+        }
+        if(deposit <= 0){
+            System.out.println("Initial deposit cannot be 0 or negative.");
+            return;
+        }
         String acctType = command[1];
+        Account acctToAdd = null;
         if(acctType.equals(CHECKING)){
-            openChecking(command, acctDB);
+            acctToAdd = new Checking(toAdd, deposit);
         }else if(acctType.equals(COLLEGE_CHECKING)){
-            openColChecking(command, acctDB);
+            int colCode = getCode(command);
+            if(colCode < MIN_COL_CODE || colCode > MAX_COL_CODE){
+                System.out.println("Invalid campus code.");
+                return;
+            }
+            acctToAdd = new CollegeChecking(toAdd, deposit, colCode);
         }else if(acctType.equals(SAVING)){
-            openSaving(command, acctDB);
+            int loyalCode = getCode(command);
+            if(validLoyal(loyalCode)){
+                acctToAdd = new Savings(toAdd, deposit, loyalCode);
+            }
         }else if(acctType.equals(MONEY_MARKET)){
-            openMM(command, acctDB);
+            if(validMMDeposit(deposit)){
+                acctToAdd = new MoneyMarket(toAdd, deposit);
+            }
         }else{
             System.out.println("Invalid account type!");
+        }
+        if(!(acctToAdd == null)){
+            addAcct(acctToAdd, acctDB);
         }
     }
 

@@ -5,8 +5,10 @@ import org.junit.Test;
 
 public class MoneyMarketJUnitTest {
 	
-	 private static final double monthlyInterest = 0.8/12;
-	 private static final double loyalMonthlyInterest = 0.95/12;
+	private static final double annualInterest = 0.008;
+    private static final double monthlyInterest = annualInterest/Account.monthsInYear;
+    private static final double loyalAnnualInterest = 0.0095;
+    private static final double loyalMonthlyInterest = loyalAnnualInterest/Account.monthsInYear;
 	
 	@Test
     public void moreThan3WithdrawsTest() {

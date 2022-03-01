@@ -3,6 +3,11 @@ package project2;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * User interface class to process transactions through the console which outputs to the console. Can take transactioons one-by-one or
+ * multiple at a time.
+ * @author Mahad Rauf, Moeez Shahid
+ */
 public class BankTeller {
     private static final String OPEN = "O";
     private static final String CLOSE = "C";
@@ -23,14 +28,18 @@ public class BankTeller {
     private static final int MAX_COL_CODE = 2;
     private static final int LOYAL = 1;
     private static final int NOT_LOYAL = 0;
-    private static final int MIN_MM_INITIAL_DEPOSIT = 2500;
+    private static final double MIN_MM_INITIAL_DEPOSIT = 2500;
     private static final int CLOSE_MIN_ITEMS_REQUIRED = 5;
     private static final int DEP_WDRW_MIN_ITEMS_REQUIRED = 6;
     private static final double DEP_WITH_MIN = 0;
     private static final int INVALID_CAMPUS = -1;
 
 
-
+    /**
+     * Creates a profile from the array of strings command.
+     * @param command String array which has the information necessary to make a profile
+     * @return Profile that is created if all the information is valid, false otherwise.
+     */
     private Profile createProfile(String [] command){
         String fname = command[2];
         String lname = command[3];
@@ -43,6 +52,11 @@ public class BankTeller {
         return ret;
     }
 
+    /**
+     * Takes a string and returns it as a double.
+     * @param deposit string to convert into a double.
+     * @return double representation of the String. If a NumberFormatException occurs, returns -1.0;
+     */
     private double getAmount(String deposit){
         double ret;
         try{
@@ -54,6 +68,11 @@ public class BankTeller {
         return ret;
     }
 
+    /**
+     * Gets the code from command[6] of the command array and returns it as an integer.
+     * @param command String array that has the code in array[6]
+     * @return integer representation of the string in command[6]. If a NumberFormatException or NoSuchElementException occurs, returns -1.
+     */
     private int getCode(String [] command){
         int ret = INVALID_CAMPUS;
         try{
@@ -68,6 +87,11 @@ public class BankTeller {
         return ret;
     }
 
+    /**
+     * Checks the parameter loyalCode if it is one of 0 or 1.
+     * @param loyalCode code to check validity
+     * @return true if it is valid, false otherwise.
+     */
     private boolean validLoyal(int loyalCode){
         if(loyalCode != LOYAL && loyalCode != NOT_LOYAL){
             System.out.println("Invalid loyalty code.");
@@ -76,6 +100,11 @@ public class BankTeller {
         return true;
     }
 
+    /**
+     * Checks the parameter deposit whether it is greater than 2500.
+     * @param deposit amount to check
+     * @return true if deposit greater than or equal to 2500, false otherwise.
+     */
     private boolean validMMDeposit(double deposit){
         if(deposit < MIN_MM_INITIAL_DEPOSIT){
             System.out.println("Minimum of $2500 to open a MoneyMarket account.");
@@ -84,6 +113,11 @@ public class BankTeller {
         return true;
     }
 
+    /**
+     * Opens or reopens the parameter account in the account database.
+     * @param acctToAdd account to add
+     * @param acctDB account database which the account will be added to
+     */
     private void addAcct(Account acctToAdd, AccountDatabase acctDB){
         Account dbAccount = acctDB.getAcct(acctToAdd);
         if(dbAccount != null){
@@ -107,7 +141,11 @@ public class BankTeller {
         System.out.println("Account opened.");
     }
 
-
+    /**
+     * Constructs an account from the command array and adds it to the account database if it is a valid account to add.
+     * @param command string array which has the necessary items in the right order to make the account.
+     * @param acctDB account database to which the account will be added
+     */
     public void openAcct(String [] command, AccountDatabase acctDB){
         if(command.length < OPEN_MIN_ITEMS_REQUIRED){
             System.out.println("Missing data for opening an account.");
@@ -150,6 +188,11 @@ public class BankTeller {
         }
     }
 
+    /**
+     * Constructs an account from the command array and closes it in the account database if it is a valid account to close.
+     * @param command string array which has the necessary items in the right order to make the account.
+     * @param acctDB account database where the account will be closed.
+     */
     public void closeAcct(String [] command, AccountDatabase acctDB){
         if(command.length < CLOSE_MIN_ITEMS_REQUIRED){
             System.out.println("Missing data for closing an account.");
@@ -186,10 +229,20 @@ public class BankTeller {
         System.out.println(acctToDel.holder.toString() + " " + acctToDel.getType() + " is not in the database.");
     }
 
+    /**
+     * applies interest and fees to all the accounts in the database and then prints them
+     * @param acctDB account database that is to be updated
+     */
     public void addFees(AccountDatabase acctDB){
         acctDB.updateAndPrint();
     }
 
+    /**
+     * Constructs an account from the command array and then finds it in the database to update the balance of the account with the balance
+     * of the account created.
+     * @param command string array which has the necessary items in the right order to make the account.
+     * @param acctDB account database where the account to deposit to is.
+     */
     public void deposit(String [] command, AccountDatabase acctDB){
         if(command.length < DEP_WDRW_MIN_ITEMS_REQUIRED){
             System.out.println("Missing data for deposit.");
@@ -231,6 +284,12 @@ public class BankTeller {
         System.out.println(acctToDep.holder.toString() + " " + acctToDep.getType() + " is not in the database.");
     }
 
+    /**
+     * Constructs an account from the command array and then finds it in the database to update the balance of the account with the balance
+     * of the account created.
+     * @param command string array which has the necessary items in the right order to make the account.
+     * @param acctDB account database where the account to withdraw from is.
+     */
     public void withdraw(String [] command, AccountDatabase acctDB){
         if(command.length < DEP_WDRW_MIN_ITEMS_REQUIRED){
             System.out.println("Missing data for deposit.");
@@ -311,6 +370,9 @@ public class BankTeller {
         return ret;
     }
 
+    /**
+     * Creates the instance of AccountDatabase which the program will use and takes user input to be processed.
+     */
     public void run(){
         System.out.println("Bank teller is running.");
         Scanner sc = new Scanner(System.in);

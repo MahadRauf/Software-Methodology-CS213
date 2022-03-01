@@ -1,8 +1,15 @@
 package project2;
 
+/**
+ * Abstract class representing a bank account that defines some of its functionalities.
+ * @author Mahad Rauf, Moeez Shahid
+ */
 public abstract class Account {
+    /** owner of the account */
     protected Profile holder;
+    /** whether the account is closed or not. true = closed, false = open. */
     protected boolean closed;
+    /** current balance of the account */
     protected double balance;
 
     protected static final double monthsInYear = 12;
@@ -28,7 +35,11 @@ public abstract class Account {
     }
 
 
-
+    /**
+     * Overrides the equals(Object obj) method from Object class. Compares accounts on whether their types and holders are equal.
+     * @param obj Object to compare the account with.
+     * @return true if equal, false otherwise.
+     */
     @Override
     public boolean equals(Object obj) {
         if(obj == null){
@@ -44,6 +55,10 @@ public abstract class Account {
         return false;
     }
 
+    /**
+     * Overrides the toString() method with one appropriate for Account type.
+     * @return string representation of the Account.
+     */
     @Override
     public String toString() {
         //profile + balance
@@ -51,14 +66,37 @@ public abstract class Account {
         return AccountString;
     }
 
+    /**
+     * Withdraws the parameter amount from the account.
+     * @param amount amount to withdraw.
+     */
     public void withdraw(double amount) {
         balance -= amount;
     }
 
+    /**
+     * Deposits the parameter amount into the account.
+     * @param amount amount to deposit.
+     */
     public void deposit(double amount) {
         balance += amount;
     }
-    public abstract double monthlyInterest(); //return the monthly interest
-    public abstract double fee(); //return the monthly fee
-    public abstract String getType(); //return the account type (class name)
+
+    /**
+     * Returns the monthly interest rate for the account
+     * @return the monthly interest rate
+     */
+    public abstract double monthlyInterest();
+
+    /**
+     * Returns the monthly fee for the account
+     * @return the monthly fee
+     */
+    public abstract double fee();
+
+    /**
+     * Returns the type of the account as a string (name of its class)
+     * @return string that is the type of the account
+     */
+    public abstract String getType();
 }

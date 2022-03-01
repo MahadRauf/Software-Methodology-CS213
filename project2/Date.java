@@ -32,8 +32,11 @@ public class Date implements Comparable<Date> {
     public static final int NOVEMBER = 11;
     public static final int DECEMBER = 12;
 
+    /** year of the DOB */
     private int year;
+    /** month of the DOB */
     private int month;
+    /** day of the DOB */
     private int day;
 
     /**
@@ -145,42 +148,6 @@ public class Date implements Comparable<Date> {
         }
         return false;
     }
-    /**
-     * This method checks if a date is in a future year
-     * @return true if in a future year, false otherwise
-     */
-
-    public boolean isFutureYear() {
-        Calendar calendar = Calendar.getInstance();
-        if(year > calendar.get(Calendar.YEAR)) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * This method checks if a date is in the past.
-     * @return true if the input is a date in the past after 1900, false otherwise.
-     */
-    public boolean isPastDate() {
-        Calendar calendar = Calendar.getInstance();
-        if(year <= lastCentury) {
-            return false;
-        }
-        if(year < calendar.get(Calendar.YEAR)) {
-            return true;
-        }
-        else if (year == calendar.get(Calendar.YEAR)) {
-            if (month < calendar.get(Calendar.MONTH))
-                return true;
-            else if (month == calendar.get(Calendar.MONTH)) {
-                if (day < calendar.get(Calendar.DATE))
-                    return true;
-            }
-        }
-        return false;
-    }
-
 
     /**
      * This method checks if a date is today

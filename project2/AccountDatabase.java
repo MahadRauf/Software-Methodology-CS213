@@ -1,7 +1,13 @@
 package project2;
 
+/**
+ * Implementation of an account database as an array of Account objects that grows as the number of accounts increase.
+ * @author Mahad Rauf, Moeez Shahid
+ */
 public class AccountDatabase {
+    /** array where accounts are stored*/
     private Account [] accounts;
+    /** number of accounts in the array */
     private int numAccts;
     private static final int INITIAL_SIZE = 4;
     private static final int ARRAY_GROWTH = 4;
@@ -9,12 +15,20 @@ public class AccountDatabase {
     protected static final int NOT_FOUND = -1;
     private static final double CLOSED_BAL = 0;
 
-
+    /**
+     * Constructor for AccountDatabase class. Creates an Account array of initial size 4 and sets the number of accounts to 0.
+     */
     public AccountDatabase(){
         this.accounts = new Account[INITIAL_SIZE];
         this.numAccts = INITIAL_ACCTS;
     }
 
+    /**
+     * Uses the find(Account account) method to find an account in the array that is the same as the parameter account and
+     * returns it.
+     * @param acct account which you want to find (the same holder and type as)
+     * @return the account that is the same as the parameter account if it is found, null otherwise.
+     */
     public Account getAcct(Account acct){
         int retIdx = this.find(acct);
         if(retIdx == NOT_FOUND){
@@ -24,6 +38,12 @@ public class AccountDatabase {
         return retAcct;
     }
 
+    /**
+     * Searches the account array for a Checking/College Checking account that has the same holder as another Checking/College Checking
+     * account.
+     * @param account account which you want a similar Checking/College Checking account
+     * @return the account that is similar to the parameter account if it exists, null if it doesn't or the parameter isn't an instance of Checking.
+     */
     public Account findSimilarChecking(Account account){
         for(int i = 0; i < numAccts; i++){
             if(this.accounts[i] instanceof Checking && ((Checking) this.accounts[i]).isSimilar(account)){
@@ -33,6 +53,11 @@ public class AccountDatabase {
         return null;
     }
 
+    /**
+     * Searches the account array for an account that is the same as the parameter account and returns its index in the array.
+     * @param account account which you want to find in the array.
+     * @return index of the account in the array if it is present, -1 (not found) otherwise.
+     */
     private int find(Account account){
         if(account == null){
             return NOT_FOUND;
@@ -45,6 +70,9 @@ public class AccountDatabase {
         return NOT_FOUND;
     }
 
+    /**
+     * grows the account array by 4.
+     */
     private void grow() {
         int newSize = this.accounts.length + ARRAY_GROWTH;
         Account[] newAccArray = new Account[newSize];
@@ -54,6 +82,11 @@ public class AccountDatabase {
         this.accounts = newAccArray;
     }
 
+    /**
+     * Adds a new account to the account array. Will not add if the account is already in the array.
+     * @param account account to add
+     * @return true of the account was successfully added, false otherwise.
+     */
     public boolean open(Account account) {
         if(account == null){
             return false;
@@ -82,6 +115,11 @@ public class AccountDatabase {
         return true;
     }
 
+    /**
+     * Closes an account that is in the array.
+     * @param account account to close
+     * @return true if account was successfully deleted, false otherwise.
+     */
     public boolean close(Account account) {
         if(account == null){
             return false;
@@ -101,6 +139,10 @@ public class AccountDatabase {
         return true;
     }
 
+    /**
+     * Finds an account in the array that is the same as the parameter account and deposits the parameter account's balance into that account.
+     * @param account account to find a similar in the array to deposit into
+     */
     public void deposit(Account account){
         if(account == null){
             return;
@@ -112,6 +154,11 @@ public class AccountDatabase {
         this.accounts[acctIndex].deposit(account.balance);
     }
 
+    /**
+     * Finds an account in the array that is the same as the parameter account and withdraws the parameter account's balance from that account.
+     * @param account account to find a similar in the array to withdraw from
+     * @return true if the amount was successfully withdrawn, false otherwise.
+     */
     public boolean withdraw(Account account){
         if(account == null){
             return false;
@@ -127,6 +174,9 @@ public class AccountDatabase {
         return true;
     }
 
+    /**
+     * Prints out all the accounts currently in the account array.
+     */
     public void print(){
         if(numAccts == 0){
             System.out.println("Account Database is empty!");
@@ -141,6 +191,9 @@ public class AccountDatabase {
         System.out.println();
     }
 
+    /**
+     * sorts the accounts in the array by type and holder, in that order of priority.
+     */
     private void sortByAccountType(){
         for(int i = 0; i < this.numAccts - 1; i++){
             int minIdx = i;
@@ -175,6 +228,9 @@ public class AccountDatabase {
         }
     }
 
+    /**
+     * Prints all the accounts in the array by type and holder, in that order of priority.
+     */
     public void printByAccountType() {
         if(numAccts == 0){
             System.out.println("Account Database is empty!");
@@ -182,21 +238,24 @@ public class AccountDatabase {
         }
         this.sortByAccountType();
         System.out.println();
-        System.out.println("*list of accounts by account type.*");
+        System.out.println("*list of accounts by account type.");
         for (int i = 0; i < this.numAccts; i++) {
             System.out.println(this.accounts[i].toString());
         }
-        System.out.println("*end of list*");
+        System.out.println("*end of list.");
         System.out.println();
     }
 
+    /**
+     * Prints all the accounts in the account array along with the fees and interest that will be applied to their account.
+     */
     public void printFeeAndInterest(){
         if(numAccts == 0){
             System.out.println("Account Database is empty!");
             return;
         }
         System.out.println();
-        System.out.println("*list of accounts with fee and monthly interest.*");
+        System.out.println("*list of accounts with fee and monthly interest");
         for (int i = 0; i < this.numAccts; i++) {
             double fee = this.accounts[i].fee();
             double interest = this.accounts[i].monthlyInterest();
@@ -204,10 +263,13 @@ public class AccountDatabase {
             System.out.println(this.accounts[i].toString() + "::fee $" + String.format("%,.2f", fee) + "::monthly interest $"
                     + String.format("%,.2f", interestAdded));
         }
-        System.out.println("*end of list*");
+        System.out.println("*end of list.");
         System.out.println();
     }
 
+    /**
+     * Prints all the accounts in the account array after fees and interest have been applied to the accounts.
+     */
     public void updateAndPrint(){
         if(numAccts == 0){
             System.out.println("Account Database is empty!");
@@ -215,7 +277,7 @@ public class AccountDatabase {
         }
         // fees and interest and print within same loop
         System.out.println();
-        System.out.println("*list of accounts with updated balance.*");
+        System.out.println("*list of accounts with updated balance");
         for (int i = 0; i < this.numAccts; i++) {
             double fee = this.accounts[i].fee();
             double interest = this.accounts[i].monthlyInterest();
@@ -223,7 +285,7 @@ public class AccountDatabase {
             this.accounts[i].balance += this.accounts[i].balance * interest;
             System.out.println(this.accounts[i].toString());
         }
-        System.out.println("*end of list*");
+        System.out.println("*end of list.");
         System.out.println();
     }
 }

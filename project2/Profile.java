@@ -9,7 +9,12 @@ public class Profile {
     private String lname;
     private Date dob;
 
-
+    /**
+     * constructor for Profile type
+     * @param fname first name of the person
+     * @param lname last name of the person
+     * @param dob date of birth of the person in (MM/DD/YYYY)
+     */
     public Profile(String fname, String lname, Date dob) {
         this.fname = fname;
         this.lname = lname;
@@ -40,7 +45,7 @@ public class Profile {
     }
 
     /**
-     * This method overides the toString() method.
+     * This method overrides the toString() method.
      * It returns a String representation of the Profile object in "DOB fname lname" format.
      */
     @Override
@@ -49,16 +54,28 @@ public class Profile {
         return profileString;
     }
 
+    /**
+     * gets the last name from the profile
+     * @return last name of the profile
+     */
     public String getLname(){
         String ret = this.lname;
         return ret;
     }
 
+    /**
+     * gets the first name of the profile
+     * @return first name of the profile
+     */
     public String getFname(){
         String ret = this.fname;
         return ret;
     }
 
+    /**
+     * gets the date of birth of the profile
+     * @return date of birth of the profile
+     */
     public Date getDOB(){
         Date ret = this.dob;
         return ret;

@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.group33project3.HelloController">
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.group33project3.BankTellerController">
    <top>
       <TabPane prefHeight="400.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
          <tabs>
@@ -51,7 +51,7 @@
                         <Button layoutX="185.0" layoutY="330.0" mnemonicParsing="false" onAction="#onSubmitPress" text="Submit" />
                         <TextField fx:id="lNameOC" layoutX="120.0" layoutY="225.0" prefHeight="25.0" prefWidth="175.0" />
                         <TextField fx:id="fNameOC" layoutX="120.0" layoutY="190.0" prefHeight="25.0" prefWidth="175.0" />
-                        <DatePicker fx:id="DOB_OC" layoutX="120.0" layoutY="260.0" prefHeight="25.0" prefWidth="175.0" />
+                        <DatePicker fx:id="DOB_OC" editable="false" layoutX="120.0" layoutY="260.0" prefHeight="25.0" prefWidth="175.0" />
                         <Label layoutX="20.0" layoutY="190.0" text="First Name:">
                            <font>
                               <Font size="14.0" />
@@ -97,6 +97,7 @@
                               <RadioButton fx:id="closeOC" mnemonicParsing="false" onAction="#disableDeposit" text="Close Account" toggleGroup="$OPEN_OR_CLOSE" />
                            </children>
                         </HBox>
+                        <Label layoutX="308.0" layoutY="264.0" text="(select from dropdown picker)" />
                      </children>
                   </AnchorPane>
                </content>
@@ -127,7 +128,7 @@
                         </GridPane>
                         <TextField fx:id="lNameDW" layoutX="120.0" layoutY="165.0" prefHeight="25.0" prefWidth="175.0" />
                         <TextField fx:id="fNameDW" layoutX="120.0" layoutY="130.0" prefHeight="25.0" prefWidth="175.0" />
-                        <DatePicker fx:id="DOB_DW" layoutX="120.0" layoutY="200.0" prefHeight="25.0" prefWidth="175.0" />
+                        <DatePicker fx:id="DOB_DW" editable="false" layoutX="120.0" layoutY="200.0" prefHeight="25.0" prefWidth="175.0" />
                         <Label layoutX="20.0" layoutY="130.0" text="First Name:">
                            <font>
                               <Font size="14.0" />
@@ -152,8 +153,8 @@
                         <Label layoutX="60.0" layoutY="30.0" text="Account Type:" />
                         <HBox alignment="CENTER" layoutX="61.0" layoutY="260.0" prefHeight="40.0" prefWidth="301.0" spacing="20.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Deposit" />
-                              <Button mnemonicParsing="false" text="Withdraw" />
+                              <Button mnemonicParsing="false" onAction="#deposit" text="Deposit" />
+                              <Button mnemonicParsing="false" onAction="#withdraw" text="Withdraw" />
                            </children>
                         </HBox>
                      </children>
@@ -188,6 +189,6 @@
       </TabPane>
    </top>
    <bottom>
-      <TextArea fx:id="textArea" prefHeight="300.0" prefWidth="500.0" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="textArea" prefHeight="400.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

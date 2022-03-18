@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.time.format.DateTimeFormatter;
+//import java.time.format.DateTimeFormatter;
 
 public class BankTellerController {
 
@@ -165,7 +165,9 @@ public class BankTellerController {
         Date DOBPro;
         // try catch probably not needed anymore, remove comment later after further testing if true
         //try{
-            DOBPro = new Date(DOB.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")));
+            //DOBPro = new Date(DOB.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")));
+            DOBPro = new Date(DOB.getEditor().getText());
+            //textArea.appendText(DOBPro.toString() + "\n");
         /*}catch(Exception ex){
             textArea.appendText("Date of birth invalid.\n");
             return null;

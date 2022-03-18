@@ -16,7 +16,7 @@ public class MoneyMarket extends Savings {
     private static final double noFee = 0.00;
     private static final int nonLoyal = 0;
     private static final int loyal = 1;
-    private static final int withdrawLoyalLimit = 3;
+    private static final int withdrawLimit = 3;
 
     /**
      * Constructor for type MoneyMarket which utilizes the constructor of its superclass, Savings. Also sets loyalty on its own.
@@ -46,24 +46,23 @@ public class MoneyMarket extends Savings {
      */
     @Override
     public double fee() {
-        if(balance >= feeWaived) {
+        if(balance >= feeWaived && withdraws < withdrawLimit) {
             return noFee;
         }
         return fee;
     }
 
     /**
-     * Withdraws the parameter amount from the account. If the amount of withdrawals exceeds the maximum number allowed for loyal
-     * accounts, sets the account as nonloyal.
+     * Withdraws the parameter amount from the account. If the balance becomes less than 2500, sets the account as nonloyal.
      * @param amount amount to withdraw.
      */
     @Override
     public void withdraw(double amount) {
         super.withdraw(amount);
-        this.withdraws++;
-        if((withdraws > withdrawLoyalLimit)||(balance < feeWaived)){
+        if(balance < feeWaived){
             loyalty = nonLoyal;
         }
+        this.withdraws++;
     }
 
     /**

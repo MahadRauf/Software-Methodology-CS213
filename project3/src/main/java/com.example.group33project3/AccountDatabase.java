@@ -98,8 +98,7 @@ public class AccountDatabase {
                 this.accounts[acctIdx].deposit(account.balance);
                 if(this.accounts[acctIdx] instanceof MoneyMarket && account instanceof MoneyMarket){
                     ((MoneyMarket) this.accounts[acctIdx]).loyalty = ((MoneyMarket) account).loyalty;
-                }
-                if(this.accounts[acctIdx] instanceof Savings && account instanceof Savings){
+                }else if(this.accounts[acctIdx] instanceof Savings && account instanceof Savings){
                     ((Savings) this.accounts[acctIdx]).loyalty = ((Savings) account).loyalty;
                 }
                 return true;

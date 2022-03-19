@@ -32,6 +32,8 @@ public class Date implements Comparable<Date> {
     public static final int NOVEMBER = 11;
     public static final int DECEMBER = 12;
 
+    public static final int OFFSET = 1;
+
     /** year of the DOB */
     private int year;
     /** month of the DOB */
@@ -135,13 +137,14 @@ public class Date implements Comparable<Date> {
      */
     public boolean isFutureDate() {
         Calendar calendar = Calendar.getInstance();
+        int Offsetmonth = month - OFFSET;
         if(year > calendar.get(Calendar.YEAR)) {
             return true;
         }
         else if (year == calendar.get(Calendar.YEAR)) {
-            if (month > calendar.get(Calendar.MONTH))
+            if (Offsetmonth > calendar.get(Calendar.MONTH))
                 return true;
-            else if (month == calendar.get(Calendar.MONTH)) {
+            else if (Offsetmonth == calendar.get(Calendar.MONTH)) {
                 if (day > calendar.get(Calendar.DATE))
                     return true;
             }

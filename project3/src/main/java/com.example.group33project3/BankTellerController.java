@@ -523,8 +523,13 @@ public class BankTellerController {
             if(dbAccount.closed){
                 textArea.appendText("Account is closed.\n");
             }else{
-                acctDB.withdraw(acctToWith);
-                textArea.appendText("Withdrawal - balance updated.\n");
+                if(acctDB.withdraw(acctToWith)){
+                    textArea.appendText("Withdrawal - balance updated.\n");
+                }else{
+                    textArea.appendText("Withdrawal - insufficient fund.\n");
+                }
+
+
             }
             return;
         }

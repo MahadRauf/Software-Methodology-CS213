@@ -4,11 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-//import java.time.format.DateTimeFormatter;
-
 /**
  * Controller for BankTeller application
- * @author Mahad rauf, Moeez Shahid
+ * @author Mahad Rauf, Moeez Shahid
  */
 public class BankTellerController {
     /**
@@ -36,9 +34,6 @@ public class BankTellerController {
     @FXML
     private DatePicker DOB_OC;
 
-    /*@FXML
-    private ToggleGroup OPEN_OR_CLOSE;*/
-
     /**
      * references the ToggleGroup for the account type on deposit/withdraw tab
      */
@@ -63,12 +58,6 @@ public class BankTellerController {
     @FXML
     private RadioButton camden;
 
-    /*@FXML
-    private ToggleGroup campusCode;
-
-    @FXML
-    private RadioButton checkingDW;*/
-
     /**
      * references the checking RadioButton on open/close tab
      */
@@ -80,12 +69,6 @@ public class BankTellerController {
      */
     @FXML
     private RadioButton closeOC;
-
-    /*@FXML
-    private RadioButton colCheckingDW;
-
-    @FXML
-    private RadioButton colCheckingOC;*/
 
     /**
      * references the first name TextField on deposit/withdraw tab
@@ -123,9 +106,6 @@ public class BankTellerController {
     @FXML
     private RadioButton loyalty;
 
-    /*@FXML
-    private RadioButton moneyMarketDW;*/
-
     /**
      * references the Money Market RadioButton on open/close tab
      */
@@ -149,12 +129,6 @@ public class BankTellerController {
      */
     @FXML
     private RadioButton openOC;
-
-    /*@FXML
-    private RadioButton savingsDW;
-
-    @FXML
-    private RadioButton savingsOC;*/
 
     /**
      * references the TextArea that the application outputs to
@@ -270,15 +244,7 @@ public class BankTellerController {
         String fNamePro = fName.getText().trim();
         String lNamePro = lName.getText().trim();
         Date DOBPro;
-        // try catch probably not needed anymore, remove comment later after further testing if true
-        //try{
-            //DOBPro = new Date(DOB.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")));
-            DOBPro = new Date(DOB.getEditor().getText());
-            //textArea.appendText(DOBPro.toString() + "\n");
-        /*}catch(Exception ex){
-            textArea.appendText("Date of birth invalid.\n");
-            return null;
-        }*/
+        DOBPro = new Date(DOB.getEditor().getText());
         if(!DOBPro.isValid() || DOBPro.isFutureDate() || DOBPro.isToday()){
             textArea.appendText("Date of birth invalid.\n");
             return null;
@@ -363,7 +329,7 @@ public class BankTellerController {
      * @param group ToggleGroup which specifies the account type
      * @param person person to be associated with the account
      * @param balance balance that the account will have
-     * @return
+     * @return account created by parameter information
      */
     private Account createAccount(ToggleGroup group, Profile person, double balance){
         Account acct = null;
@@ -528,8 +494,6 @@ public class BankTellerController {
                 }else{
                     textArea.appendText("Withdrawal - insufficient fund.\n");
                 }
-
-
             }
             return;
         }

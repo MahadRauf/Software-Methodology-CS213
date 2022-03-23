@@ -53,6 +53,18 @@ public class MoneyMarket extends Savings {
     }
 
     /**
+     * Deposits the parameter amount from the account. If the balance becomes greater than or equal to 2500, sets the account as loyal.
+     * @param amount amount to deposit.
+     */
+    @Override
+    public void deposit(double amount){
+        super.deposit(amount);
+        if(balance >= feeWaived){
+            loyalty = loyal;
+        }
+    }
+
+    /**
      * Withdraws the parameter amount from the account. If the balance becomes less than 2500, sets the account as nonloyal.
      * @param amount amount to withdraw.
      */

@@ -3,6 +3,9 @@ package com.project4.group33project4;
 import java.util.HashSet;
 
 public class Coffee extends MenuItem implements Customizable{
+    // maybe add a price increase constant that is multiplied by the size
+    // so base price and price added per size price = BASE_PRICE + SIZE_CONSTANT*size
+    // maybe do that in the controller?
     protected static final double ADD_IN_PRICE = 0.30;
     protected static final int SHORT = 0;
     protected static final int TALL = 1;

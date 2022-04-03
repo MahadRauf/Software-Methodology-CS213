@@ -63,13 +63,13 @@ public class Coffee extends MenuItem implements Customizable{
 
     public String getSize(){
         if(this.size == SHORT){
-            return "SHORT";
+            return "Short";
         }else if(this.size == TALL){
-            return "TALL";
+            return "Tall";
         }else if(this.size == GRANDE){
-            return "GRANDE";
+            return "Grande";
         }else if(this.size == VENTI){
-            return "VENTI";
+            return "Venti";
         }
         return "N/A";
     }
@@ -78,11 +78,10 @@ public class Coffee extends MenuItem implements Customizable{
     public String toString(){
         String ret = this.getSize() + " ";
         if(addIns.size() > 0){
-            ret = ret + " ( ";
+            ret = ret + " ::";
             for(String s : addIns){
-                ret = ret + s + " ";
+                ret = ret + s + "::";
             }
-            ret = ret + ") ";
         }
         ret = ret + "(" + getQuantity() + ")";
         return ret;

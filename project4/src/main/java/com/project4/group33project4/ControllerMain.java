@@ -13,7 +13,12 @@ import java.io.IOException;
 public class ControllerMain {
     private Parent root;
     private Stage stage;
+    private StoreOrders orders = new StoreOrders();
+    private Order order = new Order();
 
+    void addToOrder(MenuItem item){
+        order.add(item);
+    }
 
     @FXML
     void addCoffee(ActionEvent event) throws IOException {
@@ -24,7 +29,8 @@ public class ControllerMain {
         root = (Parent) fxmlLoader.load();
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setY(stage.getY() + 700);
+        stage.setX(0);
+        stage.setY(0);// make this not magic number \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         stage.setTitle("Coffee");
         stage.setScene(new Scene(root));
         ControllerCoffee controller = (ControllerCoffee) fxmlLoader.getController();
@@ -41,7 +47,8 @@ public class ControllerMain {
         root = (Parent) fxmlLoader.load();
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setY(stage.getY() + 700);
+        stage.setX(0);
+        stage.setY(0);// make this not magic number \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         stage.setTitle("Donuts");
         stage.setScene(new Scene(root));
         ControllerDonut controller = (ControllerDonut) fxmlLoader.getController();
@@ -58,7 +65,8 @@ public class ControllerMain {
         root = (Parent) fxmlLoader.load();
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setY(stage.getY() + 700);
+        stage.setX(0);
+        stage.setY(0);// make this not magic number \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         stage.setTitle("All Orders");
         stage.setScene(new Scene(root));
         ControllerAllOrders controller = (ControllerAllOrders) fxmlLoader.getController();
@@ -75,7 +83,8 @@ public class ControllerMain {
         root = (Parent) fxmlLoader.load();
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setY(stage.getY() + 700);
+        stage.setX(0);
+        stage.setY(0);// make this not magic number \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         stage.setTitle("Current Order");
         stage.setScene(new Scene(root));
         ControllerOrder controller = (ControllerOrder) fxmlLoader.getController();

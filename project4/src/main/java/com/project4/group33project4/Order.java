@@ -13,6 +13,14 @@ public class Order implements Customizable{
         ORDER_NUM++;
     }
 
+    public ArrayList<MenuItem> getItems(){
+        return this.order;
+    }
+
+    public int getOrderNum(){
+        return this.orderNum;
+    }
+
     @Override
     public boolean add(Object obj) {
         if(obj instanceof MenuItem){

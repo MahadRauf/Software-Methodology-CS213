@@ -20,6 +20,28 @@ public class ControllerMain {
         order.add(item);
     }
 
+    // MOEEZ LOOK HERE
+    // this might be useful for the view all orders part so putting it in now
+    public boolean removeOrder(Order toRemove){
+        return this.orders.remove(toRemove);
+    }
+
+    // MOEEZ LOOK HERE
+    // this might be useful for removing donuts
+    public boolean removeItem(MenuItem toRemove){
+        return this.order.remove(toRemove);
+    }
+
+    // MOEEZ LOOK HERE
+    // this might be useful for the view all orders part so putting it in now
+    public StoreOrders getOrders(){
+        return this.orders;
+    }
+
+    public Order getOrder(){
+        return this.order;
+    }
+
     @FXML
     void addCoffee(ActionEvent event) throws IOException {
         if(stage != null){

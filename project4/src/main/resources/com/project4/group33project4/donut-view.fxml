@@ -67,6 +67,7 @@
                 <Text layoutX="365.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal:" />
                 <Button layoutX="414.0" layoutY="71.0" mnemonicParsing="false" onAction="#onOrder" text="Order" />
             <ComboBox fx:id="donutAmount" layoutX="190.0" layoutY="81.0" onAction="#onQuantitySelect" prefHeight="38.0" prefWidth="167.0" promptText="Select Donut Quantity" />
+            <Button layoutX="497.0" layoutY="71.0" mnemonicParsing="false" onAction="#offOrder" text="Remove" />
             </children>
         </Pane>
     </top>

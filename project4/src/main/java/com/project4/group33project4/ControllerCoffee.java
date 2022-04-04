@@ -17,9 +17,8 @@ public class ControllerCoffee {
     private HashSet<String> addIns = new HashSet<String>();
 
     private static final double BASE_PRICE = 1.69;
-    private static final double ADD_IN_PRICE = 0.30;
-    private static final double SIZE_INCREASE_PRICE = 0.40;
-    private static final int QUANTITY = 1;
+    private static final double ADD_IN_PRICE = Coffee.ADD_IN_PRICE;
+    private static final double SIZE_INCREASE_PRICE = Coffee.SIZE_INCREASE_PRICE;
 
     @FXML
     private ToggleGroup size;
@@ -36,12 +35,12 @@ public class ControllerCoffee {
 
     @FXML
     void onOrder(ActionEvent event){
-        Coffee toOrder = new Coffee(currentPrice, QUANTITY, coffeeSize);
+        Coffee toOrder = new Coffee(currentPrice, coffeeSize);
         for(String s : addIns){
             toOrder.add(s);
         }
         mainController.addToOrder(toOrder);
-        textArea.appendText("Coffee: " + toOrder.toString() + " added to order\n");
+        textArea.appendText( toOrder.toString() + " added to order\n");
     }
 
     @FXML

@@ -25,7 +25,6 @@ public class ControllerDonut implements Initializable {
     private double currentSubPrice = 1.59;
     private int donutFlavor = 3;
     private int donutQuantity = 1;
-    private String dozen[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
 
 
     @FXML

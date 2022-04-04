@@ -77,7 +77,7 @@ public class Coffee extends MenuItem implements Customizable{
 
     @Override
     public String toString(){
-        String ret = this.getSize() + " ";
+        String ret = "Coffee: " + this.getSize() + " ";
         if(addIns.size() > 0){
             ret = ret + " ::";
             for(String s : addIns){

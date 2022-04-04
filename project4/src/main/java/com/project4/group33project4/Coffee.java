@@ -7,6 +7,7 @@ public class Coffee extends MenuItem implements Customizable{
     // so base price and price added per size price = BASE_PRICE + SIZE_CONSTANT*size
     // maybe do that in the controller?
     protected static final double ADD_IN_PRICE = 0.30;
+    protected static final double SIZE_INCREASE_PRICE = 0.40;
     protected static final int SHORT = 0;
     protected static final int TALL = 1;
     protected static final int GRANDE = 2;
@@ -14,18 +15,18 @@ public class Coffee extends MenuItem implements Customizable{
     protected HashSet<String> addIns;
     private int size;
 
-    public Coffee(double price, int quantity, int size){
-        super(price, quantity);
+    public Coffee(double price, int size){
+        super(price);
         this.size = size;
         addIns = new HashSet<String>();
     }
 
-    @Override
+    /*@Override
     public double itemPrice() {
         int numAddIns = this.addIns.size();
-        double ret = super.itemPrice() + numAddIns * ADD_IN_PRICE;
+        double ret = super.itemPrice() + numAddIns * ADD_IN_PRICE + size * ;
         return ret;
-    }
+    }*/
 
     @Override
     public boolean add(Object obj) {
@@ -83,7 +84,7 @@ public class Coffee extends MenuItem implements Customizable{
                 ret = ret + s + "::";
             }
         }
-        ret = ret + "(" + getQuantity() + ")";
+        ret = ret + "(1)";
         return ret;
     }
 }

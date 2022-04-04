@@ -12,17 +12,19 @@ public class Donut extends MenuItem{
     protected static final int CHOCOLATE = 5;
     private int type;
     private int flavor;
+    private int quantity;
 
     public Donut(double price, int quantity, int type, int flavor){
-        super(price, quantity);
+        super(price);
         this.type = type;
         this.flavor = flavor;
+        this.quantity = quantity;
     }
 
-    @Override
+    /*@Override
     public double itemPrice() {
-        return super.itemPrice();
-    }
+        return super.itemPrice() * this.quantity;
+    }*/
 
    /* public int getType(){
         return this.type;
@@ -32,7 +34,7 @@ public class Donut extends MenuItem{
     public boolean equals(Object obj){
         if(obj instanceof Donut){
             Donut ObjD = (Donut) obj;
-            if(ObjD.type == this.type && ObjD.flavor == this.flavor){
+            if(ObjD.type == this.type && ObjD.flavor == this.flavor && ObjD.quantity == this.quantity){
                 return true;
             }else{
                 return false;
@@ -66,7 +68,7 @@ public class Donut extends MenuItem{
 
     @Override
     public String toString(){
-        String ret = this.getType() + " ," + this.getFlavor() + " (" + this.getQuantity() + ")";
+        String ret = this.getType() + " ," + this.getFlavor() + " (" + this.quantity + ")";
         return ret;
     }
 }

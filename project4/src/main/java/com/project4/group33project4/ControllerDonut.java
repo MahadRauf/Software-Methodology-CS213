@@ -23,6 +23,7 @@ public class ControllerDonut implements Initializable {
     private double currentPrice = 1.59;
     private double currentDonutPrice;
     private double currentSubPrice = 1.59;
+    private double removePrice;
     private int donutFlavor = 3;
     private int donutQuantity = 1;
 
@@ -53,6 +54,24 @@ public class ControllerDonut implements Initializable {
         subtotal.appendText(amount);
         textArea.appendText("Donut(s): " + toOrder.toString() + " : " + subAmount + " added to order\n");
     }
+
+    @FXML
+    void offOrder(ActionEvent event){
+        Donut offOrder = new Donut(currentPrice, donutQuantity, donutType, donutFlavor);
+        if(mainController.removeItem(offOrder)){
+            subtotal.clear();
+            removePrice = currentPrice * donutQuantity;
+            currentDonutPrice -= removePrice;
+            String amount = "$" + String.format("%,.2f", currentDonutPrice);
+            String removeAmount = "$" + String.format("%,.2f", removePrice);
+            subtotal.appendText(amount);
+            textArea.appendText("Donut(s): " + offOrder.toString() + " : " + removeAmount + " removed from order\n");
+        }
+        else{
+            textArea.appendText("Invalid: Order not found\n");
+        }
+    }
+
     @FXML
     void onTypeSelect(ActionEvent event){
         RadioButton selected = (RadioButton) type.getSelectedToggle();

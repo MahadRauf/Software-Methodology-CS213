@@ -5,8 +5,12 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
 import javafx.collections.ObservableList;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.ComboBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,6 +40,9 @@ public class ControllerDonut implements Initializable {
 
     @FXML
     private TextField subtotal;
+
+    @FXML
+    private TextField priceItem;
 
     @FXML
     private TextArea textArea;
@@ -86,10 +93,10 @@ public class ControllerDonut implements Initializable {
             donutType = Donut.HOLE;
             currentPrice = Donut.HOLE_PRICE;
         }
-        subtotal.clear();// make this a method
+        priceItem.clear();// make this a method
         currentSubPrice = currentPrice * donutQuantity;
         String amount = "$" + String.format("%,.2f", currentSubPrice);
-        subtotal.appendText(amount);
+        priceItem.appendText(amount);
     }
     @FXML
     void onFlavorSelect(ActionEvent event){
@@ -104,10 +111,10 @@ public class ControllerDonut implements Initializable {
 
         }
 
-        subtotal.clear();// make this a method
+        priceItem.clear();// make this a method
         currentSubPrice = currentPrice * donutQuantity;
         String amount = "$" + String.format("%,.2f", currentSubPrice);
-        subtotal.appendText(amount);
+        priceItem.appendText(amount);
     }
     @FXML
     private ComboBox<String> donutAmount;
@@ -130,10 +137,10 @@ public class ControllerDonut implements Initializable {
         }else if(quantity.equals("6")){
             donutQuantity = six;
         }
-        subtotal.clear();// make this a method
+        priceItem.clear();// make this a method
         currentSubPrice = currentPrice * donutQuantity;
         String amount = "$" + String.format("%,.2f", currentSubPrice);
-        subtotal.appendText(amount);
+        priceItem.appendText(amount);
     }
 
     @Override

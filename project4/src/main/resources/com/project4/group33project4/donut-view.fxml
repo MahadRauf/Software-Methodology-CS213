@@ -65,9 +65,11 @@
                 <Text layoutX="30.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Donut Flavor:" />
                 <TextField fx:id="subtotal" editable="false" layoutX="414.0" layoutY="28.0" text="\$1.59" />
                 <Text layoutX="365.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal:" />
-                <Button layoutX="414.0" layoutY="71.0" mnemonicParsing="false" onAction="#onOrder" text="Order" />
-            <ComboBox fx:id="donutAmount" layoutX="190.0" layoutY="81.0" onAction="#onQuantitySelect" prefHeight="38.0" prefWidth="167.0" promptText="Select Donut Quantity" />
-            <Button layoutX="497.0" layoutY="71.0" mnemonicParsing="false" onAction="#offOrder" text="Remove" />
+                <Button layoutX="414.0" layoutY="113.0" mnemonicParsing="false" onAction="#onOrder" text="Order" />
+            <ComboBox fx:id="donutAmount" layoutX="175.0" layoutY="81.0" onAction="#onQuantitySelect" prefHeight="38.0" prefWidth="167.0" promptText="Select Donut Quantity" />
+            <Button layoutX="497.0" layoutY="113.0" mnemonicParsing="false" onAction="#offOrder" text="Remove" />
+            <TextField fx:id="priceItem" editable="false" layoutX="414.0" layoutY="71.0" text="\$1.59" />
+            <Text layoutX="356.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Price:" />
             </children>
         </Pane>
     </top>

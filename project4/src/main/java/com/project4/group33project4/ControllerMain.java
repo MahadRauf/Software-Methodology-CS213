@@ -16,8 +16,13 @@ public class ControllerMain {
     private StoreOrders orders = new StoreOrders();
     private Order order = new Order();
 
-    void addToOrder(MenuItem item){
+    public void addToOrder(MenuItem item){
         order.add(item);
+    }
+
+    public void addOrder(){
+        orders.add(order);
+        this.order = new Order();
     }
 
     // MOEEZ LOOK HERE

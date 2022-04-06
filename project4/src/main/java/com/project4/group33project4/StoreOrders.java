@@ -1,5 +1,7 @@
 package com.project4.group33project4;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class StoreOrders implements Customizable{
@@ -7,6 +9,9 @@ public class StoreOrders implements Customizable{
 
     public StoreOrders(){
         orders = new ArrayList<Order>();
+    }
+    public ArrayList<Order> getOrders(){
+        return this.orders;
     }
 
     @Override
@@ -37,4 +42,16 @@ public class StoreOrders implements Customizable{
         }
         return ret;
     }
+    public void export(String path) {
+        try {
+            File myObj = new File(path);
+            myObj.createNewFile();
+            FileWriter myWriter = new FileWriter(myObj);
+            myWriter.write(this.toString());
+            myWriter.close();
+        } catch (Exception e) {
+            System.out.println("An error occurred while exporting the file.");
+        }
+    }
+
 }

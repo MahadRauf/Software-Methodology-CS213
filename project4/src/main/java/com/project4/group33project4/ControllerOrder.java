@@ -49,7 +49,12 @@ public class ControllerOrder {
     @FXML
     void removeItem(ActionEvent event) {
         MenuItem toRemove = orderItems.getSelectionModel().getSelectedItem();
+        if(toRemove == null){
+            textArea.appendText("No item selected to remove.\n");
+            return;
+        }
         mainController.removeItem(toRemove);
+        textArea.appendText(toRemove.toString() + " removed from order.\n");
         showOrder(event);
     }
 

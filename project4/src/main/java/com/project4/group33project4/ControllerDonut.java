@@ -52,19 +52,19 @@ public class ControllerDonut implements Initializable {
     }
     @FXML
     void onOrder(ActionEvent event){
-        Donut toOrder = new Donut(currentPrice, donutQuantity, donutType, donutFlavor);
-        mainController.addToOrder(toOrder);
         subtotal.clear();
         currentDonutPrice += currentPrice * donutQuantity;
         String amount = "$" + String.format("%,.2f", currentDonutPrice);
         String subAmount = "$" + String.format("%,.2f", currentSubPrice);
         subtotal.appendText(amount);
+        Donut toOrder = new Donut(currentDonutPrice, donutQuantity, donutType, donutFlavor);
+        mainController.addToOrder(toOrder);
         textArea.appendText("Donut(s): " + toOrder.toString() + " : " + subAmount + " added to order\n");
     }
 
     @FXML
     void offOrder(ActionEvent event){
-        Donut offOrder = new Donut(currentPrice, donutQuantity, donutType, donutFlavor);
+        Donut offOrder = new Donut(currentDonutPrice, donutQuantity, donutType, donutFlavor);
         if(mainController.removeItem(offOrder)){
             subtotal.clear();
             removePrice = currentPrice * donutQuantity;

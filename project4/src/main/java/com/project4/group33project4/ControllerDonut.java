@@ -123,7 +123,6 @@ public class ControllerDonut implements Initializable {
     @FXML
     void onQuantitySelect(ActionEvent event){
         String quantity = donutAmount.getSelectionModel().getSelectedItem();
-        System.out.println(quantity);
         if(quantity.equals("1")){
             donutQuantity = one;
         }else if(quantity.equals("2")){

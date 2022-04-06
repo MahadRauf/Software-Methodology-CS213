@@ -64,7 +64,7 @@
 
                 <Text layoutX="30.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Donut Type:" />
                 <Text layoutX="30.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Donut Flavor:" />
-                <TextField fx:id="subtotal" editable="false" layoutX="414.0" layoutY="28.0" text="\$1.59" />
+                <TextField fx:id="subtotal" editable="false" layoutX="414.0" layoutY="28.0" text="\$0.00" />
                 <Text layoutX="365.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal:" />
                 <Button layoutX="414.0" layoutY="113.0" mnemonicParsing="false" onAction="#onOrder" text="Order" />
             <ComboBox fx:id="donutAmount" layoutX="175.0" layoutY="94.0" onAction="#onQuantitySelect" prefHeight="38.0" prefWidth="167.0" promptText="1" />

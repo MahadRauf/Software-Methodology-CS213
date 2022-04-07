@@ -59,7 +59,7 @@ public class ControllerDonut implements Initializable {
         subtotal.appendText(amount);
         Donut toOrder = new Donut(currentDonutPrice, donutQuantity, donutType, donutFlavor);
         mainController.addToOrder(toOrder);
-        textArea.appendText("Donut(s): " + toOrder.toString() + " : " + subAmount + " added to order\n");
+        textArea.appendText(toOrder.toString() + " : " + subAmount + " added to order\n");
     }
 
     @FXML
@@ -72,7 +72,7 @@ public class ControllerDonut implements Initializable {
             String amount = "$" + String.format("%,.2f", currentDonutPrice);
             String removeAmount = "$" + String.format("%,.2f", removePrice);
             subtotal.appendText(amount);
-            textArea.appendText("Donut(s): " + offOrder.toString() + " : " + removeAmount + " removed from order\n");
+            textArea.appendText(offOrder.toString() + " : " + removeAmount + " removed from order\n");
         }
         else{
             textArea.appendText("Invalid: Order not found\n");

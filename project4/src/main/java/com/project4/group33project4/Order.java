@@ -6,6 +6,7 @@ public class Order implements Customizable{
     private static int ORDER_NUM = 0;
     private ArrayList<MenuItem> order;
     private int orderNum;
+    private double total;
 
     public Order(){
         order = new ArrayList<MenuItem>();
@@ -19,6 +20,10 @@ public class Order implements Customizable{
 
     public int getOrderNum(){
         return this.orderNum;
+    }
+
+    public void setTotal(double amount){
+        this.total = amount;
     }
 
     @Override
@@ -57,7 +62,7 @@ public class Order implements Customizable{
 
     @Override
     public String toString(){
-        String ret = "Order Number: " + this.orderNum + "\n";
+        String ret = "Order Number: " + this.orderNum + "\nTotal(w/tax): $"+ String.format("%,.2f", this.total) + "\n";
         for(MenuItem i : order){
             ret = ret + i.toString() + "\n";
         }

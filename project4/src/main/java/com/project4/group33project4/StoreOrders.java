@@ -38,7 +38,7 @@ public class StoreOrders implements Customizable{
     public String toString(){
         String ret = "";
         for(Order o : this.orders){
-            ret = o.toString() + " \n";
+            ret = ret + o.toString() + " \n";
         }
         return ret;
     }

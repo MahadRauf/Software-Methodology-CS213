@@ -15,13 +15,24 @@ public class ControllerMain {
     private Stage stage;
     private StoreOrders orders = new StoreOrders();
     private Order order = new Order();
+    private double donutTotal = 0;
 
     public void addToOrder(MenuItem item){
         order.add(item);
     }
 
-    public void addOrder(){
+    public void setDonutTotal(double amount){
+        this.donutTotal = amount;
+    }
+
+    public double getDonutTotal(){
+        return this.donutTotal;
+    }
+
+    public void addOrder(double amount){
+        order.setTotal(amount);
         orders.add(order);
+        this.donutTotal = 0;
         this.order = new Order();
     }
 

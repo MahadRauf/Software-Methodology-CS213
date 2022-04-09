@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class ControllerOrder {
     private ControllerMain mainController;
     private boolean orderPlaced = false;
+    private double totl = 0;
     private static final double SALES_TAX = 0.06625;
 
     @FXML
@@ -39,7 +40,7 @@ public class ControllerOrder {
 
     @FXML
     void addOrder(ActionEvent event) {
-        mainController.addOrder();
+        mainController.addOrder(totl);
         this.orderPlaced = true;
         textArea.appendText("Order has been placed.\n");
         showOrder(event);
@@ -74,10 +75,10 @@ public class ControllerOrder {
             subTot += i.itemPrice();
         }
         double sTax = subTot * SALES_TAX;
-        double tot = subTot + sTax;
+        this.totl = subTot + sTax;
         subtotal.setText("$" + String.format("%,.2f", subTot));
         tax.setText("$" + String.format("%,.2f", sTax));
-        total.setText("$" + String.format("%,.2f", tot));
+        total.setText("$" + String.format("%,.2f", this.totl));
         if(items.size() == 0){
             orderButton.setDisable(true);
             removeButton.setDisable(true);

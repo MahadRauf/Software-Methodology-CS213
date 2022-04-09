@@ -49,26 +49,30 @@ public class ControllerDonut implements Initializable {
 
     public void setMainController(ControllerMain mainController) {
         this.mainController = mainController;
+        currentDonutPrice = mainController.getDonutTotal();///////
+        subtotal.setText("$" + String.format("%,.2f", currentDonutPrice));///////
     }
     @FXML
     void onOrder(ActionEvent event){
         subtotal.clear();
         currentDonutPrice += currentPrice * donutQuantity;
+        mainController.setDonutTotal(currentDonutPrice);//////////////
         String amount = "$" + String.format("%,.2f", currentDonutPrice);
         String subAmount = "$" + String.format("%,.2f", currentSubPrice);
         subtotal.appendText(amount);
-        Donut toOrder = new Donut(currentDonutPrice, donutQuantity, donutType, donutFlavor);
+        Donut toOrder = new Donut(currentSubPrice, donutQuantity, donutType, donutFlavor);
         mainController.addToOrder(toOrder);
         textArea.appendText(toOrder.toString() + " : " + subAmount + " added to order\n");
     }
 
     @FXML
     void offOrder(ActionEvent event){
-        Donut offOrder = new Donut(currentDonutPrice, donutQuantity, donutType, donutFlavor);
+        Donut offOrder = new Donut(currentSubPrice, donutQuantity, donutType, donutFlavor);
         if(mainController.removeItem(offOrder)){
             subtotal.clear();
             removePrice = currentPrice * donutQuantity;
             currentDonutPrice -= removePrice;
+            mainController.setDonutTotal(currentDonutPrice);//////////////
             String amount = "$" + String.format("%,.2f", currentDonutPrice);
             String removeAmount = "$" + String.format("%,.2f", removePrice);
             subtotal.appendText(amount);
@@ -110,7 +114,6 @@ public class ControllerDonut implements Initializable {
             donutFlavor = Donut.CHOCOLATE;
 
         }
-
         priceItem.clear();// make this a method
         currentSubPrice = currentPrice * donutQuantity;
         String amount = "$" + String.format("%,.2f", currentSubPrice);

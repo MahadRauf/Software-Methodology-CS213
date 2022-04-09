@@ -7,33 +7,27 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
 
 public class ControllerAllOrders {
     private ControllerMain mainController;
+    private boolean remove = false;
     public static final String EXPORT_PATH = "orders.txt";
     @FXML
     private ListView<Order> listAllOrders;
 
     @FXML
-    private TextField subtotal;
-
-    @FXML
-    private TextField tax;
-
-    @FXML
-    private TextField total;
-
-    @FXML
     private TextArea textArea;
 
-    @FXML
-    private Button printButton;
+    /*@FXML
+    private Button printButton;*/
 
     @FXML
     private Button removeButton;
+
+    @FXML
+    private Button exportButton;
 
 
 
@@ -46,6 +40,16 @@ public class ControllerAllOrders {
     public void showAllOrders(ActionEvent event){
         StoreOrders allOrders = mainController.getOrders();
         ArrayList<Order> allOrder = allOrders.getOrders();
+        if(allOrder.size() == 0){
+            removeButton.setDisable(true);
+            exportButton.setDisable(true);
+            if(!remove){
+                textArea.appendText("No orders currently placed.\n");
+            }
+        }else{
+            removeButton.setDisable(false);
+            exportButton.setDisable(false);
+        }
         ObservableList<Order> observableList = FXCollections.observableList(allOrder);
         listAllOrders.setItems(observableList);
     }
@@ -53,13 +57,16 @@ public class ControllerAllOrders {
     @FXML
     public void removeOrders(ActionEvent event){
         Order toRemove = listAllOrders.getSelectionModel().getSelectedItem();
+        textArea.appendText("Order Number: " + toRemove.getOrderNum() + " cancelled.\n");
         mainController.removeOrder(toRemove);
+        remove = true;
         showAllOrders(event);
+        remove = false;
     }
     @FXML
     public void exportOrders(ActionEvent event) {
 
         mainController.getOrders().export(EXPORT_PATH);
-        
+
     }
 }

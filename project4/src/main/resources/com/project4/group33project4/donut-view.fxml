@@ -51,12 +51,12 @@
                     </rowConstraints>
 
                     <children>
-                    <RadioButton mnemonicParsing="false" onAction="#onFlavorSelect" selected="true" text="SUGAR">
-                        <toggleGroup>
-                            <ToggleGroup fx:id="flavor" />
-                        </toggleGroup></RadioButton>
-                    <RadioButton mnemonicParsing="false" onAction="#onFlavorSelect" text="GLAZED" toggleGroup="$flavor" GridPane.rowIndex="1" />
-                    <RadioButton mnemonicParsing="false" onAction="#onFlavorSelect" text="CHOCOLATE" toggleGroup="$flavor" GridPane.rowIndex="2" />
+                        <RadioButton mnemonicParsing="false" onAction="#onFlavorSelect" selected="true" text="SUGAR">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="flavor" />
+                            </toggleGroup></RadioButton>
+                        <RadioButton mnemonicParsing="false" onAction="#onFlavorSelect" text="GLAZED" toggleGroup="$flavor" GridPane.rowIndex="1" />
+                        <RadioButton mnemonicParsing="false" onAction="#onFlavorSelect" text="CHOCOLATE" toggleGroup="$flavor" GridPane.rowIndex="2" />
 
                     </children>
                 </GridPane>
@@ -67,15 +67,15 @@
                 <TextField fx:id="subtotal" editable="false" layoutX="414.0" layoutY="28.0" text="\$0.00" />
                 <Text layoutX="365.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal:" />
                 <Button layoutX="414.0" layoutY="113.0" mnemonicParsing="false" onAction="#onOrder" text="Order" />
-            <ComboBox fx:id="donutAmount" layoutX="175.0" layoutY="94.0" onAction="#onQuantitySelect" prefHeight="38.0" prefWidth="167.0" promptText="1" />
-            <Button layoutX="497.0" layoutY="113.0" mnemonicParsing="false" onAction="#offOrder" text="Remove" />
-            <TextField fx:id="priceItem" editable="false" layoutX="414.0" layoutY="71.0" text="\$1.59" />
-            <Text layoutX="356.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Price:" />
-            <Text layoutX="183.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Donut Quantity">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
+                <ComboBox fx:id="donutAmount" layoutX="175.0" layoutY="94.0" onAction="#onQuantitySelect" prefHeight="38.0" prefWidth="167.0" promptText="1" />
+                <Button layoutX="497.0" layoutY="113.0" mnemonicParsing="false" onAction="#offOrder" text="Remove" />
+                <TextField fx:id="priceItem" editable="false" layoutX="414.0" layoutY="71.0" text="\$1.59" />
+                <Text layoutX="356.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Price:" />
+                <Text layoutX="183.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Donut Quantity">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Text>
             </children>
         </Pane>
     </top>

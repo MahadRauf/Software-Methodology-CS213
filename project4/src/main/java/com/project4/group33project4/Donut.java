@@ -68,7 +68,7 @@ public class Donut extends MenuItem{
 
     @Override
     public String toString(){
-        String ret = "Donut:" + this.getType() + " ," + this.getFlavor() + " (" + this.quantity + ")";
+        String ret = "Donut:" + this.getType() + ", " + this.getFlavor() + " (" + this.quantity + ")";
         return ret;
     }
 }

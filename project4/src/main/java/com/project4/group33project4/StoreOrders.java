@@ -42,15 +42,16 @@ public class StoreOrders implements Customizable{
         }
         return ret;
     }
-    public void export(String path) {
+    public String export(String path) {
         try {
             File myObj = new File(path);
             myObj.createNewFile();
             FileWriter myWriter = new FileWriter(myObj);
             myWriter.write(this.toString());
             myWriter.close();
+            return "Orders exported to file: orders.txt (data overwritten if file already exists).\n";
         } catch (Exception e) {
-            System.out.println("An error occurred while exporting the file.");
+            return "An error occurred while exporting the file.\n";
         }
     }
 

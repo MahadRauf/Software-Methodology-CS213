@@ -57,6 +57,10 @@ public class ControllerAllOrders {
     @FXML
     public void removeOrders(ActionEvent event){
         Order toRemove = listAllOrders.getSelectionModel().getSelectedItem();
+        if(toRemove == null){
+            textArea.appendText("No item selected to remove.\n");
+            return;
+        }
         textArea.appendText("Order Number: " + toRemove.getOrderNum() + " cancelled.\n");
         mainController.removeOrder(toRemove);
         remove = true;
@@ -65,8 +69,6 @@ public class ControllerAllOrders {
     }
     @FXML
     public void exportOrders(ActionEvent event) {
-
-        mainController.getOrders().export(EXPORT_PATH);
-
+        textArea.appendText(mainController.getOrders().export(EXPORT_PATH));
     }
 }

@@ -2,32 +2,39 @@ package com.project4.group33project4;
 
 import java.util.HashSet;
 
+/**
+ * Object representation of coffee with a price, size, and add-ins
+ * @author Mahad Rauf, Moeez Shahid
+ */
 public class Coffee extends MenuItem implements Customizable{
-    // maybe add a price increase constant that is multiplied by the size
-    // so base price and price added per size price = BASE_PRICE + SIZE_CONSTANT*size
-    // maybe do that in the controller?
     protected static final double ADD_IN_PRICE = 0.30;
     protected static final double SIZE_INCREASE_PRICE = 0.40;
     protected static final int SHORT = 0;
     protected static final int TALL = 1;
     protected static final int GRANDE = 2;
     protected static final int VENTI = 3;
-    protected HashSet<String> addIns;
+
+    /** add-ins of the coffee */
+    private HashSet<String> addIns;
+    /** size of the coffee */
     private int size;
 
+    /**
+     * 2 parameter constructor for coffee
+     * @param price price of the coffee
+     * @param size size of the coffee
+     */
     public Coffee(double price, int size){
         super(price);
         this.size = size;
         addIns = new HashSet<String>();
     }
 
-    /*@Override
-    public double itemPrice() {
-        int numAddIns = this.addIns.size();
-        double ret = super.itemPrice() + numAddIns * ADD_IN_PRICE + size * ;
-        return ret;
-    }*/
-
+    /**
+     * Takes the object given and adds it to the set of add-ins
+     * @param obj add-in to add to add-ins set
+     * @return true if object is of type String and is not already in the set, false otherwise
+     */
     @Override
     public boolean add(Object obj) {
         if(obj instanceof String){
@@ -38,6 +45,11 @@ public class Coffee extends MenuItem implements Customizable{
         }
     }
 
+    /**
+     * Takes the object given and removes it from the set of add-ins
+     * @param obj add-in to remove to add-ins set
+     * @return true if object is of type String and present in the set, false otherwise
+     */
     @Override
     public boolean remove(Object obj) {
         if(obj instanceof String){
@@ -48,6 +60,11 @@ public class Coffee extends MenuItem implements Customizable{
         }
     }
 
+    /**
+     * Checks two coffees for equality of size and add-ins
+     * @param obj object to compare to
+     * @return true if obj is of type coffee and equal, false otherwise
+     */
     @Override
     public boolean equals(Object obj){
         if(obj instanceof Coffee){
@@ -62,6 +79,10 @@ public class Coffee extends MenuItem implements Customizable{
         }
     }
 
+    /**
+     * returns the size of the coffee as a String
+     * @return size of the coffee as a String
+     */
     public String getSize(){
         if(this.size == SHORT){
             return "Short";
@@ -75,6 +96,10 @@ public class Coffee extends MenuItem implements Customizable{
         return "N/A";
     }
 
+    /**
+     * returns the coffee as its String representation
+     * @return coffee as its String representation
+     */
     @Override
     public String toString(){
         String ret = "Coffee: " + this.getSize() + " ";

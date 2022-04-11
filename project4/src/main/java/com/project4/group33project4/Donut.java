@@ -1,5 +1,9 @@
 package com.project4.group33project4;
 
+/**
+ * Object representation of donut with a price, flavor, and quantity
+ * @author Mahad Rauf, Moeez Shahid
+ */
 public class Donut extends MenuItem{
     protected static final double YEAST_PRICE = 1.59;
     protected static final double CAKE_PRICE = 1.79;
@@ -10,10 +14,21 @@ public class Donut extends MenuItem{
     protected static final int SUGAR = 3;
     protected static final int GLAZED = 4;
     protected static final int CHOCOLATE = 5;
+
+    /** type of the donut */
     private int type;
+    /** flavor of the donut */
     private int flavor;
+    /** quantity of the donut */
     private int quantity;
 
+    /**
+     * 3 parameter constructor for Donut type
+     * @param price donut price
+     * @param quantity donut quantity
+     * @param type donut type
+     * @param flavor donut flavor
+     */
     public Donut(double price, int quantity, int type, int flavor){
         super(price);
         this.type = type;
@@ -21,15 +36,11 @@ public class Donut extends MenuItem{
         this.quantity = quantity;
     }
 
-    /*@Override
-    public double itemPrice() {
-        return super.itemPrice() * this.quantity;
-    }*/
-
-   /* public int getType(){
-        return this.type;
-    }*/
-
+    /**
+     * Checks if two donuts are equal based on type, flavor, and quantity
+     * @param obj object to compare for equality
+     * @return true if of type Donut and equal, false otherwise
+     */
     @Override
     public boolean equals(Object obj){
         if(obj instanceof Donut){
@@ -44,6 +55,10 @@ public class Donut extends MenuItem{
         }
     }
 
+    /**
+     * returns the type of the donut as a String
+     * @return donut type as a String
+     */
     private String getType(){
         if(this.type == YEAST){
             return "YEAST";
@@ -55,6 +70,10 @@ public class Donut extends MenuItem{
         return "N/A";
     }
 
+    /**
+     * returns donut flavor as a String
+     * @return donut flavor as a String
+     */
     private String getFlavor(){
         if(this.flavor == SUGAR){
             return "SUGAR";
@@ -66,9 +85,13 @@ public class Donut extends MenuItem{
         return "N/A";
     }
 
+    /**
+     * returns the String representation of the donut
+     * @return String representation of the donut
+     */
     @Override
     public String toString(){
-        String ret = "Donut:" + this.getType() + ", " + this.getFlavor() + " (" + this.quantity + ")";
+        String ret = "Donut: " + this.getType() + ", " + this.getFlavor() + " (" + this.quantity + ")";
         return ret;
     }
 }

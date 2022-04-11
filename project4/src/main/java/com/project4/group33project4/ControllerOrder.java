@@ -11,42 +11,77 @@ import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
 
+/**
+ * Controller for order-view.fxml
+ * @author Mahad Rauf, Moeez Shahid
+ */
 public class ControllerOrder {
+    /** controller of the main view */
     private ControllerMain mainController;
-    private boolean orderPlaced = false;
+    /** boolean to suppress an output */
+    private boolean suppress = false;
+    /** total price of the order with tax */
     private double totl = 0;
+
     private static final double SALES_TAX = 0.06625;
 
+    /**
+     * ListView in order window
+     */
     @FXML
     private ListView<MenuItem> orderItems;
 
+    /**
+     * subtotal TextField in order window
+     */
     @FXML
     private TextField subtotal;
 
+    /**
+     * sales tax TextField in order window
+     */
     @FXML
     private TextField tax;
 
+    /**
+     * total TextField in order window
+     */
     @FXML
     private TextField total;
 
+    /**
+     * TextArea in order window
+     */
     @FXML
     private TextArea textArea;
 
+    /**
+     * 'Place Order' Button in order window
+     */
     @FXML
     private Button orderButton;
 
+    /**
+     * 'Remove Selected Item' Button in order window
+     */
     @FXML
     private Button removeButton;
 
+    /**
+     * adds the order to all orders
+     * @param event upon selecting 'Place Order' Button
+     */
     @FXML
     void addOrder(ActionEvent event) {
         mainController.addOrder(totl);
-        this.orderPlaced = true;
         textArea.appendText("Order has been placed.\n");
-        showOrder(event);
-        this.orderPlaced = false;
+        suppressedShow(event);
     }
 
+    /**
+     * removes selected item in ListView from order
+     * @param event upon selecting 'Remove Selected Item' Button
+     */
     @FXML
     void removeItem(ActionEvent event) {
         MenuItem toRemove = orderItems.getSelectionModel().getSelectedItem();
@@ -56,13 +91,32 @@ public class ControllerOrder {
         }
         mainController.removeItem(toRemove);
         textArea.appendText(toRemove.toString() + " removed from order.\n");
-        showOrder(event);
+        suppressedShow(event);
+        orderItems.getSelectionModel().clearSelection();
     }
 
+    /**
+     * shows the items in the order while suppressing an output
+     * @param event from removeItem or addOrder
+     */
+    private void suppressedShow(ActionEvent event){
+        this.suppress = true;
+        showOrder(event);
+        this.suppress = false;
+    }
+
+    /**
+     * sets mainController with the parameter given
+     * @param mainController controller of main view
+     */
     public void setMainController(ControllerMain mainController) {
         this.mainController = mainController;
     }
 
+    /**
+     * Puts all the items in the current order into the ListView and enables buttons
+     * @param event upon selecting 'Show Current Order' Button
+     */
     @FXML
     void showOrder(ActionEvent event) {
         Order currentOrder = mainController.getOrder();
@@ -82,11 +136,10 @@ public class ControllerOrder {
         if(items.size() == 0){
             orderButton.setDisable(true);
             removeButton.setDisable(true);
-            if(!orderPlaced){
+            if(!suppress){
                 textArea.appendText("No items currently in order.\n");
             }
             return;
-
         }
         orderButton.setDisable(false);
         removeButton.setDisable(false);

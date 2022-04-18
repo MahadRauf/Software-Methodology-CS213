@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">project5</string>
+    <string name="small">Small</string>
+    <string name="tall">Tall</string>
+    <string name="grande">Grande</string>
+    <string name="venti">Venti</string>
+    <string name="sizeTitle">Select size:</string>
+    <string name="coffeeTitle">Add Coffee</string>
+    <string name="cream">cream</string>
+    <string name="milk">milk</string>
+    <string name="syrup">syrup</string>
+    <string name="caramel">caramel</string>
+    <string name="whipped_cream">whipped cream</string>
+    <string name="add_to_order">Add to Order</string>
+    <string name="select_add_ins">Select Add-Ins:</string>
+    <string name="coffee_subtotal">subtotal</string>
+    <string name="main_add_donuts">ADD DONUTS</string>
+    <string name="view_current_order">View Current Order</string>
+    <string name="view_store_orders">View Store Orders</string>
+    <string name="add_coffee">ADD COFFEE</string>
+</resources>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="641dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="INSERT LATER DONUT AND COFFEE SHOP" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="154dp"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/addCoffee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="addCoffee"
+                android:text="@string/add_coffee" />
+
+            <Button
+                android:id="@+id/addDonut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="addDonut"
+                android:text="@string/main_add_donuts" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/currentOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="viewCurrentOrder"
+            android:text="@string/view_current_order" />
+
+        <Button
+            android:id="@+id/storeOrders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:insetTop="50dp"
+            android:onClick="viewStoreOrders"
+            android:text="@string/view_store_orders" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

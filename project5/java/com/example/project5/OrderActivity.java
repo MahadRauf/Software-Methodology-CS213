@@ -8,15 +8,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class OrderActivity extends AppCompatActivity {
     private ListView order;
-    private EditText subtotal;
-    private EditText tax;
-    private EditText total;
+    private TextView subtotal;
+    private TextView tax;
+    private TextView total;
     private Button placeOrder;
 
     private static final double SALES_TAX = 0.06625;

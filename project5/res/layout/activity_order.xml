@@ -16,56 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/order_TIL"
-        android:layout_width="412dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_listview">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/order_subtotal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/coffee_subtotal"
-            android:textColorHint="#616161" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/order_TIL2"
-        android:layout_width="409dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_TIL">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/order_tax"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/order_sales_tax"
-            android:textColorHint="#616161" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/order_TIL3"
-        android:layout_width="412dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_TIL2">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/order_total"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/order_total" />
-    </com.google.android.material.textfield.TextInputLayout>
-
     <Button
         android:id="@+id/order_place"
         android:layout_width="wrap_content"
@@ -74,7 +24,7 @@
         android:text="@string/order_place"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_TIL3" />
+        app:layout_constraintTop_toBottomOf="@+id/order_total" />
 
     <TextView
         android:id="@+id/textView"
@@ -85,5 +35,71 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/order_listview"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/order_total"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/order_total"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/order_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="192dp"
+        android:text="@string/order_def_val"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/order_sales_tax"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/order_tax"
+        app:layout_constraintHorizontal_bias="0.554"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/order_tax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="192dp"
+        android:text="@string/order_def_val"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/order_subtotal"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/order_subtotal"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/order_listview" />
+
+    <TextView
+        android:id="@+id/order_subtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="192dp"
+        android:text="@string/order_def_val"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

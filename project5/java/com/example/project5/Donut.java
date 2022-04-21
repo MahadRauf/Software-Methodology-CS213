@@ -1,18 +1,30 @@
 package com.example.project5;
+import java.io.Serializable;
 /**
  * Object representation of donut with a price, flavor, and quantity
  * @author Mahad Rauf, Moeez Shahid
  */
-public class Donut extends MenuItem{
+public class Donut extends MenuItem implements Serializable{
     protected static final double YEAST_PRICE = 1.59;
     protected static final double CAKE_PRICE = 1.79;
     protected static final double HOLE_PRICE = 0.39;
     protected static final int YEAST = 0;
     protected static final int CAKE = 1;
     protected static final int HOLE = 2;
-    protected static final int SUGAR = 3;
-    protected static final int GLAZED = 4;
-    protected static final int CHOCOLATE = 5;
+
+    protected static final int SUGAR = 1;
+    protected static final int GLAZED = 2;
+    protected static final int CHOCOLATE = 3;
+    protected static final int BLUEBERRY = 4;
+    protected static final int VELVET = 5;
+    protected static final int BOSTON = 6;
+    protected static final int LEMON = 7;
+    protected static final int STRAWBERRY = 8;
+    protected static final int VANILLA = 9;
+    protected static final int BIRTHDAY = 10;
+    protected static final int JELLY = 11;
+    protected static final int POWDER = 12;
+
 
     /** type of the donut */
     private int type;
@@ -21,6 +33,8 @@ public class Donut extends MenuItem{
     /** quantity of the donut */
     private int quantity;
 
+    private int image;
+
     /**
      * 3 parameter constructor for Donut type
      * @param price donut price
@@ -28,11 +42,12 @@ public class Donut extends MenuItem{
      * @param type donut type
      * @param flavor donut flavor
      */
-    public Donut(double price, int quantity, int type, int flavor){
+    public Donut(double price, int quantity, int type, int flavor, int image){
         super(price);
         this.type = type;
         this.flavor = flavor;
         this.quantity = quantity;
+        this.image = image;
     }
 
     /**
@@ -69,6 +84,17 @@ public class Donut extends MenuItem{
         return "N/A";
     }
 
+    public double getTypePrice(){
+        if(this.type == YEAST){
+            return YEAST_PRICE;
+        }else if(this.type == CAKE){
+            return CAKE_PRICE;
+        }else if(this.type == HOLE){
+            return HOLE_PRICE;
+        }
+        return 0;
+    }
+
     /**
      * returns donut flavor as a String
      * @return donut flavor as a String
@@ -84,13 +110,56 @@ public class Donut extends MenuItem{
         return "N/A";
     }
 
-    /**
-     * returns the String representation of the donut
-     * @return String representation of the donut
-     */
+    public String getFlavor2(){
+        switch (this.flavor){
+            case SUGAR:
+                return "Sugar";
+
+            case GLAZED:
+                return "Glazed";
+
+            case CHOCOLATE:
+                return "Chocolate";
+
+            case BLUEBERRY:
+                return "Blueberry";
+
+
+            case VELVET:
+                return "Red Velvet";
+
+            case BOSTON:
+                return "Boston Kreme";
+            case LEMON:
+                return "Lemon";
+
+            case STRAWBERRY:
+                return "Strawberry";
+
+
+            case VANILLA:
+                return "Vanilla";
+
+            case BIRTHDAY:
+                return "Birthday";
+
+            case JELLY:
+                return "Jelly";
+
+            case POWDER:
+                return "Powder";
+        }
+        return ("N/A");
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    
     @Override
     public String toString(){
-        String ret = "Donut: " + this.getType() + ", " + this.getFlavor() + " (" + this.quantity + ")";
+        String ret = "Donut: " + this.getType() + ", " + this.getFlavor2() + " (" + this.quantity + ")";
         return ret;
     }
 }

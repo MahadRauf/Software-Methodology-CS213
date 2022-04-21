@@ -24,4 +24,18 @@
     <string name="order_listview_text">Current Order: (select items on list to remove)</string>
     <string name="order_def_val">$0.00</string>
     <string name="order_subtotal">subtotal:</string>
+    <string-array name="donutNames">
+        <item>Sugar</item>
+        <item>Glazed</item>
+        <item>Chocolate</item>
+        <item>Blueberry</item>
+        <item>Red Velvet</item>
+        <item>Boston Kreme</item>
+        <item>Lemon</item>
+        <item>Strawberry</item>
+        <item>Vanilla</item>
+        <item>Birthday</item>
+        <item>Jelly</item>
+        <item>Powder</item>
+    </string-array>
 </resources>

@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".DonutActivity">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/donut_subtotal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:editable="false"
-        android:hint="subtotal"
-        android:selectAllOnFocus="false"
-        android:textColorHint="#616161"
-        android:textIsSelectable="false"
-        app:layout_constraintTop_toBottomOf="parent" />
-
     <TextView
         android:id="@+id/donut"
         android:layout_width="84dp"
@@ -27,7 +16,7 @@
         app:layout_constraintBottom_toTopOf="@+id/donut_spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/donut_title"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/donut_title"
@@ -43,33 +32,49 @@
         android:id="@+id/donut_spinner"
         android:layout_width="391dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="172dp"
+        android:layout_marginBottom="48dp"
         android:entries="@array/donutTypes"
         android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/rcView_menu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/donut" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
         android:id="@+id/amount_spinner"
         android:layout_width="391dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="44dp"
         android:entries="@array/donutNum"
         android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/donut_spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/donut" />
+        app:layout_constraintTop_toBottomOf="@+id/donut"
+        app:layout_constraintVertical_bias="0.066" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcView_menu"
+        android:layout_width="407dp"
+        android:layout_height="285dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/donut_subtotal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/donut_subtotal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="84dp"
+        android:editable="false"
+        android:hint="subtotal"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="false"
+        android:textColorHint="#616161"
+        android:textIsSelectable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

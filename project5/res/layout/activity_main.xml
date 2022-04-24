@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="INSERT LATER DONUT AND COFFEE SHOP" />
+            android:text="@string/main_title" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +31,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="addCoffee"
                 android:text="@string/add_coffee" />
 
             <Button
@@ -39,7 +38,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="addDonut"
                 android:text="@string/main_add_donuts" />
         </LinearLayout>
 
@@ -47,7 +45,6 @@
             android:id="@+id/currentOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="viewCurrentOrder"
             android:text="@string/view_current_order" />
 
         <Button
@@ -55,7 +52,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:insetTop="50dp"
-            android:onClick="viewStoreOrders"
             android:text="@string/view_store_orders" />
 
     </LinearLayout>

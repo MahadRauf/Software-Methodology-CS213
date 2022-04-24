@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="right"
     tools:context=".CoffeeActivity">
 
     <TextView
@@ -94,27 +93,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/milk" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="391dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caramel">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/coffee_subtotal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:editable="false"
-            android:hint="@string/coffee_subtotal"
-            android:selectAllOnFocus="false"
-            android:textColorHint="#616161"
-            android:textIsSelectable="false" />
-    </com.google.android.material.textfield.TextInputLayout>
-
     <Button
         android:id="@+id/coffee_add"
         android:layout_width="wrap_content"
@@ -123,7 +101,7 @@
         android:text="@string/add_to_order"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/coffee_subtotal_title" />
 
     <TextView
         android:id="@+id/coffee_tv3"
@@ -137,5 +115,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/coffee_spinner"
         app:layout_constraintVertical_bias="0.823" />
+
+    <TextView
+        android:id="@+id/coffee_subtotal_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="56dp"
+        android:text="@string/order_subtotal"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/coffee_subtotal"
+        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caramel" />
+
+    <TextView
+        android:id="@+id/coffee_subtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="140dp"
+        android:text="@string/order_def_val"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/coffee_subtotal_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

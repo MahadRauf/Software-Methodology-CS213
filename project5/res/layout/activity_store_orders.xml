@@ -6,4 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".StoreOrdersActivity">
 
+    <TextView
+        android:id="@+id/all_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/all_orders_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/all_listview"
+        android:layout_width="380dp"
+        android:layout_height="555dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/all_tv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

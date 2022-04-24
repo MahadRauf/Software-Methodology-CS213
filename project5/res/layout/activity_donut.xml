@@ -7,75 +7,51 @@
     tools:context=".DonutActivity">
 
     <TextView
-        android:id="@+id/donut"
-        android:layout_width="168dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="16dp"
-        android:text="Donut Type and Amount"
-        android:textAlignment="center"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/donut_spinner"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/donut_title"
-        app:layout_constraintVertical_bias="0.091" />
-
-    <TextView
         android:id="@+id/donut_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Order Donuts"
+        android:text="@string/donut_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/donut_spinner"
-        android:layout_width="391dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:entries="@array/donutTypes"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/rcView_menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/amount_spinner"
-        android:layout_width="391dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:entries="@array/donutNum"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/donut_spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/donut"
-        app:layout_constraintVertical_bias="0.066" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcView_menu"
-        android:layout_width="407dp"
-        android:layout_height="285dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/donut_subtotal"
+        android:layout_width="382dp"
+        android:layout_height="493dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/donut_tv" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/donut_subtotal"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/donut_tv"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="84dp"
-        android:editable="false"
-        android:hint="subtotal"
-        android:minHeight="48dp"
-        android:selectAllOnFocus="false"
-        android:textColorHint="#616161"
-        android:textIsSelectable="false"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/donut_select_flavor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/donut_title" />
+
+    <TextView
+        android:id="@+id/donut_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/all_donuts_price"
+        app:layout_constraintEnd_toStartOf="@+id/donut_all_price"
+        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rcView_menu" />
+
+    <TextView
+        android:id="@+id/donut_all_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="188dp"
+        android:text="@string/order_def_val"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/donut_tv2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

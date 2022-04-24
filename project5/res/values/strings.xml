@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">project5</string>
+    <string name="app_name">Cafe Taka</string>
     <string name="small">Small</string>
     <string name="tall">Tall</string>
     <string name="grande">Grande</string>
@@ -24,6 +24,17 @@
     <string name="order_listview_text">Current Order: (select items on list to remove)</string>
     <string name="order_def_val">$0.00</string>
     <string name="order_subtotal">subtotal:</string>
+    <string name="all_donuts_price">All Donuts Subtotal:</string>
+    <string name="all_orders_title">All Orders: (select items on list to remove)</string>
+    <string name="donut_title">Order Donuts</string>
+    <string name="donut_select_flavor">Select Flavor:</string>
+    <string name="DO_title">DONUT FLAVOR</string>
+    <string name="DO_type_title">Type:</string>
+    <string name="DO_amount_title">Amount:</string>
+    <string name="DO_remove_text">Remove From Order</string>
+    <string name="DO_item_price_title">Item Price:</string>
+    <string name="main_title">Welcome to Cafe Taka</string>
+    <string name="donut_im_description">Donut</string>
     <string-array name="donutNames">
         <item>Sugar</item>
         <item>Glazed</item>

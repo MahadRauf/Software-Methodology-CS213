@@ -4,53 +4,104 @@ import android.content.Intent;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 
+/**
+ * main activity for cafe application
+ * @author Mahad rauf, Moeez Shahid
+ */
 public class MainActivity extends AppCompatActivity {
+    /** all orders placed */
     public static StoreOrders orders = new StoreOrders();
+    /** current order being made */
     public static Order currentOrder = new Order();
+    /** total price of all the donuts in the order */
+    public static double donutTotal = 0;
 
+    /**
+     * Begins and initializes the Activity
+     * @param savedInstanceState state of application in prior activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setCoffeeListener();
+        setDonutListener();
+        setOrderListener();
+        setAllOrdersListener();
     }
 
     /**
-     * Switches to addCoffeeActivity. Linked to button onClick.
-     *
-     * @param view
+     * sets an OnClickListener to 'ADD COFFEE' Button
      */
-    public void addCoffee(View view) {
-        Intent intent = new Intent(this, CoffeeActivity.class);
-        startActivity(intent);
+    private void setCoffeeListener(){
+        Button button = findViewById(R.id.addCoffee);
+        button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * action upon click
+             * @param view view clicked
+             */
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CoffeeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
-     * Switches to addDonutActivity. Linked to button onClick.
-     *
-     * @param view
+     * sets an OnClickListener to 'ADD Donuts' Button
      */
-    public void addDonut(View view) {
-        Intent intent = new Intent(this, DonutActivity.class);
-        startActivity(intent);
-    }
-    /**
-     * Switches to CurrentOrderActivity. Linked to button onClick.
-     *
-     * @param view
-     */
-    public void viewCurrentOrder(View view) {
-        Intent intent = new Intent(this, OrderActivity.class);
-        startActivity(intent);
+    private void setDonutListener(){
+        Button button = findViewById(R.id.addDonut);
+        button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * action upon click
+             * @param view view clicked
+             */
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, DonutActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
-     * Switches to StoreOrdersActivity. Linked to button onClick.
-     *
-     * @param view
+     * sets an OnClickListener to 'VIEW CURRENT ORDER' Button
      */
-    public void viewStoreOrders(View view) {
-        Intent intent = new Intent(this, StoreOrdersActivity.class);
-        startActivity(intent);
+    private void setOrderListener(){
+        Button button = findViewById(R.id.currentOrder);
+        button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * action upon click
+             * @param view view clicked
+             */
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+    /**
+     * sets an OnClickListener to 'VIEW STORE ORDERS' Button
+     */
+    private void setAllOrdersListener(){
+        Button button = findViewById(R.id.storeOrders);
+        button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * action upon click
+             * @param view view clicked
+             */
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, StoreOrdersActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
 }

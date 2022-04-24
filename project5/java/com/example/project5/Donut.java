@@ -32,15 +32,16 @@ public class Donut extends MenuItem implements Serializable{
     private int flavor;
     /** quantity of the donut */
     private int quantity;
-
+    /** image index corresponding to the donut */
     private int image;
 
     /**
-     * 3 parameter constructor for Donut type
+     * parameterized constructor for Donut type
      * @param price donut price
      * @param quantity donut quantity
      * @param type donut type
      * @param flavor donut flavor
+     * @param image image index corresponding to the donut
      */
     public Donut(double price, int quantity, int type, int flavor, int image){
         super(price);
@@ -84,6 +85,10 @@ public class Donut extends MenuItem implements Serializable{
         return "N/A";
     }
 
+    /**
+     * returns the price of an individual donut of the donut type
+     * @return price of an individual donut of the donut type
+     */
     public double getTypePrice(){
         if(this.type == YEAST){
             return YEAST_PRICE;
@@ -99,67 +104,51 @@ public class Donut extends MenuItem implements Serializable{
      * returns donut flavor as a String
      * @return donut flavor as a String
      */
-    private String getFlavor(){
-        if(this.flavor == SUGAR){
-            return "SUGAR";
-        }else if(this.flavor == GLAZED){
-            return "GLAZED";
-        }else if(this.flavor == CHOCOLATE){
-            return "CHOCOLATE";
-        }
-        return "N/A";
-    }
-
-    public String getFlavor2(){
+    public String getFlavor(){
         switch (this.flavor){
             case SUGAR:
                 return "Sugar";
-
             case GLAZED:
                 return "Glazed";
-
             case CHOCOLATE:
                 return "Chocolate";
-
             case BLUEBERRY:
                 return "Blueberry";
-
-
             case VELVET:
                 return "Red Velvet";
-
             case BOSTON:
                 return "Boston Kreme";
             case LEMON:
                 return "Lemon";
-
             case STRAWBERRY:
                 return "Strawberry";
-
-
             case VANILLA:
                 return "Vanilla";
-
             case BIRTHDAY:
                 return "Birthday";
-
             case JELLY:
                 return "Jelly";
-
             case POWDER:
                 return "Powder";
         }
         return ("N/A");
     }
 
+    /**
+     * returns the image index of the donut
+     * @return image index of the donut
+     */
     public int getImage() {
         return image;
     }
 
-    
+    /**
+     * returns the String representation of the donut
+     * @return String representation of the donut
+     */
     @Override
     public String toString(){
-        String ret = "Donut: " + this.getType() + ", " + this.getFlavor2() + " (" + this.quantity + ")";
+        String ret = "Donut: " + this.getType() + ", " + this.getFlavor() + " (" + this.quantity + ")";
         return ret;
     }
 }

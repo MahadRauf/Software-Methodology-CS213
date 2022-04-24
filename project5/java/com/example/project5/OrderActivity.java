@@ -12,15 +12,26 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Activity for viewing current order
+ * @author Mahad Rauf, Moeez Shahid
+ */
 public class OrderActivity extends AppCompatActivity {
+    /** ListView showing items in current order */
     private ListView order;
+    /** TextView with subtotal amount of current order */
     private TextView subtotal;
+    /** TextView with sales tax amount of current order */
     private TextView tax;
+    /** TextView with total amount of current order */
     private TextView total;
-    private Button placeOrder;
 
     private static final double SALES_TAX = 0.06625;
 
+    /**
+     * Begins and initializes the Activity
+     * @param savedInstanceState state of application in prior activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +42,13 @@ public class OrderActivity extends AppCompatActivity {
         tax = findViewById(R.id.order_tax);
         total = findViewById(R.id.order_total);
         setValues();
-        placeOrder = findViewById(R.id.order_place);
+        Button placeOrder = findViewById(R.id.order_place);
         setButtonListener(placeOrder);
     }
 
+    /**
+     * sets an OnClickListener to the 'PLACE ORDER' Button in the Activity
+     */
     private void setButtonListener(Button button){
         button.setOnClickListener(view -> {
             if(MainActivity.currentOrder.getItems().size() == 0){
@@ -46,6 +60,8 @@ public class OrderActivity extends AppCompatActivity {
                     .setPositiveButton("Yes", (dialogInterface, i) -> {
                         MainActivity.orders.add(MainActivity.currentOrder);
                         MainActivity.currentOrder = new Order();
+                        MainActivity.donutTotal = 0;
+                        Toast.makeText(OrderActivity.this, "Order Placed", Toast.LENGTH_SHORT).show();
                         finish();
                     })
                     .setNegativeButton("No", (dialogInterface, i) -> {
@@ -56,6 +72,9 @@ public class OrderActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * sets values of the subtotal, tax, and total TextViews
+     */
     private void setValues(){
         double subTotl = 0;
         for(MenuItem i : MainActivity.currentOrder.getItems()){
@@ -63,6 +82,7 @@ public class OrderActivity extends AppCompatActivity {
         }
         double sTax = subTotl * SALES_TAX;
         double totl = subTotl + sTax;
+        MainActivity.currentOrder.setTotal(totl);
         String subtotalText = "$" + String.format("%,.2f", subTotl);
         String taxText = "$" + String.format("%,.2f", sTax);
         String totalText = "$" + String.format("%,.2f", totl);
@@ -71,11 +91,21 @@ public class OrderActivity extends AppCompatActivity {
         total.setText(totalText);
     }
 
+    /**
+     * initializes the order ListView with an Adapter and adds an OnItemClickListener to the list items
+     */
     private void initList(){
         ArrayAdapter<MenuItem> arrayAdapter = new ArrayAdapter<MenuItem>(this, android.R.layout.simple_list_item_1,
                 MainActivity.currentOrder.getItems());
         order.setAdapter(arrayAdapter);
         order.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /**
+             * action when something is selected
+             * @param adapterView AdapterView of the ListView
+             * @param view selected item of the ListView
+             * @param i position of the selected item
+             * @param l id of the item
+             */
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 MenuItem toRemove = (MenuItem) order.getItemAtPosition(i);

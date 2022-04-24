@@ -6,35 +6,40 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashSet;
 
-
+/**
+ * Activity for ordering coffee view
+ * @author Mahad Rauf, Moeez Shahid
+ */
 public class CoffeeActivity extends AppCompatActivity {
+    /** sizes spinner in the Activity */
     private Spinner sizes;
-    private EditText subtotal;
-    private CheckBox cream;
-    private CheckBox milk;
-    private CheckBox syrup;
-    private CheckBox caramel;
-    private CheckBox wCream;
+    /** subtotal amount TextView in the Activity */
+    private TextView subtotal;
+    /** 'ADD TO ORDER' Button in the Activity */
     private Button orderButton;
     /** Base price of Short coffee with no add-ins */
-    private double currentPrice = 1.69;
+    private double currentPrice = BASE_PRICE;
     /** Base size of the coffee: Short */
     private int coffeeSize = Coffee.SHORT;
-    /** add-ins ot be added to the coffee */
+    /** add-ins to be added to the coffee */
     private HashSet<String> addIns = new HashSet<String>();
 
     private static final double BASE_PRICE = 1.69;
     private static final double ADD_IN_PRICE = Coffee.ADD_IN_PRICE;
     private static final double SIZE_INCREASE_PRICE = Coffee.SIZE_INCREASE_PRICE;
 
+    /**
+     * Begins and initializes the Activity
+     * @param savedInstanceState state of application in prior activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +52,9 @@ public class CoffeeActivity extends AppCompatActivity {
         setOrderListener();
     }
 
+    /**
+     * sets an OnClickListener to the order button in the Activity
+     */
     private void setOrderListener(){
         orderButton.setOnClickListener(view -> {
             Coffee toAdd = new Coffee(currentPrice, coffeeSize);
@@ -67,19 +75,26 @@ public class CoffeeActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * sets OnCheckChangedListener to all the CheckBoxes for add-ins
+     */
     private void initBoxes(){
-        cream = findViewById(R.id.cream);
+        CheckBox cream = findViewById(R.id.cream);
         setBoxListener(cream);
-        milk = findViewById(R.id.milk);
+        CheckBox milk = findViewById(R.id.milk);
         setBoxListener(milk);
-        syrup = findViewById(R.id.syrup);
+        CheckBox syrup = findViewById(R.id.syrup);
         setBoxListener(syrup);
-        caramel = findViewById(R.id.caramel);
+        CheckBox caramel = findViewById(R.id.caramel);
         setBoxListener(caramel);
-        wCream = findViewById(R.id.w_cream);
+        CheckBox wCream = findViewById(R.id.w_cream);
         setBoxListener(wCream);
     }
 
+    /**
+     * sets an onCheckChangedListener to the specified CheckBox
+     * @param cBox CheckBox to add the onCheckChangedListener to
+     */
     private void setBoxListener(CheckBox cBox){
         cBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked){
@@ -93,8 +108,18 @@ public class CoffeeActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * sets an OnItemSelectedListener to sizes spinner
+     */
     private void setSizesListener(){
         sizes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            /**
+             * action when something is selected
+             * @param parentView AdapterView of the spinner
+             * @param selectedItemView selected item of the spinner
+             * @param position position of the selected item
+             * @param id id of the item
+             */
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String size = (String) sizes.getSelectedItem();
@@ -113,6 +138,10 @@ public class CoffeeActivity extends AppCompatActivity {
                 }
                 setPrice();
             }
+            /**
+             * action when nothing is selected
+             * @param parentView AdapterView of the spinner
+             */
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 sizes.setSelection(0);
@@ -120,6 +149,9 @@ public class CoffeeActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * sets the amount of the subtotal TextField
+     */
     private void setPrice(){
         String amount = "$" + String.format("%,.2f", currentPrice);
         subtotal.setText(amount);
